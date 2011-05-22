@@ -24,6 +24,8 @@
 			error_404();
 		}
 
+		# update subscription here
+
 		echo get_str("challenge");
 		exit();
 	}

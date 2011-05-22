@@ -4,7 +4,7 @@
 
 	#################################################################
 
-	function flickr_push_subscriptions_map($str_keys=0){
+	function flickr_push_topic_map($str_keys=0){
 
 		$map = array(
 			1 => 'contacts_photos',
@@ -25,7 +25,8 @@
 
 		$method = 'flickr.push.subscribe';
 
-		$topic = 'contacts_photos'; 	# fix me
+		$map = flickr_push_topic_map();
+		$topic = $map[$subscription['topic_id']];
 
 		$args = array(
 			'auth_token' => $flickr_user['auth_token'],

@@ -1,22 +1,26 @@
 <?php
 
 	include("include/init.php");
+
 	loadlib("pua_subscriptions");
 	loadlib("flickr_push");
 	loadlib("flickr_users");
 
 	login_ensure_loggedin("/photos/friends");
 
-	$subscription = pua_subscriptions_get_by_user_and_type($GLOBALS['cfg']['user'], 0);
+	$map = flickr_push_topic_map('string keys');
+	$topic_id = $map['contacts_photos'];
 
-	$crumb_key = 'photos_friends';
-	$GLOBALS['smarty']->assign("crumb_key", $crumb_key);
+	$subscription = pua_subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 
 	if ($subscription){
 		$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
 	}
 
 	else {
+
+		$crumb_key = 'photos_friends';
+		$GLOBALS['smarty']->assign("crumb_key", $crumb_key);
 
 		$crumb_ok = crumb_check($crumb_key);
 
@@ -28,7 +32,7 @@
 
 			$subscription = array(
 				'user_id' => $GLOBALS['cfg']['user']['id'],
-				'type' => 1,	# fix me
+				'topic_id' => $topic_id,
 			);
 
 			$sub_rsp = pua_subscriptions_create_subscription($subscription);

@@ -41,12 +41,12 @@
 
 	#################################################################
 
-	function pua_subscriptions_get_by_user_and_type(&$user, $type){
+	function pua_subscriptions_get_by_user_and_topic(&$user, $topic_id){
 
 		$enc_id = AddSlashes($user['id']);
-		$enc_type = AddSlashes($type);
+		$enc_topic = AddSlashes($topic_id);
 
-		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND type='{$enc_type}'";
+		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND topic_id='{$enc_topic}'";
 
 		$rsp = db_fetch($sql);
 		$row = db_single($rsp);
