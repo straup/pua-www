@@ -1,0 +1,17 @@
+{include file="inc_head.txt"}
+
+{if $step=='do_confirm'}
+
+<form method="POST" action="{$cfg.abs_root_url}photos/friends">
+	{$crumb_key|crumb_input}
+	<input type="hidden" name="confirm" value="1" />
+	<input type="submit" value="SUBSCRIBE" />
+</form>
+
+{elseif $step=='do_subscribe'}
+SUBSCRIBE
+{else}
+HELLO
+{/if}
+
+{include file="inc_foot.txt"}

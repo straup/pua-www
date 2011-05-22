@@ -4,21 +4,6 @@
 
 	#################################################################
 
-	function pua_subscriptions_type_map($str_keys=0){
-
-		$map = array(
-			0 => 'photos friends',
-		);
-
-		if ($str_keys){
-			$map = array_flip($map);
-		}
-
-		return $map;
-	}
-
-	#################################################################
-
 	function pua_subscriptions_generate_secret_url(){
 
 		$tries = 0;
@@ -30,7 +15,7 @@
 
 			$url = random_string(64);
 
-			if (! pua_subscriptions_get_by_url($url)){
+			if (! pua_subscriptions_get_by_secret_url($url)){
 				return $url;
 			}
 
@@ -56,12 +41,12 @@
 
 	#################################################################
 
-	function pua_subscriptions_get_by_nsid_and_type($nsid, $type){
+	function pua_subscriptions_get_by_user_and_type(&$user, $type){
 
-		$enc_nsid = AddSlashes($nsid);
+		$enc_id = AddSlashes($user['id']);
 		$enc_type = AddSlashes($type);
 
-		$sql = "SELECT * FROM Subscriptions WHERE nsid='{$enc_nsid}' AND type='{$enc_type}'";
+		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND type='{$enc_type}'";
 
 		$rsp = db_fetch($sql);
 		$row = db_single($rsp);
@@ -95,7 +80,7 @@
 			$insert[$k] = AddSlashes($v);
 		}
 
-		$rsp = db_insert($insert, 'Subscriptions');
+		$rsp = db_insert('Subscriptions', $insert);
 
 		if ($rsp['ok']){
 			$rsp['subscription'] = $subscription;

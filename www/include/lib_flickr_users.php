@@ -57,9 +57,10 @@
 			return $cache['data'];
 		}
 
-		$enc_id = AddSlashes($id);
+		$enc_id = AddSlashes($user_id);
 
 		$sql = "SELECT * FROM FlickrUsers WHERE user_id='{$enc_id}'";
+
 		$rsp = db_fetch($sql);
 		$user = db_single($rsp);
 
