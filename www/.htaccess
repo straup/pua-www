@@ -42,6 +42,6 @@ RewriteRule ^auth/?$						auth_callback.php?%{QUERY_STRING} [L]
 
 RewriteRule ^photos/friends/?$					photos_friends.php?%{QUERY_STRING} [L]
 
-RewriteRule ^push/friends/?$					push_friends.php?%{QUERY_STRING} [L]
+RewriteRule ^push/([^/]+)/?$					push.php?%{QUERY_STRING} [L]
 
 RewriteRule ^about/?$						about.php?%{QUERY_STRING} [L]
