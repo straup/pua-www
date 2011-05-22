@@ -1,0 +1,30 @@
+{utf8_headers}
+<html>
+	<head>
+		<title>[pua]{if $page_title} {$page_title|escape}{/if}</title>
+		<link rel="stylesheet" type="text/css" href="{$cfg.abs_root_url}/css/index.css" />
+
+		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/jquery-1.5.1.min.js"></script>
+		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/array_merge.js"></script>
+		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/htmlspecialchars.js"></script>
+	</head>
+
+	<body>
+
+<div id="main">
+
+	<div id="nav">
+		<div id="login" style="float: right;">
+{if $cfg.user.id}
+			Hello {$cfg.user.username|escape}.
+			<a href="/signout/">Logout</a>
+{else}
+	{if $cfg.enable_feature_signin}
+			<a href="/signin/">Sign In</a>
+	{/if}
+{/if}
+		</div>
+		&nbsp;
+	</div>
+
+	<div id="content">

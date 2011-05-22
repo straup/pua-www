@@ -1,0 +1,5 @@
+{include file="inc_head.txt"}
+
+<span style="font-size:6em;">pua <3 you</span>
+
+{include file="inc_foot.txt"}

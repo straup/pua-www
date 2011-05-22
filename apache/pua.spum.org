@@ -1,0 +1,28 @@
+<VirtualHost *:80>
+	ServerName pua.spum.org
+	# ServerAdmin webmaster@localhost
+
+	DocumentRoot /home/asc/pua.spum.org/www
+
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+
+	<Directory /home/asc/pua.spum.org/www>
+		Options FollowSymLinks Indexes
+		# AllowOverride FileInfo Limit
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
