@@ -13,11 +13,19 @@
 {if $error|@count}
 Ack! {$error.detail|escape}
 {else}
-YAY! SHOW PHOTOS HERE.
+
+{include file="inc_photo.txt"}
+
 {/if}
 
 {else}
-SHOW PHOTOS HERE
+
+{include file="inc_photo.txt"}
+
+<script type="text/javascript">
+	pua_get_contacts_photos();
+</script>
+
 {/if}
 
 {include file="inc_foot.txt"}

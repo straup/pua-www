@@ -43,7 +43,7 @@
 
 		if ($redis->hexists($seen_key, $hash)){
 			$skipped += 1;
-			continue;
+			# continue;
 		}
 
 		$redis->hset($seen_key, $hash, time());
