@@ -40,10 +40,13 @@
 	foreach (range(0, $limit) as $i){
 
 		$data = $redis->lindex($updates_key, $i);
+		$hash = md5($data);
 
 		if ($redis->hexists($seen_key, $hash)){
+
+			# error_log("[PUSH] {$seen_key} {$updates_key} {$i}");
 			$skipped += 1;
-			# continue;
+			continue;
 		}
 
 		$redis->hset($seen_key, $hash, time());
