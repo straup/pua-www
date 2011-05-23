@@ -8,9 +8,7 @@
 		exit();
 	}
 	
-	$extra = array(
-		'crumb' => '',
-	);
+	$extra = array();
 
 	if ($redir = get_str('redir')){
 		$extra['redir'] = $redir;
