@@ -123,7 +123,7 @@
 	# this both adds the subscription to the database and registers
 	# it with the flickr.push API
 
-	function subscriptions_register_subscription($subscription){
+	function subscriptions_register_subscription($flickr_user, $subscription){
 
 		$rsp = subscriptions_create_subscription($subscription);
 

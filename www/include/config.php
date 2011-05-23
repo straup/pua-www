@@ -22,16 +22,12 @@
 	# See also: http://code.flickr.com/blog/2009/12/02/flipping-out/
 	#
 
-	# Don't turn this on until there is a working offline tasks system
-	# $GLOBALS['cfg']['enable_feature_enplacify'] = 0;
-
 	$GLOBALS['cfg']['enable_feature_api'] = 1;
 
 	$GLOBALS['cfg']['api_default_format'] = 'json';
 
 	$GLOBALS['cfg']['api_valid_formats'] = array(
 		'json',
-		'geojson',
 	);
 
 	$GLOBALS['cfg']['enable_feature_signup'] = 1;

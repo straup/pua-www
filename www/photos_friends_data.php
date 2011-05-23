@@ -7,6 +7,8 @@
 
 	loadlib("flickr_push");
 	loadlib("subscriptions");
+	loadlib("api_output");
+
 	include_once("Redis.php");
 
 	if (! $GLOBALS['cfg']['user']['id']){
@@ -64,11 +66,6 @@
 		'photos' => $photos,
 	);
 
-	$out_json = json_encode($out);
-
-	# header("Content-Type: text/json");
-	header("Content-Length: " . strlen($outjson));
-
-	echo $out_json;
+	api_output_ok($out);
 	exit();
 ?>

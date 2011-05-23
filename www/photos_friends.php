@@ -17,10 +17,6 @@
 	if ($subscription){
 
 		$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
-
-		# if (! $subscription['verified']){
-		# 	$fl_rsp = flickr_push_subscribe($flickr_user, $subscription);
-		# }
 	}
 
 	else {
@@ -39,7 +35,7 @@
 				'topic_id' => $topic_id,
 			);
 
-			$rsp = subscriptions_register_subscription($subscription);
+			$rsp = subscriptions_register_subscription($flickr_user, $subscription);
 
 			if ($rsp['ok']){
 				$subscription = $rsp['subscription'];
@@ -60,4 +56,3 @@
 	$GLOBALS['smarty']->display("page_photos_friends.txt");
 	exit();
 ?>
-

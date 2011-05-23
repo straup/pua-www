@@ -1,5 +1,9 @@
 <?php
 
+	#################################################################
+
+	# Hey look! Running code!!
+
 	$format = $GLOBALS['cfg']['api_default_format'];
 
 	if ($_format = get_str('format')){
@@ -11,4 +15,5 @@
 
 	loadlib("api_output_{$format}");
 
+	#################################################################
 ?>
