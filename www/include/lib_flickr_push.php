@@ -37,11 +37,7 @@
 			'callback' => $callback,
 		);
 
-dumper($subscriptions);
-dumper($args);
-
 		$rsp = flickr_api_call($method, $args);
-dumper($rsp);
 		return $rsp;
 	}
 
