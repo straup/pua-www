@@ -7,15 +7,13 @@ function pua_get_contacts_photos(){
 		}
 	});
 
+	pua_set_text('panda tickles unicorn');
 }
 
 function pua_show_contacts_photos(photos){
 
 	var ph = photos.pop();
 	pua_draw_photo(ph);
-
-	// console.log(ph);
-	// console.log(photos.length);
 
 	if (photos.length){
 
@@ -28,7 +26,7 @@ function pua_show_contacts_photos(photos){
 
 	setTimeout(function(){
 		pua_get_contacts_photos();
-	}, 150000);
+	}, 60000);
 }
 
 function pua_draw_photo(ph){
