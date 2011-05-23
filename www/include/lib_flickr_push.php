@@ -6,6 +6,9 @@
 
 	function flickr_push_topic_map($str_keys=0){
 
+		# note: changes here should also be reflected
+		# in subscriptions_topic_map()
+
 		$map = array(
 			1 => 'contacts_photos',
 		);
