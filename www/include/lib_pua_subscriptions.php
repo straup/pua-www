@@ -70,6 +70,8 @@
 
 		$token = random_string(32);
 
+		$subscription['id'] = dbtickets_create();
+
 		$subscription['secret_url'] = $secret_url;
 		$subscription['verify_token'] = $token;
 		$subscription['created'] = time();
@@ -84,6 +86,28 @@
 
 		if ($rsp['ok']){
 			$rsp['subscription'] = $subscription;
+		}
+
+		return $rsp;
+	}
+
+	#################################################################
+
+	function pua_subscriptions_update(&$subscription, $update){
+
+		$hash = array();
+
+		foreach ($update as $k => $v){
+			$hash[$k] = AddSlashes($v);
+		}
+
+		$enc_id = AddSlashes($subscription['id']);
+		$where = "id='{$enc_id}'";
+
+		$rsp = db_update('Subscriptions', $hash, $where);
+
+		if ($rsp['ok']){
+			$subscription = array_merge($subscription, $update);
 		}
 
 		return $rsp;

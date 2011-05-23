@@ -3,8 +3,10 @@
 	include("include/init.php");
 
 	loadlib("pua_subscriptions");
+	loadlib("atom");
 
 	$secret_url = get_str("secret_url");
+	error_log("[PUSH] secret: {$secret_url}");
 
 	if (! $secret_url){
 		error_404();
@@ -24,15 +26,28 @@
 			error_404();
 		}
 
-		# update subscription here
+		$update = array(
+			'verified' => time(),
+		);
+
+		pua_subscriptions_update($subscription, $update);
 
 		echo get_str("challenge");
 		exit();
 	}
 
-	$cache_key = "flickr_push_{$subscription['user_id']}_{$subscription['type']}";
+	$cache_key = "flickr_push_u{$subscription['user_id']}_t{$subscription['topic_id']}";
+	error_log("[PUSH] {$cache_key}");
 
 	# parse atom feed and store photos here...
 
+	$xml = file_get_contents('php://input');
+	$atom = atom_parse_str($xml);
+
+	foreach ($atom->items as $e){
+		error_log("[PUSH] {$e['title']}");
+	}
+
+	error_log("[PUSH] finished pushing...");
 	exit();
 ?>

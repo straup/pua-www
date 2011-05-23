@@ -8,13 +8,21 @@
 
 	login_ensure_loggedin("/photos/friends");
 
+	$flickr_user = flickr_users_get_by_user_id($GLOBALS['cfg']['user']['id']);
+
 	$map = flickr_push_topic_map('string keys');
 	$topic_id = $map['contacts_photos'];
 
 	$subscription = pua_subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 
 	if ($subscription){
+
 		$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
+
+		if (! $subscription['verified']){
+			$fl_rsp = flickr_push_subscribe($flickr_user, $subscription);
+			dumper($fl_rsp);
+		}
 	}
 
 	else {
@@ -28,16 +36,22 @@
 
 			$GLOBALS['smarty']->assign("step", "do_subscribe");
 
-			$flickr_user = flickr_users_get_by_user_id($GLOBALS['cfg']['user']['id']);
-
 			$subscription = array(
 				'user_id' => $GLOBALS['cfg']['user']['id'],
 				'topic_id' => $topic_id,
 			);
 
 			$sub_rsp = pua_subscriptions_create_subscription($subscription);
+			$ok = $sub_rsp['ok'];
 
-			$fl_rsp = flickr_push_subscribe($flickr_user, $subscription);
+dumper($sub_rsp);
+			if ($ok){
+				$fl_rsp = flickr_push_subscribe($flickr_user, $subscription);
+dumper($fl_rsp);
+				$ok = $fl_rsp['ok'];
+			}
+
+			$GLOBALS['smarty']->assign("ok_subscribe", $ok);
 		}
 
 		else {
