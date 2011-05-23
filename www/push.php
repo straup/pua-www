@@ -2,7 +2,7 @@
 
 	include("include/init.php");
 
-	loadlib("pua_subscriptions");
+	loadlib("subscriptions");
 	loadlib("atom");
 
 	include_once("Redis.php");
@@ -13,7 +13,7 @@
 		error_404();
 	}
 
-	$subscription = pua_subscriptions_get_by_secret_url($secret_url);
+	$subscription = subscriptions_get_by_secret_url($secret_url);
 
 	if (! $subscription){
 		error_404();
@@ -31,7 +31,7 @@
 			'verified' => time(),
 		);
 
-		pua_subscriptions_update($subscription, $update);
+		subscriptions_update($subscription, $update);
 
 		echo get_str("challenge");
 		exit();
@@ -82,7 +82,7 @@
 		'last_update' => time(),
 	);
 
-	pua_subscriptions_update($subscription, $update);
+	subscriptions_update($subscription, $update);
 
 	#
 

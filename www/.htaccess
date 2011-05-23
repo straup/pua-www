@@ -41,6 +41,7 @@ RewriteRule ^checkcookie/?$					checkcookie.php?%{QUERY_STRING} [L]
 RewriteRule ^auth/?$						auth_callback.php?%{QUERY_STRING} [L]
 
 RewriteRule ^photos/friends/?$					photos_friends.php?%{QUERY_STRING} [L]
+RewriteRule ^photos/friends/data/?$				photos_friends_data.php?%{QUERY_STRING} [L]
 
 RewriteRule ^push/([^/]+)/?$					push.php?secret_url=$1&%{QUERY_STRING} [L]
 

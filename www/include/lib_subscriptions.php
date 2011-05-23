@@ -1,10 +1,25 @@
 <?php
 
 	loadlib("random");
+	loadlib("flickr_push");
 
 	#################################################################
 
-	function pua_subscriptions_generate_secret_url(){
+	function subscriptions_topic_map(){
+
+		# these keys should match those defined in
+		# flickr_push_topic_map()
+
+		$map = array(
+			1 => array('label' => 'your contacts photos', 'url' => 'photos/friends/'),
+		);
+
+		return $map;
+	}
+
+	#################################################################
+
+	function subscriptions_generate_secret_url(){
 
 		$tries = 0;
 		$max_tries = 50;
@@ -15,7 +30,7 @@
 
 			$url = random_string(64);
 
-			if (! pua_subscriptions_get_by_secret_url($url)){
+			if (! subscriptions_get_by_secret_url($url)){
 				return $url;
 			}
 
@@ -27,7 +42,7 @@
 
 	#################################################################
 
-	function pua_subscriptions_get_by_secret_url($url){
+	function subscriptions_get_by_secret_url($url){
 
 		$enc_url = AddSlashes($url);
 
@@ -41,7 +56,7 @@
 
 	#################################################################
 
-	function pua_subscriptions_get_by_user_and_topic(&$user, $topic_id){
+	function subscriptions_get_by_user_and_topic(&$user, $topic_id){
 
 		$enc_id = AddSlashes($user['id']);
 		$enc_topic = AddSlashes($topic_id);
@@ -56,7 +71,7 @@
 
 	#################################################################
 
-	function pua_subscriptions_for_user(&$user){
+	function subscriptions_for_user(&$user){
 
 		$cluster_id = $user['cluster_id'];
 		$enc_user = AddSlashes($user['id']);
@@ -68,9 +83,9 @@
 
 	#################################################################
 
-	function pua_subscriptions_create_subscription($subscription){
+	function subscriptions_create_subscription($subscription){
 
-		$secret_url = pua_subscriptions_generate_secret_url();
+		$secret_url = subscriptions_generate_secret_url();
 
 		if (! $secret_url){
 
@@ -105,7 +120,30 @@
 
 	#################################################################
 
-	function pua_subscriptions_update(&$subscription, $update){
+	# this both adds the subscription to the database and registers
+	# it with the flickr.push API
+
+	function subscriptions_register_subscription($subscription){
+
+		$rsp = subscriptions_create_subscription($subscription);
+
+		if ($rsp['ok']){
+
+			$subscription = $rsp['subscription'];
+
+			$rsp = flickr_push_subscribe($flickr_user, $subscription);
+
+			if ($rsp['ok']){
+				$rsp['subscription'] = $subscription;
+			}
+		}
+
+		return $rsp;
+	}
+
+	#################################################################
+
+	function subscriptions_update(&$subscription, $update){
 
 		$hash = array();
 

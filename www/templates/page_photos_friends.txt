@@ -9,9 +9,15 @@
 </form>
 
 {elseif $step=='do_subscribe'}
-SUBSCRIBE
+
+{if $error|@count}
+Ack! {$error.detail|escape}
 {else}
-HELLO
+YAY! SHOW PHOTOS HERE.
+{/if}
+
+{else}
+SHOW PHOTOS HERE
 {/if}
 
 {include file="inc_foot.txt"}

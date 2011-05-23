@@ -1,22 +1,25 @@
 <?php
 
+	# to be replace by a proper API endpoint if and when
+	# I ever get there... (20110523/straup)
+
 	include("include/init.php");
 
 	loadlib("flickr_push");
-	loadlib("pua_subscriptions");
+	loadlib("subscriptions");
 	include_once("Redis.php");
 
 	if (! $GLOBALS['cfg']['user']['id']){
-		exit();
+		error_404();
 	}
 
 	$map = flickr_push_topic_map('string keys');
 	$topic_id = $map['contacts_photos'];
 
-	$subscription = pua_subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
+	$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 
 	if (! $subscription){
-		exit();
+		error_404();
 	}
 
 	$whoami = md5($_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR']);
@@ -30,12 +33,14 @@
 	$limit = $count - 1;
 
 	$photos = array();
+	$skipped = 0;
 
 	foreach (range(0, $limit) as $i){
 
 		$data = $redis->lindex($updates_key, $i);
 
 		if ($redis->hexists($seen_key, $hash)){
+			$skipped += 1;
 			continue;
 		}
 
@@ -48,5 +53,22 @@
 		}
 	}
 
-	dumper($photos);
+	$count = count($photos);
+	$ttl = 30;	# time to display each photo
+
+	$next = ($count) ? (time() + ($count * $ttl)) : time() + 120;
+
+	$out = array(
+		'next_update' => $next, 
+		'count' => count($photos),
+		'photos' => $photos,
+	);
+
+	$out_json = json_encode($out);
+
+	# header("Content-Type: text/json");
+	header("Content-Length: " . strlen($outjson));
+
+	echo $out_json;
+	exit();
 ?>

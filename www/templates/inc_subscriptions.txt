@@ -1,0 +1,21 @@
+<h2>Subscriptions</h2>
+
+<table>
+	<tr>
+		<th>Topic</th>
+		<th>Created</th>
+		<th>Verified</th>
+		<th>Last Update</th>
+	</tr>
+{foreach from=$subscriptions item="row"}
+	<tr>
+		<td>{if $topic_map}
+			{assign var="topic_id" value=$row.topic_id}
+			<strong><a href="{$cfg.abs_root_url}{$topic_map.$topic_id.url}">{$topic_map.$topic_id.label|escape}</a></strong>
+		{else}{$row.topic_id|escape}{/if}</td>
+		<td>{$row.created|date_format:"%Y-%m-%d %H:%M"|escape}</td>
+		<td>{if $row.verified}{$row.verified|date_format:"%Y-%m-%d %H:%M"|escape}{else}&#8212;{/if}</td>
+		<td>{if $row.last_update}{$row.last_update|date_format:"%Y-%m-%d %H:%M"|escape}{else}&#8212;{/if}</td>
+	</tr>
+{/foreach}
+</table>
