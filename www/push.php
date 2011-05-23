@@ -5,8 +5,9 @@
 	loadlib("pua_subscriptions");
 	loadlib("atom");
 
+	include_once("Redis.php");
+
 	$secret_url = get_str("secret_url");
-	error_log("[PUSH] secret: {$secret_url}");
 
 	if (! $secret_url){
 		error_404();
@@ -36,18 +37,54 @@
 		exit();
 	}
 
-	$cache_key = "flickr_push_u{$subscription['user_id']}_t{$subscription['topic_id']}";
-	error_log("[PUSH] {$cache_key}");
+	$redis_key = "flickr_push_updates_{$subscription['id']}";
 
 	# parse atom feed and store photos here...
 
 	$xml = file_get_contents('php://input');
 	$atom = atom_parse_str($xml);
 
+	#
+
+	$redis = new Redis();
+	$new = 0;
+
 	foreach ($atom->items as $e){
-		error_log("[PUSH] {$e['title']}");
+
+		$photo = array(
+			'photo_id' => $e['id'],
+			'owner' => $e['flickr']['author_nsid'],
+			'ownername' => $e['author'],
+			'title' => $e['title'],
+			'updated' => $e['updated'],
+			'photo_url' => $e['media']['atom_content@url'],
+			'thumb_url' => $e['media']['thumbnail@url'],
+		);
+
+		$redis->lpush($redis_key, json_encode($photo));
+		$new ++;
 	}
 
-	error_log("[PUSH] finished pushing...");
+	#
+
+	$count = $redis->llen($redis_key);
+	$max = $GLOBALS['cfg']['flickr_push_max_photos'];
+
+	if ($count > $max){
+		$redis->ltrim($redis_key, $max, $count);
+	}
+
+	error_log("[PUSH] {$redis_key}: {$count} (new: {$new})");
+
+	#
+
+	$update = array(
+		'last_update' => time(),
+	);
+
+	pua_subscriptions_update($subscription, $update);
+
+	#
+
 	exit();
 ?>

@@ -77,6 +77,8 @@
 	$GLOBALS['cfg']['db_enable_poormans_ticketing'] = 1;
 	$GLOBALS['cfg']['db_enable_poormans_federation'] = 1;
 
+	$GLOBALS['cfg']['flickr_push_max_photos'] = 500;
+
 	#
 	# API stuff
 	#
@@ -122,83 +124,6 @@
 	$GLOBALS['cfg']['auto_email_args']	= 'READ-FROM-CONFIG';
 
 	#
-	# Geo
-	#
-
-	$GLOBALS['cfg']['geo_geocoding_service'] = 'yahoo';
-	$GLOBALS['cfg']['geo_geocoding_yahoo_apikey'] = '';
-
-	#
-	# Enplacification
-	#
-
-	# This requires that 'enable_feature_enplacify' be enabled (see above)
-
-	$GLOBALS['cfg']['enplacify'] = array(
-
-		'chowhound' => array(
-			'uris' => array(
-				"/chow\.com\/restaurants\/([^\/]+)/",
-			),
-		),
-
-		'dopplr' => array(
-			'uris' => array(
-				"/dplr\.it\/(eat|stay|explore)\/([^\/]+)/",
-				"/dopplr\:(eat|stay|explore)=(.+)$/",
-			),
-		),
-
-		'flickr' => array(
-			'uris' => array(
-				"/flickr\.com\/photos\/(?:[^\/]+)\/(\d+)/",
-				# flickr short Uris
-			),
-			'machinetags' => array(
-				'dopplr' => array('eat', 'explore', 'stay'),
-				'foodspotting' => array('place'),
-				'foursquare' => array('venue'),
-				'osm' => array('node', 'way'),
-				'yelp' => array('biz'),
-			),
-		),
-
-		'foodspotting' => array(
-			'uris' => array(
-				"/foodspotting\.com\/places\/(\d+)/",
-				"/foodspotting\:place=(.+)$/",
-			),
-		),
-
-		'foursquare' => array(
-			'uris' => array(
-				"/foursquare\.com\/venue\/(\d+)/",
-				"/foursquare\:venue=(\d+)$/",
-			),
-		),
-
-		'openstreetmap' => array(
-			'uris' => array(
-				"/openstreetmap.org\/browse\/(node)\/(\d+)/",
-				"/osm\:(node)=(\d+)$/",
-			),
-		),
-
-		'yelp' => array(
-			'uris' => array(
-				"/yelp\.com\/biz\/([^\/]+)/",
-				"/yelp\:biz=([^\/]+)/",
-			),
-		),
-	);
-
-	#
-	# Third-party API keys
-	#
-
-	$GLOBALS['cfg']['flickr_apikey'] = 'READ-FROM-CONFIG';
-
-	#
 	# Things you can probably not worry about
 	#
 
@@ -212,23 +137,5 @@
 	$GLOBALS['cfg']['check_notices'] = 1;
 
 	$GLOBALS['cfg']['db_profiling'] = 0;
-
-	#
-
-	$GLOBALS['cfg']['esri_endpoints'] = array(
-
-		'featureserver_jeff' => 'http://184.72.157.143/ArcGIS/rest/services/gazetteer1/FeatureServer/0/',
-		'featureserver_sampleserver' => 'http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0/',
-
-		'gazetteer_jeff' => 'http://184.72.157.143:81/rest/gazetteer/features/',
-
-		'geocode_geonames' => 'http://tasks.arcgisonline.com/ArcGIS/rest/services/Locators/ESRI_Places_World/GeocodeServer/findAddressCandidates',
-		'geocode_ta_address_northamerica' => 'http://tasks.arcgisonline.com/ArcGIS/rest/services/Locators/TA_Address_NA_10/GeocodeServer/findAddressCandidates',
-		'geocode_ta_address_europe' => 'http://tasks.arcgisonline.com/ArcGIS/rest/services/Locators/TA_Address_EU/GeocodeServer/findAddressCandidates',
-		'geocode_gazetteer' => 'http://184.72.157.143:81/rest/gazetteer/features/search',
-	);
-
-	$GLOBALS['cfg']['maptiles_template_url'] = 'http://spaceclaw.stamen.com/tiles/dotspotting/world/{Z}/{X}/{Y}.png';
-	$GLOBALS['cfg']['maptiles_template_hosts'] = array();
 
 ?>
