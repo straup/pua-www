@@ -37,7 +37,7 @@
 		exit();
 	}
 
-	$redis_key = "flickr_push_updates_{$subscription['id']}";
+	$redis_key = "pua_subscription_{$subscription['id']}";
 
 	# parse atom feed and store photos here...
 

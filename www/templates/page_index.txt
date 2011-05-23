@@ -1,5 +1,30 @@
 {include file="inc_head.txt"}
 
-<span style="font-size:6em;">pua <3 you</span>
+{if $cfg.user}
+
+{if $subscriptions|@count}
+
+<h2>Subscriptions</h2>
+
+<table>
+	<tr>
+		<th>Topic</th>
+		<th>Created</th>
+		<th>Verified</th>
+		<th>Last Update</th>
+	</tr>
+{foreach from=$subscriptions item="row"}
+	<tr>
+		<td>{$row.topic_id|escape}</td>
+		<td>{$row.created|date_format:"%Y-%m-%d %H:%M"|escape}</td>
+		<td>{if $row.verified}{$row.verified|date_format:"%Y-%m-%d %H:%M"|escape}{else}&#8212;{/if}</td>
+		<td>{if $row.last_update}{$row.last_update|date_format:"%Y-%m-%d %H:%M"|escape}{else}&#8212;{/if}</td>
+	</tr>
+{/foreach}
+</table>
+
+{/if}
+
+{/if}
 
 {include file="inc_foot.txt"}

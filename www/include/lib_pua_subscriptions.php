@@ -56,6 +56,18 @@
 
 	#################################################################
 
+	function pua_subscriptions_for_user(&$user){
+
+		$cluster_id = $user['cluster_id'];
+		$enc_user = AddSlashes($user['id']);
+
+		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_user}'";
+		$rsp = db_fetch_users($cluster_id, $sql);
+		return $rsp;
+	}
+
+	#################################################################
+
 	function pua_subscriptions_create_subscription($subscription){
 
 		$secret_url = pua_subscriptions_generate_secret_url();
