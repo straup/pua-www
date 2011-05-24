@@ -1,6 +1,19 @@
 function pua_contacts_photos(){
 	$("#nav").hide();
 	$("#foot").hide();
+
+	$(document).keyup(function(e){
+
+		if (e.which != 61){
+			return;
+		}
+
+		var display = $("#nav").css("display");
+		display = (display == 'none') ? 'block' : 'none';
+
+		$("#nav").css("display", display);
+	});
+
 	pua_get_contacts_photos();
 }
 
