@@ -1,3 +1,4 @@
+{assign var="page_title" value="photos from your contacts"}
 {include file="inc_head.txt"}
 
 {if $step=='do_confirm'}
