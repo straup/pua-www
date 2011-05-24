@@ -16,6 +16,10 @@ Ack! {$error.detail|escape}
 
 {include file="inc_photo.txt"}
 
+<script type="text/javascript">
+	pua_contacts_photos();
+</script>
+
 {/if}
 
 {else}
@@ -23,7 +27,7 @@ Ack! {$error.detail|escape}
 {include file="inc_photo.txt"}
 
 <script type="text/javascript">
-	pua_get_contacts_photos();
+	pua_contacts_photos();
 </script>
 
 {/if}

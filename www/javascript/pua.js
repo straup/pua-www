@@ -1,3 +1,8 @@
+function pua_contacts_photos(){
+	$("#nav").hide();
+	pua_get_contacts_photos();
+}
+
 function pua_get_contacts_photos(){
 
 	$.ajax({
@@ -31,8 +36,8 @@ function pua_show_contacts_photos(photos){
 
 function pua_draw_photo(ph){
 
-	var h = window.innerHeight - 6;
-	var w = window.innerWidth - 6;
+	var h = window.innerHeight;
+	var w = window.innerWidth;
 
 	var photo_id = ph.photo_id.replace("tag:flickr.com,2005:/photo/", "");
 	var photo_url = ph.photo_url.replace("_x", "");
@@ -59,8 +64,8 @@ function resize(){
 	var ph = $("#photo");
 	if (! ph){ return; }
 
-	var h = window.innerHeight - 6;
-	var w = window.innerWidth - 6;
+	var h = window.innerHeight;
+	var w = window.innerWidth;
 
 	ph.attr("height", h);
 	ph.attr("width", w);
