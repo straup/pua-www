@@ -28,7 +28,7 @@
 <div id="notphotos">
 
 <p><strong>Okay. You're are all set!</strong></p>
-<p><a href="{$cfg.abs_root_url}photos/friends/">You'll see your contacts photos the next time you visit this page.</a></p>
+<p>It will probably take about five minutes before any new updates are delivered but once they do <a href="{$cfg.abs_root_url}photos/friends/">you'll see your contacts photos the next time you visit this page.</a> You can always check <a href="{$cfg.abs_root_url}">the homepage</a> to see the last time an update was received for one of your contacts.</p>
 
 </div>
 
