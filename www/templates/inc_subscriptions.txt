@@ -1,21 +1,27 @@
-<h2>Subscriptions</h2>
-
-<table>
+<table id="subscriptions">
 	<tr>
-		<th>Topic</th>
+		<th>Subscription</th>
 		<th>Created</th>
 		<th>Verified</th>
-		<th>Last Update</th>
+		<th>Last update</th>
 	</tr>
-{foreach from=$subscriptions item="row"}
+{foreach from=$topic_map item="row" key="topic_id"}
+
 	<tr>
-		<td>{if $topic_map}
-			{assign var="topic_id" value=$row.topic_id}
-			<strong><a href="{$cfg.abs_root_url}{$topic_map.$topic_id.url}">{$topic_map.$topic_id.label|escape}</a></strong>
-		{else}{$row.topic_id|escape}{/if}</td>
-		<td>{$row.created|date_format:"%Y-%m-%d %H:%M"|escape}</td>
-		<td>{if $row.verified}{$row.verified|date_format:"%Y-%m-%d %H:%M"|escape}{else}&#8212;{/if}</td>
-		<td>{if $row.last_update}{$row.last_update|date_format:"%Y-%m-%d %H:%M"|escape}{else}&#8212;{/if}</td>
+{if $subscriptions.$topic_ids}
+{assign var="sub" value=$subscriptions.$topic_id}
+		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
+		<td>{$sub.created|date_format:"%b %d, %Y"|escape}</td>
+		<td>{if $sub.verified}{$sub.verified|date_format:"%b %d, %Y"|escape}{else}&#8212;{/if}</td>
+		<td>{if $sub.last_update}{$sub.last_update|date_format:"%b %d, %Y"|escape} at <strong>{$sub.last_update|date_format:"%l:%M %p"|escape}</strong>{else}&#8212;{/if}</td>
+
+{else}
+		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|escape}</a></strong></td>
+		<td><a href="{$cfg.abs_root_url}{$row.url}">subscribe</a></td>
+		<td>&#160;</td>
+		<td>&#160;</td>
+{/if}
+
 	</tr>
 {/foreach}
 </table>

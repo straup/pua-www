@@ -2,14 +2,21 @@
 
 {if $cfg.user}
 
+<div id="notphotos">
 {if $subscriptions|@count}
-
 {include file="inc_subscriptions.txt"}
-
 {/if}
+</div>
 
 {else}
+
 <img src="{$cfg.abs_root_url}images/nw_asc.jpg" height="100%" width="100%" />
+
+<div id="banner">
+this is pua
+</div>
 {/if}
+
+
 
 {include file="inc_foot.txt"}
