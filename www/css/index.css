@@ -54,6 +54,7 @@ p {
 	line-height:1em;
 	padding:30px;
 	opacity:.7;
+	z-index: 100;
 }
 
 input {

@@ -12,6 +12,7 @@ function pua_contacts_photos(){
 		display = (display == 'none') ? 'block' : 'none';
 
 		$("#nav").css("display", display);
+		$("#foot").css("display", display);
 	});
 
 	pua_get_contacts_photos();
