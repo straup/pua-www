@@ -16,7 +16,7 @@ function pua_get_contacts_photos(){
 
 function pua_show_contacts_photos(photos){
 
-	if (! photos.length){
+	if (photos.length == 0){
 
 		setTimeout(function(){
 			pua_get_contacts_photos();

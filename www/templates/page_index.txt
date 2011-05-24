@@ -3,9 +3,7 @@
 {if $cfg.user}
 
 <div id="notphotos">
-{if $subscriptions|@count}
 {include file="inc_subscriptions.txt"}
-{/if}
 </div>
 
 {else}

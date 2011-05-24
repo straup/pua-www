@@ -25,7 +25,12 @@
 
 {else}
 
-<div id="notphotos">Okay! You are all set! <a href="{$cfg.abs_root_url}photos/friends/">Let's go</a></div>
+<div id="notphotos">
+
+<p><strong>Okay. You're are all set!</strong></p>
+<p><a href="{$cfg.abs_root_url}photos/friends/">You'll see your contacts photos the next time you visit this page.</a></p>
+
+</div>
 
 {/if}
 
