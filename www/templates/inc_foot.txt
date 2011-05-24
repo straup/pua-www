@@ -1,5 +1,6 @@
 
+		<div id="foot">
+this is a thing by <a href="http://www.aaronland.info/">aaron straup cope</a> | <a href="{$cfg.abs_root_url}about/">tell me more</a>
 		</div>
-
 	</body>
 </html>

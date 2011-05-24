@@ -12,9 +12,6 @@
 
 <img src="{$cfg.abs_root_url}images/nw_asc.jpg" height="100%" width="100%" />
 
-<div id="banner">
-this is pua
-</div>
 {/if}
 
 

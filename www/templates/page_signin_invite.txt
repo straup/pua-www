@@ -6,14 +6,12 @@
 <p class="error">Nope. That's not right.</p>
 {/if}
 
-<p><strong>pua</strong> is not open to the public yet so this is the place where you enter an invite code before you sign in:</p>
+<p><strong>pua</strong> is not open to the public yet so this is the part where you enter an invite code before you sign in:</p>
 
-<form method="POST" action="{$cfg.abs_root_url}signin" id="invite_form">
+<form method="POST" action="{$cfg.abs_root_url}signin">
 	{$crumb_key|crumb_input}
 	<input type="text" name="invite" value="" size="10" />
 	<input type="submit" value="LET ME IN!" />
-
-	<p class="caveat">(You should only need to do this once.)</p>
 </form>
 
 </div>

@@ -1,5 +1,6 @@
 function pua_contacts_photos(){
 	$("#nav").hide();
+	$("#foot").hide();
 	pua_get_contacts_photos();
 }
 
@@ -11,27 +12,27 @@ function pua_get_contacts_photos(){
 			pua_show_contacts_photos(rsp.photos);
 		}
 	});
-
-	pua_set_text('panda tickles unicorn');
 }
 
 function pua_show_contacts_photos(photos){
 
-	var ph = photos.pop();
-	pua_draw_photo(ph);
-
-	if (photos.length){
+	if (! photos.length){
 
 		setTimeout(function(){
-			pua_show_contacts_photos(photos);
-		}, 25000);
+			pua_get_contacts_photos();
+		}, 60000);
 
+		pua_set_text('panda tickles unicorn');
 		return;
 	}
 
+	var ph = photos.pop();
+	pua_draw_photo(ph);
+
 	setTimeout(function(){
-		pua_get_contacts_photos();
-	}, 60000);
+		pua_show_contacts_photos(photos);
+	}, 25000);
+
 }
 
 function pua_draw_photo(ph){
@@ -56,7 +57,7 @@ function pua_draw_photo(ph){
 function pua_set_text(text){
 
 	$('#message').html(text);
-	$("#message_wrapper").textfill({ maxFontPixels: 200 });
+	$("#message_wrapper").textfill({ maxFontPixels: 500 });
 }
 
 function resize(){
@@ -70,21 +71,23 @@ function resize(){
 	ph.attr("height", h);
 	ph.attr("width", w);
 
-	assign_wrapper_dimensions();
+	$("#message_wrapper").textfill({ maxFontPixels: 500 });
 }
 
 function assign_wrapper_dimensions(){
+
+	 return;
+
 	var h = window.innerHeight;
 	var w = window.innerWidth;
 
-	$("#message_wrapper").css("max-width", (w * .95) + 'px');
-	$("#message_wrapper").css("max-height", (h * .90) + 'px');
-	$("#message_wrapper").textfill({ maxFontPixels: max_pixel_sz });
+	$("#message_wrapper").css("max-width", (w  *.95) + 'px');
+	$("#message_wrapper").css("max-height", (h * .95) + 'px');
+	$("#message_wrapper").textfill({ maxFontPixels: 500 });
 }
 
 window.onload = function(){
 	assign_wrapper_dimensions();
-	connect();
 }
 
 window.onresize = function(){

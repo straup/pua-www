@@ -8,7 +8,7 @@
 {foreach from=$topic_map item="row" key="topic_id"}
 
 	<tr>
-{if $subscriptions.$topic_ids}
+{if $subscriptions.$topic_id}
 {assign var="sub" value=$subscriptions.$topic_id}
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
 		<td>{$sub.created|date_format:"%b %d, %Y"|escape}</td>

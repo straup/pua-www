@@ -1,6 +1,7 @@
 {assign var='page_title' value='Sign out'}
 {include file='inc_head.txt'}
 
+<div id="notphotos">
 <p>This is an intermediate page so that we can generate and check a crumb. We will inline this into the URL shortly.</p>
 
 <form action="/signout/" method="post" accept-encoding="UTF-8">
@@ -8,5 +9,6 @@
 	<input type="hidden" name="done" value="1" />
 	<input type="submit" value="SIGN OUT" />
 </form>
+</div>
 
 {include file='inc_foot.txt'}

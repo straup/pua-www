@@ -3,23 +3,29 @@
 
 {if $step=='do_confirm'}
 
-<form method="POST" action="{$cfg.abs_root_url}photos/friends">
+<div id="notphotos">
+
+<p>This is the part where I double-check that you're sure you'd like to subscribe to your contacts photos. If you've gotten this far it seems like a safe bet but are you <strong>really really sure?</strong></p>
+
+<form method="POST" action="{$cfg.abs_root_url}photos/friends" style="margin-left:40%;">
 	{$crumb_key|crumb_input}
 	<input type="hidden" name="confirm" value="1" />
-	<input type="submit" value="SUBSCRIBE" />
+	<input type="submit" value="OH YES!!" />
 </form>
+
+</div>
 
 {elseif $step=='do_subscribe'}
 
 {if $error|@count}
-Ack! {$error.detail|escape}
+
+<div id="notphotos">
+<p class="error">Ack! There was a problem registering your subscription. This is what the robots have told me so far: {$error.details|escape}</p>
+</div>
+
 {else}
 
-{include file="inc_photo.txt"}
-
-<script type="text/javascript">
-	pua_contacts_photos();
-</script>
+<div id="notphotos">Okay! You are all set! <a href="{$cfg.abs_root_url}photos/friends/">Let's go</a></div>
 
 {/if}
 

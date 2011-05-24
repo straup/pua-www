@@ -15,7 +15,6 @@
 	$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 
 	if ($subscription){
-
 		$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
 	}
 
@@ -44,7 +43,7 @@
 
 			else {
 				$GLOBALS['error']['subscribe'] = 1;
-				$GLOBALS['error_details'] = $rsp['error'];
+				$GLOBALS['error']['details'] = $rsp['error'];
 			}
 		}
 

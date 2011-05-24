@@ -59,12 +59,8 @@
 	}
 
 	$count = count($photos);
-	$ttl = 30;	# time to display each photo
-
-	$next = ($count) ? (time() + ($count * $ttl)) : time() + 120;
 
 	$out = array(
-		'next_update' => $next, 
 		'count' => count($photos),
 		'photos' => $photos,
 	);

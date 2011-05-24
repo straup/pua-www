@@ -3,11 +3,11 @@ body {
     padding:0 px;
     font-family:sans-serif;
     background-color:#fff;
+    line-height:1.5em;
 }
 
 a {
 	color:#000;
-	text-decoration:none;
 }
 
 a:hover {
@@ -41,6 +41,18 @@ a:hover {
 	padding:30px;
 }
 
+#foot {
+	font-size:11px;
+	text-align:right;
+	position:fixed;
+	bottom:0;
+	right: 0;
+	background-color:#fff;
+	line-height:1em;
+	padding:30px;
+	opacity:.7;
+}
+
 input {
     border: solid thin;
     padding: 10px;
@@ -56,6 +68,8 @@ input[type='submit'] {
 	margin:0;
 	padding:0;
 	background-color:#000;
+	height:100%;
+	width:100%;
 }
 
 img {
@@ -65,28 +79,31 @@ img {
 }
 
 #message_wrapper{
-color:#fff;
-opacity:.7;
-font-size:225px;
-font-weight:700;
-position:absolute;
-top:0px;
-left:0px;
-margin:20px;
-overflow:hidden;
-text-shadow: 2px 2px #666;
+    color:#fff;
+    opacity:.7;
+    /* font-size:200px; */
+    font-weight:700;
+    position:absolute;
+    top:0px;
+    left:0px;
+    margin:0px;
+    overflow:hidden;
+    text-shadow: 2px 2px #666;
+    height:100%;
+    width:100%;
+
 }
 
 #message a {
-text-decoration: none;
-color:#fff;
+    text-decoration: none;
+    color:#fff;
 }
 
 #notphotos {
 	margin: 10%;
 }
 
-#invite_form {
+form {
 	margin:5%;
 	margin-left:20%;
 }
