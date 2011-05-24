@@ -53,7 +53,7 @@
 
 		$photos[] = json_decode($data, "as hash");
 
-		if (count($photos) == 20){
+		if (count($photos) == 50){
 			break;
 		}
 	}

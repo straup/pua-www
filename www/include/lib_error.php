@@ -84,6 +84,9 @@
 		# output
 		#
 
+		header("HTTP/1.0 404 Not Found");
+		header("Status: 404 Not Found");
+
 		$GLOBALS['smarty']->display('page_error_404.txt');
 		exit;
 	}
