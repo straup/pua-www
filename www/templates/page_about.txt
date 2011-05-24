@@ -13,7 +13,7 @@
 
 <h2>Why is it called <strong>pua</strong>?</h2>
 
-<p>The site is named after <a href="http://www.flickr.com/photos/tamanduagirl/tags/pua/">Pua</a>, who is an anteater. It's fun to think of watching photos roll by as being like <a href="http://www.flickr.com/photos/tamanduagirl/2418297150/">an anteater drinking fizzy water</a> even if the two things, really, have nothing to do with one another.</p>
+<p>The site is named after <a href="http://www.flickr.com/photos/tamanduagirl/tags/pua/">Pua</a>, who is an anteater. It's fun to think of watching photos rolling past as being like <a href="http://www.flickr.com/photos/tamanduagirl/2418297150/">an anteater drinking fizzy water</a> even if the two things, really, have nothing to do with one another.</p>
 
 <h2>What's up with the panda and the unicorn?</h2>
 
