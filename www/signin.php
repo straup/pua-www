@@ -48,7 +48,8 @@
 			exit();		
 		}
 
-		login_set_cookie('invite', 1);
+		$expires = time() * 2;
+		login_set_cookie('invite', 1, $expires);
 	}
 
 	#
