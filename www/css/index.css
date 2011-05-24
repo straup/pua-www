@@ -3,7 +3,6 @@ body {
     padding:0 px;
     font-family:sans-serif;
     background-color:#fff;
-    line-height:1.5em;
 }
 
 a {
@@ -27,7 +26,8 @@ a:hover {
     padding:20px;
 }
 
-#banner sup {
+p {
+    line-height:1.5em;
 }
 
 #nav {
