@@ -101,6 +101,7 @@ img {
 
 #notphotos {
 	margin: 10%;
+	width: 60%;
 }
 
 form {
@@ -136,4 +137,12 @@ form {
     padding:10px;
     padding-left:0px;
     padding-right:30px;
+}
+
+.image500 {
+	border:1px dotted #ccc;
+	padding:10px;
+	margin-top:0px;
+	margin-bottom:40px;
+	max-width: 500px;
 }

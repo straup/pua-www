@@ -2,9 +2,22 @@
 {include file="inc_head.txt"}
 
 <div id="notphotos">
+
+<div class="image500">
+<a href="http://www.flickr.com/photos/straup/5694880417/" title="&quot;programming&quot; by straup, on Flickr"><img src="http://farm3.static.flickr.com/2698/5694880417_acbee97c0e.jpg" width="500" height="375" alt="&quot;programming&quot;"></a>
+</div>
+
+<h2>What is pua?</h2>
+
+<p><strong>pua</strong> shows you photos from Flickr.</p>
+
 <h2>Why is it called <strong>pua</strong>?</h2>
 
-<p>The site is named after Pua, an anteater. It's fun to think of watching photos roll by as being like <a href="">an anteater drinking fizzy water</a> even if the two things, really, have nothing to do with one another.</p>
+<p>The site is named after <a href="http://www.flickr.com/photos/tamanduagirl/tags/pua/">Pua</a>, who is an anteater. It's fun to think of watching photos roll by as being like <a href="http://www.flickr.com/photos/tamanduagirl/2418297150/">an anteater drinking fizzy water</a> even if the two things, really, have nothing to do with one another.</p>
+
+<h2>What's up with the panda and the unicorn?</h2>
+
+<p>That just means there are no new photos to display.</p>
 
 </div>
 
