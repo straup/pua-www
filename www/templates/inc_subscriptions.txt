@@ -1,3 +1,10 @@
+{if $error|@count}
+<p class="error">
+{if $error.invalid_subscription}Hrm. That doesn't look like a valid subscription.
+{elseif $error.unsubscribe}Ack! There was a problem unsubscribing. So far the robots have told me this: {$error.details|escape}
+{else}{/if}
+</p>
+{/if}
 <table id="subscriptions">
 	<tr>
 		<th>Subscription</th>
@@ -17,7 +24,7 @@
 		<td>{if $sub.last_update}{$sub.last_update|date_format:"%b %d, %Y"|escape} at <strong>{$sub.last_update|date_format:"%l:%M %p"|escape}</strong>{else}&#8212;{/if}</td>
 
 		<td>
-			<form method="POST" action="{$cfg.abs_root_url}" style="margin:0;">
+			<form method="POST" action="{$cfg.abs_root_url}" style="margin:0;" onsubmit="{literal}javascript: if (! confirm('Are you sure you want to unsubscribe?')){ return false; }{/literal}">
 				{$crumb_key|crumb_input}
 				<input type="hidden" name="delete" value ="{$sub.topic_id|escape}-{$sub.id|escape}" />
 				<input type="submit" value="unsubscribe" class="unsubscribe" />

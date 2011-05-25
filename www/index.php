@@ -7,8 +7,6 @@
 
 		$subscriptions = subscriptions_for_user_as_hash($GLOBALS['cfg']['user']);
 
-		#
-
 		$crumb_key = 'subscriptions';
 		$GLOBALS['smarty']->assign("crumb_key", $crumb_key);
 
@@ -27,6 +25,15 @@
 				if ($rsp['ok']){
 					$subscriptions = subscriptions_for_user_as_hash($GLOBALS['cfg']['user']);
 				}
+
+				else {
+					$GLOBALS['error']['unsubscribe'] = 1;
+					$GLOBALS['error']['details'] = $rsp['error'];
+				}
+			}
+
+			else {
+				$GLOBALS['error']['invalid_subscription'] = 1;
 			}
 		}
 
