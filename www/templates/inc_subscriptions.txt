@@ -4,6 +4,7 @@
 		<th>Created</th>
 		<th>Verified</th>
 		<th>Last update</th>
+		<th style="border:none;">&#160;</th>
 	</tr>
 {foreach from=$topic_map item="row" key="topic_id"}
 
@@ -15,6 +16,13 @@
 		<td>{if $sub.verified}{$sub.verified|date_format:"%b %d, %Y"|escape}{else}&#8212;{/if}</td>
 		<td>{if $sub.last_update}{$sub.last_update|date_format:"%b %d, %Y"|escape} at <strong>{$sub.last_update|date_format:"%l:%M %p"|escape}</strong>{else}&#8212;{/if}</td>
 
+		<td>
+			<form method="POST" action="{$cfg.abs_root_url}" style="margin:0;">
+				{$crumb_key|crumb_input}
+				<input type="hidden" name="delete" value ="{$sub.topic_id|escape}-{$sub.id|escape}" />
+				<input type="submit" value="unsubscribe" class="unsubscribe" />
+			</form>
+		</td>
 {else}
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|escape}</a></strong></td>
 		<td><a href="{$cfg.abs_root_url}{$row.url}">subscribe</a></td>

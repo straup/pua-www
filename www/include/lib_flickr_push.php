@@ -1,6 +1,7 @@
 <?php
 
 	loadlib("flickr");
+	loadlib("flickr_users");
 
 	#################################################################
 
@@ -22,7 +23,9 @@
 
 	#################################################################
 
-	function flickr_push_subscribe($flickr_user, $subscription){
+	function flickr_push_subscribe($subscription){
+
+		$flickr_user = flickr_users_get_by_user_id($subscription['user_id']);
 
 		$callback = "{$GLOBALS['cfg']['abs_root_url']}push/{$subscription['secret_url']}/";
 
@@ -45,4 +48,31 @@
 	}
 
 	#################################################################
+
+	function flickr_push_unsubscribe($subscription){
+
+		$flickr_user = flickr_users_get_by_user_id($subscription['user_id']);
+
+		$callback = "{$GLOBALS['cfg']['abs_root_url']}push/{$subscription['secret_url']}/";
+
+		$method = 'flickr.push.subscribe';
+
+		$map = flickr_push_topic_map();
+		$topic = $map[$subscription['topic_id']];
+
+		$args = array(
+			'auth_token' => $flickr_user['auth_token'],
+			'topic' => $topic,
+			'mode' => 'unsubscribe',
+			'verify' => 'sync',
+			'verify_token' => $subscription['verify_token'],
+			'callback' => $callback,
+		);
+
+		$rsp = flickr_api_call($method, $args);
+		return $rsp;
+	}
+
+	#################################################################
+
 ?>

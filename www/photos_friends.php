@@ -34,7 +34,7 @@
 				'topic_id' => $topic_id,
 			);
 
-			$rsp = subscriptions_register_subscription($flickr_user, $subscription);
+			$rsp = subscriptions_register_subscription($subscription);
 
 			if ($rsp['ok']){
 				$subscription = $rsp['subscription'];

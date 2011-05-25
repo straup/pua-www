@@ -27,11 +27,29 @@
 			error_404();
 		}
 
-		$update = array(
-			'verified' => time(),
-		);
+		$mode = get_str('mode');
 
-		subscriptions_update($subscription, $update);
+		if ($mode == 'subscribe'){
+
+			$update = array(
+				'verified' => time(),
+			);
+
+			$rsp = subscriptions_update($subscription, $update);
+		}
+
+		else if ($mode == 'unsubscribe'){
+
+			$rsp = subscriptions_delete($subscription);
+
+			if (! $rsp['ok']){
+				error_404();
+			}
+		}
+
+		else {
+			error_404();
+		}
 
 		echo get_str("challenge");
 		exit();

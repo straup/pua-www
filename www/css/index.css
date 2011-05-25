@@ -105,12 +105,23 @@ img {
 
 #notphotos {
 	margin: 10%;
-	width: 60%;
 }
 
 form {
 	margin:5%;
 	margin-left:20%;
+}
+
+.unsubscribe {
+    background-color: #fff !important;
+    border: none;
+    font-weight: 100;
+    font-size: 10pt;
+    text-decoration:underline;
+}
+
+.unsubscribe:hover{
+    color:#2B547E;
 }
 
 .caveat {

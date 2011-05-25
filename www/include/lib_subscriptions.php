@@ -1,6 +1,7 @@
 <?php
 
 	loadlib("random");
+
 	loadlib("flickr_push");
 
 	#################################################################
@@ -71,6 +72,21 @@
 
 	#################################################################
 
+	function subscriptions_for_user_as_hash(&$user){
+
+		$rsp = subscriptions_for_user($user);
+
+		$subscriptions = array();
+
+		foreach ($rsp['rows'] as $row){
+			$subscriptions[$row['topic_id']] = $row;
+		}
+
+		return $subscriptions;
+	}
+
+	#################################################################
+
 	function subscriptions_for_user(&$user){
 
 		$cluster_id = $user['cluster_id'];
@@ -123,7 +139,7 @@
 	# this both adds the subscription to the database and registers
 	# it with the flickr.push API
 
-	function subscriptions_register_subscription($flickr_user, $subscription){
+	function subscriptions_register_subscription($subscription){
 
 		$rsp = subscriptions_create_subscription($subscription);
 
@@ -131,7 +147,7 @@
 
 			$subscription = $rsp['subscription'];
 
-			$rsp = flickr_push_subscribe($flickr_user, $subscription);
+			$rsp = flickr_push_subscribe($subscription);
 
 			if ($rsp['ok']){
 				$rsp['subscription'] = $subscription;
@@ -143,7 +159,24 @@
 
 	#################################################################
 
+	function subscriptions_delete(&$subscription){
+
+		$user = users_get_by_id($subscription['user_id']);
+		$cluster_id = $user['cluster_id'];
+
+		$enc_id = AddSlashes($subscription['id']);
+
+		$sql = "DELETE FROM Subscriptions WHERE id='{$enc_id}'";
+
+		return db_write_users($cluster_id, $sql);
+	}
+
+	#################################################################
+
 	function subscriptions_update(&$subscription, $update){
+
+		$user = users_get_by_id($subscription['user_id']);
+		$cluster_id = $user['cluster_id'];
 
 		$hash = array();
 
@@ -154,7 +187,7 @@
 		$enc_id = AddSlashes($subscription['id']);
 		$where = "id='{$enc_id}'";
 
-		$rsp = db_update('Subscriptions', $hash, $where);
+		$rsp = db_update_users($cluster_id, 'Subscriptions', $hash, $where);
 
 		if ($rsp['ok']){
 			$subscription = array_merge($subscription, $update);
