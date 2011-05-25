@@ -9,7 +9,7 @@
 
 <h2>What is pua?</h2>
 
-<p><strong>pua</strong> <a href="http://www.aaronland.info/weblog/2011/05/07/fancy/#likeadog">shows you photos</a> from Flickr.</p>
+<p><strong>pua</strong> <a href="http://www.aaronland.info/weblog/2011/05/07/fancy/#likeadog">shows you new photos</a> from Flickr as they are uploaded and older photos when they are updated.</p>
 
 <h2>Why is it called <strong>pua</strong>?</h2>
 
