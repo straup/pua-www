@@ -35,7 +35,7 @@
 
 <p>It will probably take about five minutes before any new updates are delivered but once they do <a href="{$cfg.abs_root_url}photos/friends/">you'll see your contacts photos the next time you visit this page.</a> You can always check <a href="{$cfg.abs_root_url}">the homepage</a> to see the last time an update was received for one of your contacts.</p>
 
-<p>Occasionally, you may see a funny message about pandas and unicorns. Don't worry! That just means that <strong>pua</strong> has asked for new photos and there aren't any right now. If the screen is entirely black that just means that it hasn't found <em>any</em> new photos yet. Like this:</p>
+<p>Occasionally, you may see a funny message about pandas and unicorns. Don't worry! That just means that <strong>pua</strong> has asked for new photos and there aren't any right now. If the screen is entirely black that just means that <strong>pua</strong> hasn't found <em>any</em> new photos yet. Like this:</p>
 
 <div class="image500">
 <img src="{$cfg.abs_root_url}images/pua_panda.jpg" height="375" width="500" />
