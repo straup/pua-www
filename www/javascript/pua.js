@@ -45,7 +45,7 @@ function pua_show_contacts_photos(photos){
 
 	setTimeout(function(){
 		pua_show_contacts_photos(photos);
-	}, 25000);
+	}, 40000);
 
 }
 

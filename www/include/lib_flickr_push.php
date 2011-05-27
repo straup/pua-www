@@ -37,7 +37,6 @@
 		$args = array(
 			'auth_token' => $flickr_user['auth_token'],
 			'topic' => $topic,
-			'mode' => 'subscribe',
 			'verify' => 'sync',
 			'verify_token' => $subscription['verify_token'],
 			'callback' => $callback,
@@ -55,7 +54,7 @@
 
 		$callback = "{$GLOBALS['cfg']['abs_root_url']}push/{$subscription['secret_url']}/";
 
-		$method = 'flickr.push.subscribe';
+		$method = 'flickr.push.unsubscribe';
 
 		$map = flickr_push_topic_map();
 		$topic = $map[$subscription['topic_id']];
@@ -63,7 +62,6 @@
 		$args = array(
 			'auth_token' => $flickr_user['auth_token'],
 			'topic' => $topic,
-			'mode' => 'unsubscribe',
 			'verify' => 'sync',
 			'verify_token' => $subscription['verify_token'],
 			'callback' => $callback,

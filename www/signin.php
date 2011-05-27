@@ -9,6 +9,9 @@
 		exit();
 	}
 
+	$GLOBALS['smarty']->display("page_signup_disabled.txt");
+	exit;
+
 	# invite/signup stuff
 
 	$invite_cookie = login_get_cookie('invite');
