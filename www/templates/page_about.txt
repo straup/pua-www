@@ -1,10 +1,10 @@
 {capture assign="page_title"}about{/capture}
 {include file="inc_head.txt"}
 
-<div id="notphotos">
+<div id="notphotos" style="max-width:640px;">
 
 <div class="image500">
-<a href="http://www.flickr.com/photos/straup/5694880417/" title="&quot;programming&quot; by straup, on Flickr"><img src="http://farm3.static.flickr.com/2698/5694880417_acbee97c0e.jpg" width="500" height="375" alt="&quot;programming&quot;"></a>
+<img src="{$cfg.abs_root_url}images/pua_tickle.jpg" height="375" width="500" />
 </div>
 
 <h2>What is pua?</h2>
