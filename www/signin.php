@@ -9,8 +9,8 @@
 		exit();
 	}
 
-	$GLOBALS['smarty']->display("page_signup_disabled.txt");
-	exit;
+	# $GLOBALS['smarty']->display("page_signup_disabled.txt");
+	# exit;
 
 	# invite/signup stuff
 
