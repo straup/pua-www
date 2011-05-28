@@ -127,7 +127,7 @@
 
 	$GLOBALS['cfg']['smarty_compile'] = 1;
 
-	$GLOBALS['cfg']['http_timeout'] = 3;
+	$GLOBALS['cfg']['http_timeout'] = 5;
 	$GLOBALS['cfg']['http_timeout_solr'] = 10;
 
 	$GLOBALS['cfg']['check_notices'] = 1;
