@@ -11,6 +11,14 @@
 
 <p><strong>pua</strong> <a href="http://www.aaronland.info/weblog/2011/05/07/fancy/#likeadog">shows you new photos</a> from Flickr as they are uploaded and older photos when they are updated.</p>
 
+<h2>How do I use pua?</h2>
+
+<p><strong>pua</strong> is just a web page, like any other. You can use it in any modern browser on the desktop. It also works just fine on the iPad and the iPhone.</p>
+
+<p>If you're using an iPhone/iPad the <a href="{$cfg.abs_root_url}photos/friends/">photos from your contacts</a> page has all the magic bits that will let you save the page to the <q>desktop</q> and then run it as though it were a plain-old app (read: full-screen mode).</p>
+
+<p>On the desktop both Firefox and Chrome have the magic bits necessary to view web pages in full-screen mode.</p>
+
 <h2>Why is it called <strong>pua</strong>?</h2>
 
 <p>The site is named after <a href="http://www.flickr.com/photos/tamanduagirl/tags/pua/">Pua</a>, who is an anteater. It's fun to think of watching photos rolling past as being like <a href="http://www.flickr.com/photos/tamanduagirl/2418297150/">an anteater drinking fizzy water</a> even if the two things, really, have nothing to do with one another.</p>
@@ -18,6 +26,14 @@
 <h2>What's up with the panda and the unicorn?</h2>
 
 <p>That just means there are no new photos to display.</p>
+
+<a name="things"></a>
+<h2>Things people have said about pua</h2>
+
+<p><q>It said something about unicorns... but now my nephew is throwing ice cubes.</q></p>
+
+<p><q>Now I need more screens.</q></p>
+
 
 </div>
 

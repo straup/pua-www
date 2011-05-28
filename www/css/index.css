@@ -5,6 +5,10 @@ body {
     background-color:#fff;
 }
 
+q {
+    font-style: italic;
+}
+
 a {
 	color:#000;
 }

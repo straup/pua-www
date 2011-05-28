@@ -41,6 +41,8 @@
 <img src="{$cfg.abs_root_url}images/pua_panda.jpg" height="375" width="500" />
 </div>
 
+<p>There is also an <a href="{$cfg.abs_root_url}about/">about <strong>pua</strong></a> page that you may want to read while you're waiting for new photos to arrive.</p>
+
 </div>
 
 {/if}
