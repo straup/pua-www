@@ -27,13 +27,16 @@
 
 <p>That just means there are no new photos to display.</p>
 
+<div class="image500">
+<a href="http://www.flickr.com/photos/stml/5765553518/"><img src="{$cfg.abs_root_url}images/pua_screens_stml.jpg" height="375" width="500" /></a>
+</div>
+
 <a name="things"></a>
 <h2>Things people have said about pua</h2>
 
 <p><q>It said something about unicorns... but now my nephew is throwing ice cubes.</q></p>
 
 <p><q>Now I need more screens.</q></p>
-
 
 </div>
 
