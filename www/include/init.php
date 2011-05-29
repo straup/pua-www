@@ -197,9 +197,22 @@
 	loadlib('sanitize');
 	loadlib("filter");
 
+	#############################################################
+
 	if ($this_is_webpage){
 		login_check_login();
 	}
+
+	#############################################################
+
+	if (preg_match("/\/god\//", $_SERVER['REQUEST_URI'])){
+
+		if (! auth_has_role('staff')){
+			error_404();
+		}
+	}
+
+	#############################################################
 
 	#
 	# this timer stores the end of core library loading
