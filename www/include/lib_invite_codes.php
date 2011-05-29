@@ -19,7 +19,7 @@
 
 	function invite_codes_get_by_cookie($cookie){
 
-		$cookie = crypto_decrypt($cookie);
+		$cookie = crypto_decrypt($cookie, $GLOBALS['cfg']['crypt_invite_secret']);
 
 		if (! $cookie){
 			return;

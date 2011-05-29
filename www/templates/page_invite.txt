@@ -1,0 +1,26 @@
+{include file="inc_head.txt"}
+
+{if $step=='request'}
+
+<form method="POST" action="{$cfg.abs_root_url}invite/request/">
+	{$crumb_key|crumb_input}
+	<input type="hidden" name="request" value="1" />
+	<input type="text" name="email" size="40" /> email<br />
+	<input type="submit" value="I WOULD LIKE VERY MUCH TO PLAY" />
+</form>
+
+{elseif $step=='submit'}
+
+{else}
+
+<form method="POST" action="{$cfg.abs_root_url}invite/">
+	{$crumb_key|crumb_input}
+	<input type="hidden" name="submit" value="1" />
+	<input type="text" name="email" size="40" /> email<br />
+	<input type="text" name="code" size="40" /> code<br />
+	<input type="submit" value="LET ME IN!" />
+</form>
+
+{/if}
+
+{include file="inc_head.txt"}

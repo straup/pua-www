@@ -27,8 +27,6 @@
 			$email = post_str("email");
 			$code = post_str("code");
 
-			$ok = 0;
-
 			if ($invite = invite_codes_get_by_email($email, $code)){
 
 				if (! $invite['redeemed']){
@@ -47,10 +45,15 @@
 
 				header("location: /signin/");
 				exit();
-			}			
+			}
+
+			$GLOBALS['smarty']->assign("step", "submit");		
+			$GLOBALS['error']['invalid_code'] = 1;
 		}
 
 		else if (post_str("request")){
+
+			$GLOBALS['smarty']->assign("step", "requested");
 
 			$email = post_str("email");
 			# validate email here
@@ -58,15 +61,23 @@
 			$rsp = invite_codes_create($email);
 
 			if ($rsp['ok']){
-				invite_codes_send_invite($rsp['invite']);
+				$rsp = invite_codes_send_invite($rsp['invite']);
 			}
 
-			else {
-				# errors go here
+			if (! $rsp['ok']){
+				$GLOBALS['error']['request_failed'] = 1;
+				$GLOBALS['error']['details'] = $rsp['error'];
 			}
 		}
 
 		else {}
+	}
+
+	else {
+
+		if (get_str("request")){
+			$GLOBALS['smarty']->assign("step", "request");
+		}
 	}
 
 	$GLOBALS['smarty']->display("page_invite.txt");
