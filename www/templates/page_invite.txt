@@ -1,4 +1,7 @@
+{assign var="page_title" value="this is the part where we do the invitation code dance"}
 {include file="inc_head.txt"}
+
+<div id="notphotos">
 
 {if $step=='request'}
 
@@ -9,7 +12,19 @@
 	<input type="submit" value="I WOULD LIKE VERY MUCH TO PLAY" />
 </form>
 
+{elseif $step=='requested'}
+
+{if $error|@count}
+<p class="error">Well this is embarrasing. There was a problem registering your request for an invite. We'll look in to it. Sorry...</p>
+{else}
+<p>Okay! Thanks for your request. We'll send you an email when the next round of invites go out.</p>
+{/if}
+
 {elseif $step=='submit'}
+
+{if $error|@count}
+<p class="error">Hrm. There seems to be a problem with that invite code. Here's what the robots told me: {$error.details|escape}</p>
+{/if}
 
 {else}
 
@@ -21,6 +36,9 @@
 	<input type="submit" value="LET ME IN!" />
 </form>
 
+	<p>Don't have an invite code? <a href="{$cfg.abs_root_url}invite/request/">You can request one over here.</a></p>
 {/if}
+
+</div>
 
 {include file="inc_head.txt"}

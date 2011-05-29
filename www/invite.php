@@ -8,9 +8,7 @@
 		exit();
 	}
 
-	$cookie = login_get_cookie('invite');
-
-	if (($cookie) && ($invite = invite_codes_get_by_cookie($cookie))){
+	if (invite_codes_get_by_cookie()){
 		header("location: /signin/");
 		exit();
 	}
@@ -38,10 +36,7 @@
 					invite_codes_update($invite, $update);
 				}
 
-				$cookie = invite_codes_generate_cookie($invite);
-
-				$expires = time() * 2;
-				login_set_cookie('invite', $cookie, $expires);
+				invite_codes_set_cookie($invite);
 
 				header("location: /signin/");
 				exit();
@@ -61,7 +56,7 @@
 			$rsp = invite_codes_create($email);
 
 			if ($rsp['ok']){
-				$rsp = invite_codes_send_invite($rsp['invite']);
+				$rsp = invite_codes_register_invite($rsp['invite']);
 			}
 
 			if (! $rsp['ok']){
