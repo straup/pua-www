@@ -8,7 +8,7 @@
 		exit();
 	}
 
-	if (invite_codes_get_by_cookie()){
+	if ($i = invite_codes_get_by_cookie()){
 		header("location: /signin/");
 		exit();
 	}
@@ -37,7 +37,6 @@
 				}
 
 				invite_codes_set_cookie($invite);
-
 				header("location: /signin/");
 				exit();
 			}
