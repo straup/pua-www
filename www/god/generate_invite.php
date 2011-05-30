@@ -13,8 +13,25 @@
 	if ($crumb_ok){
 
 		$email = post_str("email");
+		$code = post_str("code");
 
-		if (! $email){
+		if ($code){
+
+			if ($invite = invite_codes_get_by_code($code)){
+				$template = 'email_invite_user.txt';
+				invite_codes_send_invite($invite, $template);
+
+				$invite = invite_codes_get_by_code($code);
+				$GLOBALS['smarty']->assign_by_ref("invite", $invite);
+				$GLOBALS['smarty']->assign("invite_sent", 1);
+			}
+
+			else {
+				$GLOBALS['error'] = "Invalid invite code";
+			}		
+		}
+
+		else if (! $email){
 			$GLOBALS['error'] = "Missing email";
 		}
 

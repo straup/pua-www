@@ -6,9 +6,22 @@
 
 {if $invite}
 
+<h3>Invite code for {$invite.email|escape}</h3>
+
+{if $invite_sent}<p class="success">Okay, that invite has been sent to that email address!</p>{/if}
+
 <p><strong>{$cfg.abs_root_url}invite/{$invite.code|escape}</strong></p>
 
 <p>created {$invite.created|date_format:"%b %d, %Y (at %l:%M %p)"|escape}</p>
+
+{if !$invite_sent}
+
+<form method="POST" action="{$cfg.abs_root_url}god/generate_invite.php">
+	{$crumb_key|crumb_input}
+	<input type="hidden" name="code" value="{$invite.code|escape}" />
+	<input type="submit" value="SEND" />
+</form>
+{/if}
 
 {else}
 
