@@ -97,7 +97,7 @@
 
 	#################################################################
 
-	function invite_codes_create($email){
+	function invite_codes_create($email, $more=array()){
 
 		if ($invite = invite_codes_get_by_email($email)){
 
@@ -141,6 +141,10 @@
 			'created' => time(),
 		);
 
+		if (isset($more['invited_by'])){
+			$invite['invited_by'] = intval($more['invited_by']);
+		}
+
 		$hash = array();
 
 		foreach ($invite as $k => $v){
@@ -158,11 +162,11 @@
 
 	#################################################################
 
-	function invite_codes_invite_user($email, $send_email=0){
+	function invite_codes_invite_user($email, $more=array()){
 
-		$rsp = invite_codes_create($email);
+		$rsp = invite_codes_create($email, $more);
 
-		if (($rsp['ok']) && ($send_email)){
+		if (($rsp['ok']) && (isset($more['send_email']))){
 			$template = 'email_invite_user.txt';
 			invite_codes_send_invite($rsp['invite'], $template);
 		}

@@ -48,7 +48,12 @@
 		}
 
 		else {
-			$rsp = invite_codes_invite_user($email);
+
+			$more = array(
+				'invited_by' => $GLOBALS['cfg']['user']['id'],
+			);
+
+			$rsp = invite_codes_invite_user($email, $more);
 
 			if ($rsp['ok']){
 				$GLOBALS['smarty']->assign_by_ref("invite", $rsp['invite']);
