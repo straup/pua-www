@@ -51,18 +51,34 @@
 
 	function invite_codes_get_by_email($email){
 
+		$cache_key = "invite_codes_email_{$email}";
+		$cache = cache_get($cache_key);
+
+		if ($cache['ok']){
+			return $cache['data'];
+		}
+
 		$enc_email = AddSlashes($email);
 
 		$sql = "SELECT * FROM InviteCodes WHERE email='{$enc_email}'";
 		$rsp = db_fetch($sql);
 
 		$row = db_single($rsp);
+
+		cache_set($cache_key, $row, "cache locally");
 		return $row;
 	}
 
 	#################################################################
 
 	function invite_codes_get_by_code($code, $ensure_sent=1){
+
+		$cache_key = "invite_codes_code_{$code}";
+		$cache = cache_get($cache_key);
+
+		if ($cache['ok']){
+			return $cache['data'];
+		}
 
 		$enc_code = AddSlashes($code);
 
@@ -75,6 +91,7 @@
 			$row = null;
 		}
 
+		cache_set($cache_key, $row, "cache locally");
 		return $row;
 	}
 
@@ -165,7 +182,21 @@
 		$enc_id = AddSlashes($invite['id']);
 		$where = "id='{$enc_id}'";
 
-		return db_update('InviteCodes', $hash, $where);
+		$rsp = db_update('InviteCodes', $hash, $where);
+
+		if ($rsp['ok']){
+
+			$keys = array(
+				"invite_codes_code_{$invite['code']}",
+				"invite_codes_email_{$invite['email']}",
+			);
+
+			foreach ($keys as $k){
+				cache_unset($k);
+			}
+		}
+
+		return $rsp;
 	}
 
 	#################################################################

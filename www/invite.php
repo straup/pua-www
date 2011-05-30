@@ -5,6 +5,8 @@
 	loadlib("invite_codes");
 	loadlib("rfc822");
 
+	# These are not the invites you are looking for
+
 	if (! $GLOBALS['cfg']['enable_feature_invite_codes']){
 		error_404();
 	}
@@ -12,15 +14,15 @@
 	# User is already logged in
 
 	if ($GLOBALS['cfg']['user']['id']){
-#		header("location: /");
-#		exit();
+		header("location: /");
+		exit();
 	}
 
 	# User has already redeemed their invite code
 
 	if (invite_codes_get_by_cookie()){
-#		header("location: /signin/");
-#		exit();
+		header("location: /signin/");
+		exit();
 	}
 
 	# User is trying to redeem an invite code
@@ -58,6 +60,8 @@
 				invite_codes_signin($invite);
 				exit();
 			}
+
+			# the urmum hangover...
 
 			else if ($code == 'urmum'){
 
