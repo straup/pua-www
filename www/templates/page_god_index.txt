@@ -1,0 +1,13 @@
+{include file="inc_head.txt"}
+
+<div id="notphotos">
+
+<h2>God</h2>
+
+<ul>
+	<li><a href="{$cfg.abs_root_url}god/generate_invite.php">Invite generator</a></li>
+</ul>
+
+</div>
+
+{include file="inc_foot.txt"}
