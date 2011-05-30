@@ -5,6 +5,8 @@
 	loadlib("invite_codes");
 	loadlib("rfc822");
 
+	# FIX ME: account for redir
+
 	# These are not the invites you are looking for
 
 	if (! $GLOBALS['cfg']['enable_feature_invite_codes']){
@@ -50,6 +52,8 @@
 
 		$code = post_str("code");
 		$email = post_str("email");
+
+		# just in case the jquery doesn't work or something...
 
 		$code = ($code == "3x4mpl3c0d3") ? null : $code;
 		$email = ($email == "you@example.com") ? null : $email;

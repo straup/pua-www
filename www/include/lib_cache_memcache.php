@@ -85,6 +85,7 @@
 		}
 
 		$ok = $memcache->delete($cache_key);
+
 		return array( 'ok' => $ok );
 	}
 
