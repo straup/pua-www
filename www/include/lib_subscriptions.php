@@ -45,12 +45,23 @@
 
 	function subscriptions_get_by_secret_url($url){
 
+		$cache_key = "subscriptions_secret_{$url}";
+		$cache = cache_get($cache_key);
+
+		if ($cache['ok']){
+			return $cache['data'];
+		}
+
 		$enc_url = AddSlashes($url);
 
 		$sql = "SELECT * FROM Subscriptions WHERE secret_url='{$enc_url}'";
 
 		$rsp = db_fetch($sql);
 		$row = db_single($rsp);
+
+		if ($row){
+			cache_set($cache_key, $row, "cache locally");
+		}
 
 		return $row;
 	}
@@ -59,6 +70,13 @@
 
 	function subscriptions_get_by_user_and_topic(&$user, $topic_id){
 
+		$cache_key = "subscriptions_user_{$user['id']}_{$topic_id}";
+		$cache = cache_get($cache_key);
+
+		if ($cache['ok']){
+			return $cache['data'];
+		}
+
 		$enc_id = AddSlashes($user['id']);
 		$enc_topic = AddSlashes($topic_id);
 
@@ -66,6 +84,10 @@
 
 		$rsp = db_fetch($sql);
 		$row = db_single($rsp);
+
+		if ($row){
+			cache_set($cache_key, $row, "cache locally");
+		}
 
 		return $row;
 	}
@@ -89,17 +111,32 @@
 
 	function subscriptions_for_user(&$user){
 
+		$cache_key = "subscriptions_for_user_{$user['id']}";
+		$cache = cache_get($cache_key);
+
+		if ($cache['ok']){
+			return $cache['data'];
+		}
+
 		$cluster_id = $user['cluster_id'];
 		$enc_user = AddSlashes($user['id']);
 
 		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_user}'";
 		$rsp = db_fetch_users($cluster_id, $sql);
+
+		if ($rsp['ok']){
+			cache_set($cache_key, $rsp, "cache locally");
+		}
+
 		return $rsp;
 	}
 
 	#################################################################
 
 	function subscriptions_create_subscription($subscription){
+
+		$user = users_get_by_id($subscription['user_id']);
+		$cluster_id = $user['cluster_id'];
 
 		$secret_url = subscriptions_generate_secret_url();
 
@@ -125,10 +162,13 @@
 			$insert[$k] = AddSlashes($v);
 		}
 
-		$rsp = db_insert('Subscriptions', $insert);
+		$rsp = db_insert_users($cluster_id, 'Subscriptions', $insert);
 
 		if ($rsp['ok']){
 			$rsp['subscription'] = $subscription;
+
+			$cache_key = "subscriptions_for_user_{$user['id']}";
+			cache_unset($cache_key);
 		}
 
 		return $rsp;
@@ -168,7 +208,22 @@
 
 		$sql = "DELETE FROM Subscriptions WHERE id='{$enc_id}'";
 
-		return db_write_users($cluster_id, $sql);
+		$rsp = db_write_users($cluster_id, $sql);
+
+		if ($rsp['ok']){
+
+			$cache_keys = array(
+				"subscriptions_secret_{$subscription['secret_url']}",
+				"subscriptions_user_{$user['id']}_{$subscription['topic_id']}",
+				"subscriptions_for_user_{$user['id']}",
+			);
+
+			foreach ($cache_keys as $k){
+				cache_unset($k);
+			}
+		}
+
+		return $rsp;
 	}
 
 	#################################################################
@@ -191,6 +246,15 @@
 
 		if ($rsp['ok']){
 			$subscription = array_merge($subscription, $update);
+
+			$cache_keys = array(
+				"subscriptions_secret_{$subscription['secret_url']}",
+				"subscriptions_user_{$user['id']}_{$subscription['topic_id']}",
+			);
+
+			foreach ($cache_keys as $k){
+				cache_unset($k);
+			}
 		}
 
 		return $rsp;
