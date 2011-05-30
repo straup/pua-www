@@ -250,6 +250,7 @@
 			$cache_keys = array(
 				"subscriptions_secret_{$subscription['secret_url']}",
 				"subscriptions_user_{$user['id']}_{$subscription['topic_id']}",
+				"subscriptions_for_user_{$user['id']}",
 			);
 
 			foreach ($cache_keys as $k){

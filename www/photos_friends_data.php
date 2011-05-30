@@ -58,7 +58,16 @@
 		}
 	}
 
-	$count = count($photos);
+	#
+
+	$update = array(
+		'last_request' => time(),
+		'last_request_photo_count' => count($photos),
+	);
+
+	subscriptions_update($subscription, $update);
+
+	#
 
 	$out = array(
 		'count' => count($photos),
