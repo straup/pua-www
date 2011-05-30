@@ -2,60 +2,56 @@
 
 	include("include/init.php");
 	loadlib("flickr");
+	loadlib("invite_codes");
+
+	$redir = (get_str('redir')) ? get_str('redir') : '/';
 
 	if ($GLOBALS['cfg']['user']['id']){
-		$redir = (get_str('redir')) ? get_str('redir') : '/';
 		header("location: {$redir}");
 		exit();
 	}
 
-	# $GLOBALS['smarty']->display("page_signup_disabled.txt");
-	# exit;
+	if ($GLOBALS['cfg']['enable_feature_invite_codes']){
 
-	# invite/signup stuff
+		if (! invite_codes_get_by_cookie()){
 
-	$invite_cookie = login_get_cookie('invite');
+			$cookie = login_get_cookie('invite');
 
-	if (! $invite_cookie){	
+			if ($cookie != '1'){
 
-		$crumb_key = 'signin';
-		$GLOBALS['smarty']->assign("crumb_key", $crumb_key);
-	
-		$crumb_ok = crumb_check($crumb_key);
-		$invite_ok = 0;
-
-		$invite_codes = array(
-			'urmum',
-		);
-
-		if ($crumb_ok){
-
-			if ($invite = post_str('invite')){
-
-				if (in_array($invite, $invite_codes)){
-					$invite_ok = 1;
+				if (! $GLOBALS['cfg']['enable_feature_signup']){
+					$GLOBALS['smarty']->display("page_signup_disabled.txt");
+					exit;
 				}
 
-				else {
-					$GLOBALS['error']['bad_code'] = 1;
-				}
+				header("location: /invite/?redir=" . urlencode($redir));
+				exit();
 			}
 
-			else {
-				$GLOBALS['smarty']->assign("step", "do_invite");
-			}
-		}
+			# urmum hangover stuff (aka cookie == '1')
 
-		if (! $invite_ok){
-			$GLOBALS['smarty']->display("page_signin_invite.txt");
-			exit();		
-		}
+			$now = time();
+			$email = "urmum-{$now}@example.com";
 
-		$expires = time() * 2;
-		login_set_cookie('invite', 1, $expires);
+			$rsp = invite_codes_create($email);
+			$invite = $rsp['invite'];
+
+			$now = time();
+
+			$update = array(
+				'sent' => $now,
+				'redeemed' => $now,
+			);
+
+			invite_codes_update($invite, $update);
+			invite_codes_set_cookie($invite);
+		}
 	}
 
-	#
+	if (! $GLOBALS['cfg']['enable_feature_signin']){
+		$GLOBALS['smarty']->display("page_signin_disabled.txt");
+		exit;
+	}
 
 	$extra = array();
 

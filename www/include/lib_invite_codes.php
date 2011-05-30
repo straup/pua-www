@@ -141,7 +141,7 @@
 
 	#################################################################
 
-	function invite_codes_create_and_send($email){
+	function invite_codes_invite_user($email){
 
 		$rsp = invite_codes_create($email);
 

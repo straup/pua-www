@@ -5,6 +5,16 @@
 	loadlib("flickr");
 	loadlib("flickr_users");
 	loadlib("random");
+	loadlib("invite_codes");
+
+	if ($GLOBALS['cfg']['enable_feature_invite_codes']){
+
+		$invite = invite_codes_get_by_cookie();
+
+		if (! $invite){
+			error_404();
+		}
+	}
 
 	$frob = get_str("frob");
 	$extra = get_str("extra");
@@ -74,6 +84,18 @@
 			$GLOBALS['error']['dberr_flickruser'] = 1;
 			$GLOBALS['smarty']->display("page_auth_callback.txt");
 			exit();
+		}
+	}
+
+	if ($GLOBALS['cfg']['enable_feature_invite_codes']){
+
+		if (! $invite['user_id']){
+
+			$update = array(
+				'user_id' => $user['id'],
+			);
+
+			invite_codes_update($invite, $update);
 		}
 	}
 

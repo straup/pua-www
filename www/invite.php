@@ -5,18 +5,22 @@
 	loadlib("invite_codes");
 	loadlib("rfc822");
 
+	if (! $GLOBALS['cfg']['enable_feature_invite_codes']){
+		error_404();
+	}
+
 	# User is already logged in
 
 	if ($GLOBALS['cfg']['user']['id']){
-		header("location: /");
-		exit();
+#		header("location: /");
+#		exit();
 	}
 
 	# User has already redeemed their invite code
 
 	if (invite_codes_get_by_cookie()){
-		header("location: /signin/");
-		exit();
+#		header("location: /signin/");
+#		exit();
 	}
 
 	# User is trying to redeem an invite code
@@ -55,7 +59,7 @@
 				exit();
 			}
 
-			else if ($code == 'urmum-xxxxhs'){
+			else if ($code == 'urmum'){
 
 				$now = time();
 				$email = "urmum-{$now}@example.com";
