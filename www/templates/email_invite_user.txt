@@ -1,0 +1,16 @@
+{assign var="email_subject" value="pua.spum.org (from Aaron)"}
+
+The invite code is:
+
+{$cfg.abs_root_url}invite/{$invite.code|escape}/
+
+This is live, but not public. Its casual publicness is casual.
+
+All the usual caveats apply. Personally, I love it.
+
+See also:
+
+{$cfg.abs_root_url}about/ 
+
+http://www.flickr.com/photos/straup/5762394807/ 
+

@@ -158,12 +158,13 @@
 
 	#################################################################
 
-	function invite_codes_invite_user($email){
+	function invite_codes_invite_user($email, $send_email=0){
 
 		$rsp = invite_codes_create($email);
 
-		if ($rsp['ok']){
-			$rsp = invite_codes_send_invite($rsp['invite']);
+		if (($rsp['ok']) && ($send_email)){
+			$template = 'email_invite_user.txt';
+			invite_codes_send_invite($rsp['invite'], $template);
 		}
 
 		return $rsp;
@@ -210,30 +211,27 @@
 
 	#################################################################
 
-	function invite_codes_send_invite(&$invite){
-
-		$GLOBALS['smarty']->assign_by_ref("invite", $invite);
+	function invite_codes_send_invite(&$invite, $template=''){
 
 		$args = array(
 			'to_email' => $invite['email'],
-			'template' => 'email_invite_code.txt',
+			'template' => $template,
 			'from_name' => 'Pua Email Robot',
 			'from_email' => 'do-not-reply@mail.pua.spum.org',
 		);
 
-		$ok = email_send($args);
+		$GLOBALS['smarty']->assign_by_ref("invite", $invite);
 
-		if ($ok){
+		email_send($args);
 
-			$update = array(
-				'sent' => time(),
-			);
+		$update = array(
+			'sent' => time(),
+		);
 
-			invite_codes_update($invite, $update);
-		}
+		invite_codes_update($invite, $update);
 
 		return array(
-			'ok' => $ok,
+			'ok' => 1,
 		);
 	}
 

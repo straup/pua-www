@@ -1,0 +1,23 @@
+{include file="inc_head.txt"}
+
+{if $invite}
+
+<p><strong>{$cfg.abs_root_url}invite/{$invite.code|escape}</strong></p>
+
+<p>created {$invite.created|date_format:"%b %d, %Y (at %l:%M %p)"|escape}</p>
+
+{else}
+
+{if $error|@count}
+<p class="error">{$error|escape}</p>
+{/if}
+
+<form method="POST" action="{$cfg.abs_root_url}generate_invite.php">
+	{$crumb_key|crumb_input}
+	<input type="text" name="email" value="" size="30" />
+	<input type="submit" value="INVITE" />
+</form>
+
+{/if}
+
+{include file="inc_foot.txt"}

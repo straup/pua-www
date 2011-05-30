@@ -81,7 +81,7 @@
 
 		unset($headers['To']);
 
-		mail($args['to_email'], $subject, $message, email_format_headers($headers), $GLOBALS['cfg']['auto_email_args']);
+		return mail($args['to_email'], $subject, $message, email_format_headers($headers), $GLOBALS['cfg']['auto_email_args']);
 	}
 
 	#########################################################################################

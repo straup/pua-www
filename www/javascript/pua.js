@@ -41,7 +41,14 @@ function pua_show_contacts_photos(photos){
 	}
 
 	var ph = photos.pop();
-	pua_draw_photo(ph);
+
+	try {
+		pua_draw_photo(ph);
+	}
+
+	catch(e){
+		pua_set_text('unicorn nudges panda');
+	}
 
 	setTimeout(function(){
 		pua_show_contacts_photos(photos);
