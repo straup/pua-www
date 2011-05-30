@@ -21,6 +21,8 @@
 
 	# do validation dance here
 
+	error_log("[PUSH] " . var_export($_GET, 1));
+
 	if ($verify_token = get_str("verify_token")){
 
 		if ($subscription['verify_token'] != $verify_token){

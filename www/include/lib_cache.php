@@ -75,7 +75,7 @@
 		$remote_rsp = _cache_do_remote('unset', $cache_key);
 
 		return array(
-			'ok' => 1
+			'ok' => $remote_rsp['ok']
 		);
 	}
 

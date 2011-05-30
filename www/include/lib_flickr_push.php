@@ -68,6 +68,7 @@
 		);
 
 		$rsp = flickr_api_call($method, $args);
+
 		return $rsp;
 	}
 
