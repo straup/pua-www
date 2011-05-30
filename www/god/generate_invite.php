@@ -17,11 +17,15 @@
 
 		if ($code){
 
-			if ($invite = invite_codes_get_by_code($code)){
+			$ensure_sent = 0;
+
+			if ($invite = invite_codes_get_by_code($code, $ensure_sent)){
+
 				$template = 'email_invite_user.txt';
 				invite_codes_send_invite($invite, $template);
 
-				$invite = invite_codes_get_by_code($code);
+				$invite = invite_codes_get_by_code($code, $ensure_sent);
+
 				$GLOBALS['smarty']->assign_by_ref("invite", $invite);
 				$GLOBALS['smarty']->assign("invite_sent", 1);
 			}
