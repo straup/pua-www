@@ -141,6 +141,19 @@
 
 	#################################################################
 
+	function invite_codes_create_and_send($email){
+
+		$rsp = invite_codes_create($email);
+
+		if ($rsp['ok']){
+			$rsp = invite_codes_send_invite($rsp['invite']);
+		}
+
+		return $rsp;
+	}
+
+	#################################################################
+
 	function invite_codes_update(&$invite, &$update){
 
 		$hash = array();
