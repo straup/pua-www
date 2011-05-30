@@ -1,0 +1,9 @@
+{assign var="email_subject" value="Pua has sent you an invite code!"}
+
+Hi,
+
+You requested an invite code for pua.spum.org on {$invite.create}. Here it is:
+
+{$cfg.abs_root_url}invite/{$invite.code|escape}
+
+Enjoy!

@@ -7,7 +7,6 @@
 	function invite_codes_generate_cookie(&$invite){
 
 		$raw = implode("-", array(
-			$invite['email'],
 			$invite['code'],
 			$invite['created']
 		));
@@ -31,13 +30,13 @@
 			return null;
 		}
 
-		$cookie = explode("-", $cookie, 3);
+		$cookie = explode("-", $cookie, 2);
 
-		if (count($cookie) != 3){
+		if (count($cookie) != 2){
 			return null;
 		}
 
-		return invite_codes_get_by_email($cookie[0], $cookie[1]);
+		return invite_codes_get_by_code($cookie[0], $cookie[1]);
 	}
 
 	function invite_codes_set_cookie(&$invite){
@@ -50,7 +49,7 @@
 
 	#################################################################
 
-	function invite_codes_get_by_email($email, $code=''){
+	function invite_codes_get_by_email($email){
 
 		$enc_email = AddSlashes($email);
 
@@ -58,12 +57,21 @@
 		$rsp = db_fetch($sql);
 
 		$row = db_single($rsp);
+		return $row;
+	}
 
-		if (($row) && ($code)){
-			$row = ($row['code'] == $code) ? $row : null;
-		}
+	#################################################################
 
-		if (($row) && (! $row['sent'])){
+	function invite_codes_get_by_code($code, $ensure_sent=1){
+
+		$enc_code = AddSlashes($code);
+
+		$sql = "SELECT * FROM InviteCodes WHERE code='{$code}'";
+
+		$rsp = db_fetch($sql);
+		$row = db_single($rsp);
+
+		if (($ensure_sent) && (! $row['sent'])){
 			$row = null;
 		}
 
@@ -82,8 +90,32 @@
 			);
 		}
 
+		$code = null;
+		$tries = 0;
+
+		while (! $code){
+
+			$code = random_string(12);
+			$tries += 1;
+
+			if (invite_codes_get_by_code($code)){
+				$code = null;
+			}
+
+			if ($tries == 50){
+				break;
+			}
+		}
+
+		if (! $code){
+
+			return array(
+				'ok' => 0,
+				'error' => 'Failed to generate code',
+			);
+		}
+
 		$id = dbtickets_create();
-		$code = random_string(12);
 
 		$invite = array(
 			'id' => $id,
@@ -136,7 +168,50 @@
 
 	function invite_codes_send_invite(&$invite){
 
+		$GLOBALS['smarty']->assign_by_ref("invite", $invite);
+
+		$args = array(
+			'to_email' => $invite['email'],
+			'template' => 'email_invite_code.txt',
+			'from_name' => 'Pua Email Robot',
+			'from_email' => 'do-not-reply@mail.pua.spum.org',
+		);
+
+		$ok = email_send($args);
+
+		if ($ok){
+
+			$update = array(
+				'sent' => time(),
+			);
+
+			invite_codes_update($invite, $update);
+		}
+
+		return array(
+			'ok' => $ok,
+		);
 	}
 
 	#################################################################
+
+	function invite_codes_signin(&$invite){
+
+		if (! $invite['redeemed']){
+
+			$update = array(
+				'redeemed' => time(),
+			);
+
+			invite_codes_update($invite, $update);
+		}
+
+		invite_codes_set_cookie($invite);
+		header("location: /signin/");
+		exit();
+
+	}
+
+	#################################################################
+
 ?>
