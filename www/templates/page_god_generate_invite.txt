@@ -1,5 +1,9 @@
 {include file="inc_head.txt"}
 
+<div id="notphotos">
+
+<h2>Invite generator</h2>
+
 {if $invite}
 
 <p><strong>{$cfg.abs_root_url}invite/{$invite.code|escape}</strong></p>
@@ -12,12 +16,14 @@
 <p class="error">{$error|escape}</p>
 {/if}
 
-<form method="POST" action="{$cfg.abs_root_url}generate_invite.php">
+<form method="POST" action="{$cfg.abs_root_url}god/generate_invite.php">
 	{$crumb_key|crumb_input}
 	<input type="text" name="email" value="" size="30" />
 	<input type="submit" value="INVITE" />
 </form>
 
 {/if}
+
+</div>
 
 {include file="inc_foot.txt"}

@@ -85,9 +85,12 @@
 
 	$GLOBALS['cfg']['abs_root_url'] = rtrim($server_url, '/') . "/";
 
-	if ($cwd){
-		$GLOBALS['cfg']['abs_root_url'] .= $cwd . "/";
-	}
+	# This part just doesn't work with /god pages
+	# (20110530/straup)
+	#
+	# if ($cwd){
+	# 	$GLOBALS['cfg']['abs_root_url'] .= $cwd . "/";
+	# }
 
 	$GLOBALS['cfg']['auth_cookie_domain'] = parse_url($GLOBALS['cfg']['abs_root_url'], 1);
 
@@ -207,9 +210,7 @@
 
 	if (preg_match("/\/god\//", $_SERVER['REQUEST_URI'])){
 
-		if (! auth_has_role('staff')){
-			error_404();
-		}
+		loadlib("god_auth");
 	}
 
 	#############################################################
