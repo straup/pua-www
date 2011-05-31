@@ -94,17 +94,17 @@
 		$redis->ltrim($redis_key, $max, $count);
 	}
 
-	error_log("[PUSH] {$redis_key}: {$count} (new: {$new})");
-
 	#
 
 	$update = array(
 		'last_update' => time(),
+		'last_update_photo_count' => $new,
 	);
 
 	subscriptions_update($subscription, $update);
 
 	#
 
+	error_log("[PUSH] {$redis_key}: {$count} (new: {$new})");
 	exit();
 ?>
