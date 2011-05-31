@@ -84,7 +84,10 @@
 			return array( 'ok' => 0, 'error' => 'failed to connect to memcache' );
 		}
 
-		$ok = $memcache->delete($cache_key);
+		# Note the 0. It's important. See notes here:
+		# http://php.net/manual/en/memcache.delete.php
+
+		$ok = $memcache->delete($cache_key, 0);
 
 		return array( 'ok' => $ok );
 	}
