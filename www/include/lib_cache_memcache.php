@@ -64,6 +64,10 @@
 
 	function cache_memcache_set($cache_key, $data){
 
+		if (! $data){
+			return array( 'ok' => 0, 'error' => "nothing to cache for key '{$cache_key}'" );
+		}
+
 		$memcache = cache_memcache_connect();
 
 		if (! $memcache){

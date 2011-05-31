@@ -91,7 +91,10 @@
 			$row = null;
 		}
 
-		cache_set($cache_key, $row, "cache locally");
+		if ($row){
+			cache_set($cache_key, $row, "cache locally");
+		}
+
 		return $row;
 	}
 
