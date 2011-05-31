@@ -1,8 +1,8 @@
-{include file="inc_head.txt"}
+{include file="inc_god_head.txt"}
 
 <h2>Invite Codes</h2>
 
-<table>
+<table id="subscriptions">
 	<tr>
 		<th>ID</th>
 		<th>Code</th>
@@ -20,9 +20,9 @@
 		<td>{$row.code|escape}</td>
 		<td>{$row.email|escape}</td>
 		<td>{if $row.user}<a href="{$cfg.abs_root_url}god/user.php?id={$row.user_id|escape}">{$row.user.username|escape}</a>{else}&#8212;{/if}</td>
-		<td>{$row.created|date_format:"%b %d, %Y %l:%M %p"|escape}</td>
-		<td>{if $row.sent}{$row.sent|date_format:"%b %d, %Y %l:%M %p"|escape}{else}&#8212;{/if}</td>
-		<td>{if $row.redeemed}{$row.redeemed|date_format:"%b %d, %Y %l:%M %p"|escape}{else}&#8212;{/if}</td>
+		<td>{$row.created|date_format:"%Y-%m-%d %I:%M"|escape}</td>
+		<td>{if $row.sent}{$row.sent|date_format:"%Y-%m-%d %I:%M"|escape}{else}&#8212;{/if}</td>
+		<td>{if $row.redeemed}{$row.redeemed|date_format:"%Y-%m-%d %I:%M"|escape}{else}&#8212;{/if}</td>
 		<td>{if $row.invited_by_user}{$row.invited_by_user.username|escape}{else}&#8212;{/if}</td>	
 	</tr>
 {/foreach}
@@ -31,4 +31,4 @@
 
 {include file="inc_pagination.txt"}
 
-{include file="inc_foot.txt"}
+{include file="inc_god_foot.txt"}
