@@ -11,7 +11,7 @@
 {foreach from=$users item="row"}
 <tr>
 	<td>{$row.id|escape}</td>
-	<td>{$row.username|escape}</td>
+	<td><a href="{$cfg.abs_root_url}god/user.php?id={$row.id|escape}">{$row.username|escape}</a></td>
 	<td>{$row.created|date_format:"%b %d, %Y"|escape}</td>
 </tr>
 {/foreach}

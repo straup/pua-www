@@ -1,0 +1,19 @@
+{include file="inc_head.txt"}
+
+<div id="notphotos">
+
+{if !$user.id}
+
+{else}
+
+<h2>{$user.username|escape} ({$user.id|escape})</h2>
+
+<p>Account created: {$user.created|date_format:"%b %d, %Y at %l:%M %p"|escape}</p>
+
+[subscriptions go here]
+
+{/if}
+
+</div>
+
+{include file="inc_foot.txt"}

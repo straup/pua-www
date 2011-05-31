@@ -1,0 +1,26 @@
+{include file="inc_head.txt"}
+
+<table>
+	<tr>
+		<th>User</th>
+		<th>Subscription</th>
+		<th>Last Request</th>
+		<th>Photos Sent</th>
+		<th>Last Update</th>
+		<th>New Photos</th>
+	</tr>
+
+{foreach from=$activity item="row"}
+	<tr>
+		<td><a href="{$cfg.abs_root_url}god/user.php?id={$row.user.id|escape}">{$row.user.username|escape}</a></td>
+		<td></td>
+		<td>{$row.last_request|date_format:"%b %d, %Y at %l:%M %p"|escape}</td>
+		<td>{$row.last_request_photo_count|escape}</td>
+		<td>{$row.last_update|date_format:"%b %d, %Y at %l:%M %p"|escape}</td>
+		<td>{$row.last_update_photo_count|escape}</td>
+	</tr>
+{/foreach}
+
+</table>
+
+{include file="inc_foot.txt"}
