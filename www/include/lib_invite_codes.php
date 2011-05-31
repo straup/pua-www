@@ -263,4 +263,14 @@
 
 	#################################################################
 
+	function invite_codes_get_all(&$args){
+
+		$sql = "SELECT * FROM InviteCodes";
+
+		$sql .= " ORDER BY created DESC";
+
+		return db_fetch_paginated($sql, $args);
+	}
+
+	#################################################################
 ?>

@@ -1,0 +1,34 @@
+{include file="inc_head.txt"}
+
+<h2>Invite Codes</h2>
+
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Code</th>
+		<th>Email</th>
+		<th>User</th>
+		<th>Created</th>
+		<th>Sent</th>
+		<th>Redeemed</th>
+		<th>Invited By</th>
+	</tr>
+
+{foreach from=$invites item="row"}
+	<tr>
+		<td>{$row.id|escape}</td>
+		<td>{$row.code|escape}</td>
+		<td>{$row.email|escape}</td>
+		<td>{if $row.user}<a href="{$cfg.abs_root_url}god/user.php?id={$row.user_id|escape}">{$row.user.username|escape}</a>{else}&#8212;{/if}</td>
+		<td>{$row.created|date_format:"%b %d, %Y %l:%M %p"|escape}</td>
+		<td>{if $row.sent}{$row.sent|date_format:"%b %d, %Y %l:%M %p"|escape}{else}&#8212;{/if}</td>
+		<td>{if $row.redeemed}{$row.redeemed|date_format:"%b %d, %Y %l:%M %p"|escape}{else}&#8212;{/if}</td>
+		<td>{if $row.invited_by_user}{$row.invited_by_user.username|escape}{else}&#8212;{/if}</td>	
+	</tr>
+{/foreach}
+
+</table>
+
+{include file="inc_pagination.txt"}
+
+{include file="inc_foot.txt"}
