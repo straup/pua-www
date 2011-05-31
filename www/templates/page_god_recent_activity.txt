@@ -1,4 +1,4 @@
-{include file="inc_head.txt"}
+{include file="inc_god_head.txt"}
 
 <table>
 	<tr>
@@ -13,14 +13,14 @@
 {foreach from=$activity item="row"}
 	<tr>
 		<td><a href="{$cfg.abs_root_url}god/user.php?id={$row.user.id|escape}">{$row.user.username|escape}</a></td>
-		<td></td>
-		<td>{$row.last_request|date_format:"%b %d, %Y at %l:%M %p"|escape}</td>
-		<td>{$row.last_request_photo_count|escape}</td>
-		<td>{$row.last_update|date_format:"%b %d, %Y at %l:%M %p"|escape}</td>
-		<td>{$row.last_update_photo_count|escape}</td>
+		<td>contacts_photos</td>
+		<td>{if $row.last_request}{$row.last_request|date_format:"%Y-%m-%d %I:%M"|escape}{else}&#8212;{/if}</td>
+		<td class="number">{$row.last_request_photo_count|escape}</td>
+		<td>{if $row.last_update}{$row.last_update|date_format:"%Y-%m-%d %I:%M"|escape}{else}&#8212;{/if}</td>
+		<td class="number">{$row.last_update_photo_count|escape}</td>
 	</tr>
 {/foreach}
 
 </table>
 
-{include file="inc_foot.txt"}
+{include file="inc_god_foot.txt"}

@@ -1,6 +1,4 @@
-{include file="inc_head.txt"}
-
-<div id="notphotos">
+{include file="inc_god_head.txt"}
 
 <h2>Invite generator</h2>
 
@@ -46,6 +44,4 @@
 
 {/if}
 
-</div>
-
-{include file="inc_foot.txt"}
+{include file="inc_god_foot.txt"}

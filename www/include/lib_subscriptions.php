@@ -263,12 +263,10 @@
 
 	#################################################################
 
-	function subscriptions_recent_activity(){
+	function subscriptions_recent_activity($args=array()){
 
-		$sql = "SELECT user_id, last_update, last_update_photo_count, last_request, last_request_photo_count";
-		$sql.= " FROM Subscriptions WHERE last_request != 0 ORDER BY last_request DESC";
-
-		$args = array();
+		$sql  = "SELECT user_id, last_update, last_update_photo_count, last_request, last_request_photo_count";
+		$sql .= " FROM Subscriptions ORDER BY last_request DESC, last_update DESC";
 
 		return db_fetch_paginated($sql, $args);
 	}
