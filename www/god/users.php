@@ -30,5 +30,9 @@
 		$GLOBALS['error']['details'] = $rsp['error'];
 	}
 
+	$GLOBALS['smarty']->assign("pagination_url", "god/users.php");
+	$GLOBALS['smarty']->assign("pagination_query_params", 1);
+
+	$GLOBALS['smarty']->display("page_god_users.txt");
 	exit();
 ?>

@@ -4,7 +4,7 @@
 
 <span id="pagination_prev">
 {if $pagination.page > 1}
-<a id="pagination_prev_link" href="{$cfg.abs_root_url}{$pagination_url}page{$pagination.page-1}">⇦</a>
+<a id="pagination_prev_link" href="{$cfg.abs_root_url}{$pagination_url}{if $pagination_query_params}?page={$pagination.page-1}{else}page{$pagination.page-1}{/if}">⇦</a>
 {else}
 <span class="disabled">⇦</span>
 {/if}
@@ -14,13 +14,12 @@ page <strong>{$pagination.page|escape}</strong> of {$pagination.page_count|escap
 
 <span id="pagination_next">
 {if $pagination.page < $pagination.page_count}
-<a id="pagination_next_link" href="{$cfg.abs_root_url}{$pagination_url}page{$pagination.page+1}">⇨</a>
+<a id="pagination_next_link" href="{$cfg.abs_root_url}{$pagination_url}{if $pagination_query_params}?page={$pagination.page+1}{else}page{$pagination.page+1}{/if}">⇨</a>
 {else}
 <span class="disabled">⇨</span>
 {/if}
 </span>
 
-<p style="color:#666;font-size:11px;">you can also use the arrow keys on your computer to backwards and forwards.</p>
 </div>
 
 {/if}

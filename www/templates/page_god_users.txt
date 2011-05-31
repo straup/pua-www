@@ -1,0 +1,23 @@
+{include file="inc_head.txt"}
+
+<h2>Users</h2>
+
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Username</th>
+		<th>Created</th>
+	</tr>
+{foreach from=$users item="row"}
+<tr>
+	<td>{$row.id|escape}</td>
+	<td>{$row.username|escape}</td>
+	<td>{$row.created|date_format:"%b %d, %Y"|escape}</td>
+</tr>
+{/foreach}
+
+</table>
+
+{include file="inc_pagination.txt"}
+
+{include file="inc_foot.txt"}
