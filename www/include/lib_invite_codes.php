@@ -65,7 +65,10 @@
 
 		$row = db_single($rsp);
 
-		cache_set($cache_key, $row, "cache locally");
+		if ($row){
+			cache_set($cache_key, $row, "cache locally");
+		}
+
 		return $row;
 	}
 
@@ -135,10 +138,7 @@
 			);
 		}
 
-		$id = dbtickets_create();
-
 		$invite = array(
-			'id' => $id,
 			'email' => $email,
 			'code' => $code,
 			'created' => time(),
@@ -187,8 +187,8 @@
 			$hash[$k] = AddSlashes($v);
 		}
 
-		$enc_id = AddSlashes($invite['id']);
-		$where = "id='{$enc_id}'";
+		$enc_code = AddSlashes($invite['code']);
+		$where = "code='{$enc_code}'";
 
 		$rsp = db_update('InviteCodes', $hash, $where);
 
