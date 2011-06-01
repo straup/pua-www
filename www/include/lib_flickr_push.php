@@ -12,6 +12,7 @@
 
 		$map = array(
 			1 => 'contacts_photos',
+			2 => 'contacts_faves',
 		);
 
 		if ($str_keys){
