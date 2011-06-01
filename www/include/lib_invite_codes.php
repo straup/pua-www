@@ -209,6 +209,30 @@
 
 	#################################################################
 
+	function invite_codes_delete(&$invite){
+
+		$enc_code = AddSlashes($invite['code']);
+		$sql = "DELETE FROM InviteCodes WHERE code='{$enc_code}'";
+
+		$rsp = db_write('InviteCodes', $sql);
+
+		if ($rsp['ok']){
+
+			$keys = array(
+				"invite_codes_code_{$invite['code']}",
+				"invite_codes_email_{$invite['email']}",
+			);
+
+			foreach ($keys as $k){
+				cache_unset($k);
+			}
+		}
+
+		return $rsp;
+	}
+
+	#################################################################
+
 	function invite_codes_register_invite(&$invite){
 
 		return array(

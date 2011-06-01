@@ -1,0 +1,8 @@
+{capture assign="page_title"}invite code {$invite.code|escape}{/capture}
+{include file="inc_god_head.txt"}
+
+<h2>Invite Code {$invite.code|escape}</h2>
+
+<p>Sent to <strong>{$invite.email|escape}</strong></p>
+
+{include file="inc_god_foot.txt"}

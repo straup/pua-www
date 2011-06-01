@@ -5,7 +5,7 @@
 	loadlib("invite_codes");
 	loadlib("rfc822");
 
-	$crumb_key = 'god_invite';
+	$crumb_key = 'god_generate_invite';
 	$GLOBALS['smarty']->assign("crumb_key", $crumb_key);
 
 	$crumb_ok = crumb_check($crumb_key);
