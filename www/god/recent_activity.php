@@ -7,9 +7,15 @@
 
 	$activity = array();
 
+	$now = time();
+	$then = $now - (60 * 60);
+
 	foreach ($rsp['rows'] as $row){
 
 		$row['user'] = users_get_by_id($row['user_id']);
+
+		$row['recent'] = ($row['last_request'] >= $then) ? 1 : 0;
+
 		$activity[] = $row;
 	}
 
