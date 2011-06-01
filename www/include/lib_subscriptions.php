@@ -1,7 +1,6 @@
 <?php
 
 	loadlib("random");
-
 	loadlib("flickr_push");
 
 	#################################################################
@@ -265,8 +264,12 @@
 
 	function subscriptions_recent_activity($args=array()){
 
-		$sql  = "SELECT user_id, last_update, last_update_photo_count, last_request, last_request_photo_count";
-		$sql .= " FROM Subscriptions ORDER BY last_request DESC, last_update DESC";
+		$sql  = "SELECT * FROM Subscriptions FORCE INDEX (recent_activity)";
+		$sql .= " ORDER BY last_request DESC, last_update DESC";
+
+		# See this: It means that if pua is ever federated this query
+		# will stop working before Subscriptions are "sharded".
+		# (20110531/straup)
 
 		return db_fetch_paginated($sql, $args);
 	}
