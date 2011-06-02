@@ -12,7 +12,7 @@
 
 		$map = array(
 			1 => array('label' => 'your contacts photos', 'url' => 'photos/friends/'),
-			2 => array('label' => 'your contacts faves', 'url' => 'faves/friends/'),
+			# 2 => array('label' => 'your contacts faves', 'url' => 'faves/friends/'),
 		);
 
 		return $map;
