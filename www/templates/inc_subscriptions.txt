@@ -15,7 +15,7 @@
 		<th style="border:none;">&#160;</th>
 	</tr>
 {foreach from=$topic_map item="row" key="topic_id"}
-
+{if $row.enabled}
 	<tr>
 {if $subscriptions.$topic_id}
 {assign var="sub" value=$subscriptions.$topic_id}
@@ -37,7 +37,7 @@
 		<td>&#160;</td>
 		<td>&#160;</td>
 {/if}
-
+{/if}
 	</tr>
 {/foreach}
 </table>

@@ -11,8 +11,8 @@
 		# flickr_push_topic_map()
 
 		$map = array(
-			1 => array('label' => 'your contacts photos', 'url' => 'photos/friends/'),
-			# 2 => array('label' => 'your contacts faves', 'url' => 'faves/friends/'),
+			1 => array('label' => 'your contacts photos', 'url' => 'photos/friends/', 'enabled' => 1),
+			2 => array('label' => 'your contacts faves', 'url' => 'faves/friends/', 'enabled' => 0),
 		);
 
 		return $map;
