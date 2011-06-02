@@ -27,6 +27,10 @@
 		error_404();
 	}
 
+	if (! $sub_map[$topic_id]['enabled']){
+		error_404();
+	}
+
 	#
 
 	$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
