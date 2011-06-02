@@ -1,5 +1,7 @@
 <?php
 
+	# this is deprecated (20110601/straup)
+
 	# to be replace by a proper API endpoint if and when
 	# I ever get there... (20110523/straup)
 

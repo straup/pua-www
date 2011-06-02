@@ -162,8 +162,9 @@ function assign_wrapper_dimensions(){
 
 window.onload = function(){
 	assign_wrapper_dimensions();
+
+	window.onresize = function(){
+		resize();
+	}
 }
 
-window.onresize = function(){
-	resize();
-}

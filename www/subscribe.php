@@ -8,6 +8,8 @@
 
 	login_ensure_loggedin("/faves/friends");
 
+	$flickr_user = flickr_users_get_by_user_id($GLOBALS['cfg']['user']['id']);
+
 	$topic = request_str("topic");
 
 	if (! $topic){

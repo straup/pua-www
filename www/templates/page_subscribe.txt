@@ -1,11 +1,11 @@
-{assign var="page_title" value="FIX ME"}
+{capture assign="page_title"}subscribe to {$subscription_type.label|escape}{/capture}
 {include file="inc_head.txt"}
 
 {if $step=='do_confirm'}
 
 <div id="notphotos">
 
-<p>This is the part where I double-check that you're sure you'd like to subscribe to {$subscription_type.label}. If you've gotten this far it seems like a safe bet but are you <strong>really really sure?</strong></p>
+<p>This is the part where I double-check that you're sure you'd like to subscribe to {$subscription_type.label|escape}. If you've gotten this far it seems like a safe bet but are you <strong>really really sure?</strong></p>
 
 <form method="POST" action="{$cfg.abs_root_url}{$subscription_type.url|escape}subscribe/" style="margin-left:40%;">
 	{$crumb_key|crumb_input}

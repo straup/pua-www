@@ -14,43 +14,13 @@
 
 	$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 
-	if ($subscription){
-		$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
+	if (! $subscription){
+		header("location: {$GLOBALS['cfg']['abs_root_url']}photos/friends/subscribe");
+		exit;
 	}
 
-	else {
-
-		$crumb_key = 'photos_friends';
-		$GLOBALS['smarty']->assign("crumb_key", $crumb_key);
-
-		$crumb_ok = crumb_check($crumb_key);
-
-		if (($crumb_ok) && (post_str("confirm"))){
-
-			$GLOBALS['smarty']->assign("step", "do_subscribe");
-
-			$subscription = array(
-				'user_id' => $GLOBALS['cfg']['user']['id'],
-				'topic_id' => $topic_id,
-			);
-
-			$rsp = subscriptions_register_subscription($subscription);
-
-			if ($rsp['ok']){
-				$subscription = $rsp['subscription'];
-				$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
-			}
-
-			else {
-				$GLOBALS['error']['subscribe'] = 1;
-				$GLOBALS['error']['details'] = $rsp['error'];
-			}
-		}
-
-		else {
-			$GLOBALS['smarty']->assign("step", "do_confirm");
-		}
-	}
+	$GLOBALS['smarty']->assign("topic", "contacts_photos");
+	$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
 
 	$GLOBALS['smarty']->display("page_photos_friends.txt");
 	exit();
