@@ -97,6 +97,10 @@
 		'photos' => $photos,
 	);
 
-	api_output_ok($out);
+	$more = array(
+		# 'inline' => 1,
+	);
+
+	api_output_ok($out, $more);
 	exit();
 ?>

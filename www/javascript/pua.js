@@ -1,20 +1,7 @@
+// contacts photos
+
 function pua_contacts_photos(){
-	$("#nav").hide();
-	$("#foot").hide();
-
-	$(document).keyup(function(e){
-
-		if (e.which != 61){
-			return;
-		}
-
-		var display = $("#nav").css("display");
-		display = (display == 'none') ? 'block' : 'none';
-
-		$("#nav").css("display", display);
-		$("#foot").css("display", display);
-	});
-
+	pua_setup();
 	pua_get_contacts_photos();
 }
 
@@ -56,6 +43,53 @@ function pua_show_contacts_photos(photos){
 
 }
 
+// contacts faves
+
+function pua_contacts_faves(){
+	pua_setup();
+	pua_get_contacts_faves();
+}
+
+function pua_get_contacts_faves(){
+
+	$.ajax({
+		'url' : '/faves/friends/data/',
+		'success' : function(rsp){
+			pua_show_contacts_faves(rsp.photos);
+		}
+	});
+}
+
+function pua_show_contacts_faves(photos){
+
+	if (photos.length == 0){
+
+		setTimeout(function(){
+			pua_get_contacts_faves();
+		}, 60000);
+
+		pua_set_text('panda tickles unicorn');
+		return;
+	}
+
+	var ph = photos.pop();
+
+	try {
+		pua_draw_photo(ph);
+	}
+
+	catch(e){
+		pua_set_text('unicorn nudges panda');
+	}
+
+	setTimeout(function(){
+		pua_show_contacts_faves(photos);
+	}, 40000);
+
+}
+
+// shared functions
+
 function pua_draw_photo(ph){
 
 	var h = window.innerHeight;
@@ -79,6 +113,25 @@ function pua_set_text(text){
 
 	$('#message').html(text);
 	$("#message_wrapper").textfill({ maxFontPixels: 500 });
+}
+
+function pua_setup(){
+
+	$("#nav").hide();
+	$("#foot").hide();
+
+	$(document).keyup(function(e){
+
+		if (e.which != 61){
+			return;
+		}
+
+		var display = $("#nav").css("display");
+		display = (display == 'none') ? 'block' : 'none';
+
+		$("#nav").css("display", display);
+		$("#foot").css("display", display);
+	});
 }
 
 function resize(){

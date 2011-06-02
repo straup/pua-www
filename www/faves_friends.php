@@ -9,13 +9,17 @@
 
 	$flickr_user = flickr_users_get_by_user_id($GLOBALS['cfg']['user']['id']);
 
+	$map = flickr_push_topic_map("string keys");
+	$topic_id = $map['contacts_faves'];
+
 	$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 
 	if (! $subscription){
-		header("location: {$GLOBALS['cfg']['abs_root_url'}faves/friends/subscribe");
+		header("location: {$GLOBALS['cfg']['abs_root_url']}faves/friends/subscribe");
 		exit;
 	}
 
+	$GLOBALS['smarty']->assign("topic", "contacts_faves");
 	$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
 
 	$GLOBALS['smarty']->display("page_faves_friends.txt");

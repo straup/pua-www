@@ -1,64 +1,14 @@
 {assign var="page_title" value="faves from your contacts"}
 {include file="inc_head.txt"}
 
-{if $step=='do_confirm'}
-
-<div id="notphotos">
-
-<p>This is the part where I double-check that you're sure you'd like to subscribe to your contacts faves. If you've gotten this far it seems like a safe bet but are you <strong>really really sure?</strong></p>
-
-<form method="POST" action="{$cfg.abs_root_url}faves/friends" style="margin-left:40%;">
-	{$crumb_key|crumb_input}
-	<input type="hidden" name="confirm" value="1" />
-	<input type="submit" value="OH YES!!" />
-</form>
-
-</div>
-
-{elseif $step=='do_subscribe'}
-
-{if $error|@count}
-
-<div id="notphotos">
-<p class="error">Ack! There was a problem registering your subscription. This is what the robots have told me so far: {$error.details|escape}</p>
-</div>
-
-{else}
-
-<div id="notphotos" style="max-width:640px;">
-
-<div class="image500">
-<img src="{$cfg.abs_root_url}images/pua_landing.jpg" height="375" width="500" />
-</div>
-
-<p><strong>Okay. You're all set!</strong></p>
-
-<p>It will probably take about five minutes before any new updates are delivered but once they do <a href="{$cfg.abs_root_url}faves/friends/">you'll see your contacts photos the next time you visit this page.</a> You can always check <a href="{$cfg.abs_root_url}">the homepage</a> to see the last time an update was received for one of your contacts.</p>
-
-<p>Occasionally, you may see a funny message about pandas and unicorns. Don't worry! That just means that <strong>pua</strong> has asked for new photos and there aren't any right now. If the screen is entirely black that just means that <strong>pua</strong> hasn't found <em>any</em> new photos yet. Like this:</p>
-
-<div class="image500">
-<img src="{$cfg.abs_root_url}images/pua_panda.jpg" height="375" width="500" />
-</div>
-
-<p>There is also an <a href="{$cfg.abs_root_url}about/">about <strong>pua</strong></a> page that you may want to read while you're waiting for new photos to arrive.</p>
-
-</div>
-
-{/if}
-
-{else}
-
 {include file="inc_photo.txt"}
 
-{literal}
 <script type="text/javascript">
+{literal}
 	$(document).ready(function(){
-		pua_faves_photos();
+		pua_contacts_faves();
 	});
 </script>
 {/literal}
-
-{/if}
 
 {include file="inc_foot.txt"}
