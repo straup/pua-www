@@ -106,10 +106,14 @@ function pua_draw_photo(ph){
 
 	$("#photo_wrapper").html(html);
 
-	pua_set_text(ph.title);
+	pua_set_text(ph.title, href);
 }
 
-function pua_set_text(text){
+function pua_set_text(text, href){
+
+	if (href){
+		text = "<a href=\"" + href + "\" target=\"_flickr\">" + text + "</a>";
+	}
 
 	$('#message').html(text);
 	$("#message_wrapper").textfill({ maxFontPixels: 500 });
