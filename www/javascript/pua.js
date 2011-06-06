@@ -1,4 +1,5 @@
 // contacts photos
+var is_gil = 0;
 
 function pua_contacts_photos(){
 	pua_setup();
@@ -10,6 +11,7 @@ function pua_get_contacts_photos(){
 	$.ajax({
 		'url' : '/photos/friends/data/',
 		'success' : function(rsp){
+			is_gil = rsp.is_gil;
 			pua_show_contacts_photos(rsp.photos);
 		}
 	});
@@ -23,7 +25,7 @@ function pua_show_contacts_photos(photos){
 			pua_get_contacts_photos();
 		}, 60000);
 
-		pua_set_text('panda tickles unicorn');
+		pua_tickle();
 		return;
 	}
 
@@ -55,6 +57,7 @@ function pua_get_contacts_faves(){
 	$.ajax({
 		'url' : '/faves/friends/data/',
 		'success' : function(rsp){
+			is_gil = rsp.is_gil;
 			pua_show_contacts_faves(rsp.photos);
 		}
 	});
@@ -68,7 +71,7 @@ function pua_show_contacts_faves(photos){
 			pua_get_contacts_faves();
 		}, 60000);
 
-		pua_set_text('panda tickles unicorn');
+		pua_tickle();
 		return;
 	}
 
@@ -136,6 +139,17 @@ function pua_setup(){
 		$("#nav").css("display", display);
 		$("#foot").css("display", display);
 	});
+}
+
+function pua_tickle(){
+
+	var text = 'panda tickles unicorn';
+
+	if (is_gil){
+		text = 'panda tickles eeeeeaaaaRRRs!!!!';
+	}
+
+	pua_set_text(text);
 }
 
 function resize(){

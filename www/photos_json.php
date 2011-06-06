@@ -95,9 +95,12 @@
 
 	#
 
+	$is_gil = ($GLOBALS['cfg']['user']['id'] == 50) ? 1 : 0;
+
 	$out = array(
 		'topic' => $topic,
 		'count' => count($photos),
+		'is_gil' => $is_gil,
 		'photos' => $photos,
 	);
 
