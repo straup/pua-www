@@ -57,7 +57,8 @@
 		exit();
 	}
 
-	$redis_key = "pua_subscription_{$subscription['id']}";
+	$sub_key = "pua_subscription_{$subscription['id']}";
+	$user_key = "pua_subscription_user_{$subscription['user_id']}";
 
 	# parse atom feed and store photos here...
 
@@ -81,17 +82,26 @@
 			'thumb_url' => $e['media']['thumbnail@url'],
 		);
 
-		$redis->lpush($redis_key, json_encode($photo));
+		$enc_photo = json_encode($photo);
+
+		$redis->lpush($sub_key, $enc_photo);
+		$redis->lpush($user_key, $enc_photo);
 		$new ++;
 	}
 
 	#
 
-	$count = $redis->llen($redis_key);
 	$max = $GLOBALS['cfg']['flickr_push_max_photos'];
 
-	if ($count > $max){
-		$redis->ltrim($redis_key, $max, $count);
+	$count_sub = $redis->llen($sub_key);
+	$count_user = $redis->llen($user_key);
+
+	if ($count_sub > $max){
+		$redis->ltrim($sub_key, $max, $count_sub);
+	}
+
+	if ($count_user > $max){
+		$redis->ltrim($user_key, $max, $count_user);
 	}
 
 	#
