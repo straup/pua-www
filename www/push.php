@@ -115,6 +115,6 @@
 
 	#
 
-	error_log("[PUSH] {$redis_key}: {$count} (new: {$new})");
+	error_log("[PUSH] {$sub_key}: {$count} (new: {$new})");
 	exit();
 ?>
