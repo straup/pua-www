@@ -2,8 +2,6 @@
 
 	include("include/init.php");
 
-	error_404();
-
 	loadlib("flickr_users");
 
 	login_ensure_loggedin("/photos/");

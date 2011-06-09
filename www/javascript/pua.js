@@ -1,5 +1,51 @@
-// contacts photos
 var is_gil = 0;
+
+//
+
+function pua_all_photos(){
+	pua_setup();
+	pua_get_all_photos();
+}
+
+function pua_get_all_photos(){
+
+	$.ajax({
+		'url' : '/photos/data/',
+		'success' : function(rsp){
+			is_gil = rsp.is_gil;
+			pua_show_all_photos(rsp.photos);
+		}
+	});
+}
+
+function pua_show_all_photos(photos){
+
+	if (photos.length == 0){
+		setTimeout(function(){
+			pua_get_all_photos();
+		}, 60000);
+
+		pua_tickle();
+		return;
+	}
+
+	var ph = photos.pop();
+
+	try {
+		pua_draw_photo(ph);
+	}
+
+	catch(e){
+		pua_set_text('unicorn nudges panda');
+	}
+
+	setTimeout(function(){
+		pua_show_all_photos(photos);
+	}, 40000);
+
+}
+
+// contacts photos
 
 function pua_contacts_photos(){
 	pua_setup();
