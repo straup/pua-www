@@ -97,11 +97,13 @@
 	$count_user = $redis->llen($user_key);
 
 	if ($count_sub > $max){
-		$redis->ltrim($sub_key, $max, $count_sub);
+		# $redis->ltrim($sub_key, $max, $count_sub);
+		$redis->ltrim($sub_key, 0, $max);
 	}
 
 	if ($count_user > $max){
-		$redis->ltrim($user_key, $max, $count_user);
+		# $redis->ltrim($user_key, $max, $count_user);
+		$redis->ltrim($user_key, 0, $max);
 	}
 
 	#
