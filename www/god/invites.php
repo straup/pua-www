@@ -29,7 +29,7 @@
 	$GLOBALS['smarty']->assign_by_ref("invites", $invites);
 
 	$GLOBALS['smarty']->assign("pagination_url", "god/invites.php");
-	$GLOBALS['smarty']->assign("pagination_query_args", 1);
+	$GLOBALS['smarty']->assign("pagination_query_params", 1);
 
 	$GLOBALS['smarty']->display("page_god_invites.txt");
 	exit();
