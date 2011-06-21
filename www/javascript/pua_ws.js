@@ -50,7 +50,7 @@ function pua_ws(url){
 	    }
 
 	    ws.onopen = function(e){
-		this.tries = 0;
+		_this.tries = 0;
 	    };
 
 	    ws.onerror = function(e){
