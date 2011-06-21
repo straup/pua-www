@@ -12,6 +12,7 @@
 		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/jquery-textfill-0.1.js"></script>
 
 		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/pua.js?c=1307402153"></script>
+		{if $extra_head}{$extra_head}{/if}
 	</head>
 
 	<body>
