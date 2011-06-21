@@ -44,7 +44,7 @@ RewriteRule ^checkcookie/?$					checkcookie.php?%{QUERY_STRING} [L]
 RewriteRule ^auth/?$						auth_callback.php?%{QUERY_STRING} [L]
 
 RewriteRule ^photos/?$						photos.php?%{QUERY_STRING} [L]
-RewriteRule ^photos/data/?$					photos_json2.php?%{QUERY_STRING} [L]
+RewriteRule ^photos/data/?$					photos_json.php?%{QUERY_STRING} [L]
 
 RewriteRule ^photos/friends/?$					photos_friends.php?%{QUERY_STRING} [L]
 RewriteRule ^photos/friends/subscribe/?$			subscribe.php?topic=contacts_photos&%{QUERY_STRING} [L]
