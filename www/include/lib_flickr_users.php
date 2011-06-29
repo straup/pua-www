@@ -27,6 +27,35 @@
 
 	#################################################################
 
+	function flickr_users_update_user(&$flickr_user, $update){
+
+		$hash = array();
+		
+		foreach ($update as $k => $v){
+			$hash[$k] = AddSlashes($v);
+		}
+
+		$enc_id = AddSlashes($flickr_user['user_id']);
+		$where = "user_id='{$enc_id}'";
+
+		$rsp = db_update('FlickrUsers', $hash, $where);
+
+		if ($rsp['ok']){
+
+			$flickr_user = array_merge($flickr_user, $update);
+
+			$cache_key = "flickr_user_{$flickr_user['nsid']}";
+			cache_unset($cache_key);
+
+			$cache_key = "flickr_user_{$flickr_user['user_id']}";
+			cache_unset($cache_key);
+		}
+
+		return $rsp;
+	}
+
+	#################################################################
+
 	function flickr_users_get_by_nsid($nsid){
 
 		$cache_key = "flickr_user_{$nsid}";

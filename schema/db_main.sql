@@ -21,6 +21,8 @@ CREATE TABLE `FlickrUsers` (
   `user_id` int(11) unsigned NOT NULL,
   `nsid` varchar(20) NOT NULL,
   `auth_token` char(34) NOT NULL,
+  `oauth_token` char(34) NOT NULL,
+  `oauth_secret` char(16) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `by_nsid` (`nsid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
