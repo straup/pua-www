@@ -72,10 +72,21 @@
 
 	#################################################################
 
-	# finish token dance nonsense here...
+	function flickr_oauth_get_access_token(&$args, &$user_keys){
 
-	function flickr_oauth_get_access_token(){
+		$keys = array(
+			'oauth_key' => $GLOBALS['cfg']['flickr_oauth_key'],
+			'oauth_secret' => $GLOBALS['cfg']['flickr_oauth_secret'],
+			'request_token' => $user_keys['oauth_token'],
+			'request_secret' => $user_keys['oauth_secret'],
+		);
 
+		$url = $GLOBALS['cfg']['flickr_oauth_endpoint'] . 'access_token/';
+
+		$url = oauth_sign_get($keys, $url, $args, 'GET');
+		$rsp = http_get($url);
+
+		return $rsp;
 	}
 
 	#################################################################
