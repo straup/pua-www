@@ -1,8 +1,10 @@
 <?php
 
 	include("include/init.php");
+
 	loadlib("flickr_users");
 	loadlib("flickr_oauth");
+	loadlib("random");
 
 	if ($GLOBALS['cfg']['user']['id']){
 		header("location: {$GLOBALS['cfg']['abs_root_url']}");
@@ -60,7 +62,6 @@
 	);
 
 	$rsp = flickr_oauth_get_access_token($args, $user_keys);
-	exit;
 
 	if (! $rsp['ok']){
 		$GLOBALS['error']['oauth_access_token'] = 1;

@@ -38,14 +38,9 @@
 			return $rsp;
 		}
 
-		$data = array();
+		$data = flickr_oauth_rsp_to_hash($rsp['body']);
 
-		$bits = explode("&", $rsp['body']);
-
-		foreach ($bits as $bit){
-			list($k, $v) = explode('=', $bit, 2);
-			$data[urldecode($k)] = urldecode($v);
-		}
+		# check $data here
 
 		return array(
 			'ok' => 1,
@@ -77,8 +72,8 @@
 		$keys = array(
 			'oauth_key' => $GLOBALS['cfg']['flickr_oauth_key'],
 			'oauth_secret' => $GLOBALS['cfg']['flickr_oauth_secret'],
-			'request_token' => $user_keys['oauth_token'],
-			'request_secret' => $user_keys['oauth_secret'],
+			'user_key' => $user_keys['oauth_token'],
+			'user_secret' => $user_keys['oauth_secret'],
 		);
 
 		$url = $GLOBALS['cfg']['flickr_oauth_endpoint'] . 'access_token/';
@@ -86,7 +81,18 @@
 		$url = oauth_sign_get($keys, $url, $args, 'GET');
 		$rsp = http_get($url);
 
-		return $rsp;
+		if (! $rsp['ok']){
+			return $rsp;
+		}
+
+		$data = flickr_oauth_rsp_to_hash($rsp['body']);
+
+		# check $data here
+
+		return array(
+			'ok' => 1,
+			'data' => $data,
+		);
 	}
 
 	#################################################################
@@ -132,6 +138,20 @@
 
 		unset($json['stat']);
 		return array( 'ok' => 1, 'data' => $json );
+	}
+
+	#################################################################
+
+	function flickr_oauth_rsp_to_hash($rsp){
+
+		$data = array();
+
+		foreach (explode("&", $rsp) as $bit){
+			list($k, $v) = explode('=', $bit, 2);
+			$data[urldecode($k)] = urldecode($v);
+		}
+
+		return $data;
 	}
 
 	#################################################################
