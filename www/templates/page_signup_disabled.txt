@@ -1,7 +1,5 @@
 {include file="inc_head.txt"}
 
-<div class="notphotos">
-<p class="error">Sign ups are disabled for a bit while the plumbing gets moved around. Sorry.</p>
-</div>
+<p class="error">Signing up for new accounts is currently disabled. Sorry!</p>
 
 {include file="inc_foot.txt"}

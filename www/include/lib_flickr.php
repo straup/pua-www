@@ -8,10 +8,15 @@
 
 	#################################################################
 
+	$GLOBALS['cfg']['flickr_api_endpoint'] = 'http://api.flickr.com/services/rest/';
+	$GLOBALS['cfg']['flickr_auth_endpoint'] = 'http://api.flickr.com/services/auth/';
+
+	#################################################################
+
 	function flickr_auth_url($perms, $extra=null){
 
 		$args = array(
-			'api_key' => $GLOBALS['cfg']['flickr_apikey'],
+			'api_key' => $GLOBALS['cfg']['flickr_api_key'],
 			'perms' => $perms,
 		);
 
@@ -24,7 +29,7 @@
 		$api_sig = _flickr_api_sign_args($args);
 		$args['api_sig'] = $api_sig;
 
-		$url = "http://flickr.com/services/auth/?" . http_build_query($args);
+		$url = $GLOBALS['cfg']['flickr_auth_endpoint'] . "?" . http_build_query($args);
 		return $url;
 	}
 
@@ -32,7 +37,7 @@
 
 	function flickr_api_call($method, $args=array(), $more=array()){
 
-		$args['api_key'] = $GLOBALS['cfg']['flickr_apikey'];
+		$args['api_key'] = $GLOBALS['cfg']['flickr_api_key'];
 
 		$args['method'] = $method;
 		$args['format'] = 'json';
@@ -43,8 +48,9 @@
 			$args['api_sig'] = $api_sig;
 		}
 
-		$url = "http://api.flickr.com/services/rest";
+		$url = $GLOBALS['cfg']['flickr_api_endpoint'];
 
+# dumper($args);
 		$rsp = http_post($url, $args);
 
 		# $url = $url . "?" . http_build_query($args);
@@ -73,7 +79,7 @@
 	function _flickr_api_sign_args($args){
 
 		$parts = array(
-			$GLOBALS['cfg']['flickr_apisecret']
+			$GLOBALS['cfg']['flickr_api_secret']
 		);
 
 		$keys = array_keys($args);
