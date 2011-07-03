@@ -2,15 +2,15 @@
 
 	include("include/init.php");
 
-	loadlib("flickr_users");
-	loadlib("flickr_oauth");
+	loadlib("twitter_users");
+	loadlib("twitter_oauth");
 	loadlib("random");
 
 	# Some basic sanity checking like are you already logged in?
 
 	if ($GLOBALS['cfg']['user']['id']){
-		header("location: {$GLOBALS['cfg']['abs_root_url']}");
-		exit();
+#		header("location: {$GLOBALS['cfg']['abs_root_url']}");
+#		exit();
 	}
 
 
@@ -24,7 +24,7 @@
 
 	if (! $GLOBALS['cfg']['crypto_oauth_cookie_secret']){
 		$GLOBALS['error']['oauth_missing_secret'] = 1;
-		$GLOBALS['smarty']->display("page_auth_callback_oauth.txt");
+		$GLOBALS['smarty']->display("page_auth_callback_twitter_oauth.txt");
 		exit();
 	}
 
@@ -45,19 +45,19 @@
 	$request = explode(":", $request, 2);
 
 	# Make sure that we've got the minimum set of parameters
-	# we expect Flickr to send back.
+	# we expect Twitter to send back.
 
 	$verifier = get_str('oauth_verifier');
 	$token = get_str('oauth_token');
 
 	if ((! $verifier) || (! $token)){
 		$GLOBALS['error']['oauth_missing_args'] = 1;
-		$GLOBALS['smarty']->display("page_auth_callback_oauth.txt");
+		$GLOBALS['smarty']->display("page_auth_callback_twitter_oauth.txt");
 		exit();
 	}
 
 	# Now we exchange the request token/secret for a more permanent set
-	# of OAuth credentials. In plain old Flickr auth language this is
+	# of OAuth credentials. In plain old Twitter auth language this is
 	# where we exchange the frob (the oauth_verifier) for an auth token.
 	# The only difference is that we sign the request using both the app's
 	# signing secret and the user's (temporary) request secret.
@@ -72,50 +72,33 @@
 		'oauth_token' => $token,
 	);
 
-	$rsp = flickr_oauth_get_access_token($args, $user_keys);
+	$rsp = twitter_oauth_get_access_token($args, $user_keys);
 
 	if (! $rsp['ok']){
 		$GLOBALS['error']['oauth_access_token'] = 1;
-		$GLOBALS['smarty']->display("page_auth_callback_oauth.txt");
+		$GLOBALS['smarty']->display("page_auth_callback_twitter_oauth.txt");
 		exit();
 	}
 
+dumper($rsp);
+exit;
+
 	# Hey look! If we've gotten this far then that means we've been able
-	# to use the Flickr API to validate the user and we've got an OAuth
+	# to use the Twitter API to validate the user and we've got an OAuth
 	# key/secret pair.
 
 	$data = $rsp['data'];
 
-	$username = $data['username'];
-	$nsid = $data['user_nsid'];
+	# FIX ME: GET TWITTER DATA HERE
 
 	# The first thing we do is check to see if we already have an account
-	# matching that user's Flickr NSID.
+	# matching that user's Twitter NSID.
 
-	$flickr_user = flickr_users_get_by_nsid($nsid);
+	$twitter_user = twitter_users_get_by_twitter_id($twitter_id);
 
-	if ($user_id = $flickr_user['user_id']){
+	if ($user_id = $twitter_user['user_id']){
 
 		$user = users_get_by_id($user_id);
-
-		# Even if we do then check to make sure that we've stored
-		# their OAuth credentials.
-
-		if ((! $flickr_user['oauth_token']) || ($flickr_user['oauth_token'] != $keys['user_key'])){
-
-			$update = array(
-				'oauth_token' => $keys['user_key'],
-				'oauth_secret' => $keys['user_secret'],
-			);
-
-			$rsp = flickr_users_update_user($flickr_user, $update);
-
-			if (! $rsp['ok']){
-				$GLOBALS['error']['dberr_flickruser_update'] = 1;
-				$GLOBALS['smarty']->display("page_auth_callback_oauth.txt");
-				exit();
-			}
-		}
 	}
 
 	# If we don't ensure that new users are allowed to create
@@ -127,7 +110,7 @@
 	}
 
 	# Hello, new user! This part will create entries in two separate
-	# databases: Users and FlickrUsers that are joined by the primary
+	# databases: Users and TwitterUsers that are joined by the primary
 	# key on the Users table.
 
 	else {
@@ -136,26 +119,26 @@
 
 		$user = users_create_user(array(
 			"username" => $username,
-			"email" => "{$username}@donotsend-flickr.com",
+			"email" => "{$username}@donotsend-twitter.com",
 			"password" => $password,
 		));
 
 		if (! $user){
 			$GLOBALS['error']['dberr_user'] = 1;
-			$GLOBALS['smarty']->display("page_auth_callback_oauth.txt");
+			$GLOBALS['smarty']->display("page_auth_callback_twitter_oauth.txt");
 			exit();
 		}
 
-		$flickr_user = flickr_users_create_user(array(
+		$twitter_user = twitter_users_create_user(array(
 			'user_id' => $user['id'],
-			'nsid' => $nsid,
+			'twitter_id' => $twitter_id,
 			'oauth_token' => $keys['user_key'],
 			'oauth_secret' => $keys['user_secret'],
 		));
 
-		if (! $flickr_user){
-			$GLOBALS['error']['dberr_flickruser'] = 1;
-			$GLOBALS['smarty']->display("page_auth_callback_oauth.txt");
+		if (! $twitter_user){
+			$GLOBALS['error']['dberr_twitteruser'] = 1;
+			$GLOBALS['smarty']->display("page_auth_callback_twitter_oauth.txt");
 			exit();
 		}
 	}

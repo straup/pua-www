@@ -38,14 +38,12 @@ RewriteBase /
 RewriteRule ^invite/?$						invite.php?%{QUERY_STRING} [L]
 RewriteRule ^invite(?:/([^/]+))?/?$				invite.php?code=$1&%{QUERY_STRING} [L]
 
-RewriteRule ^signin/?$						signin_flickrauth.php?%{QUERY_STRING} [L]
-# RewriteRule ^signin/?$						signin.php?%{QUERY_STRING} [L]
+RewriteRule ^signin/?$						signin_flickr_flickrauth.php?%{QUERY_STRING} [L]
 
 RewriteRule ^signout/?$						signout.php?%{QUERY_STRING} [L]
 RewriteRule ^checkcookie/?$					checkcookie.php?%{QUERY_STRING} [L]
 
-RewriteRule ^auth/?$						auth_callback_flickrauth.php?%{QUERY_STRING} [L]
-# RewriteRule ^auth/?$						auth_callback.php?%{QUERY_STRING} [L]
+RewriteRule ^auth/?$						auth_callback_flickr_flickrauth.php?%{QUERY_STRING} [L]
 
 RewriteRule ^photos/?$						photos.php?%{QUERY_STRING} [L]
 RewriteRule ^photos/data/?$					photos_json.php?%{QUERY_STRING} [L]
