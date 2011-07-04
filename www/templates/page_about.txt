@@ -39,7 +39,13 @@
 
 <p>It's fun to think of watching photos rolling past as being like <a href="http://www.flickr.com/photos/tamanduagirl/2418297150/">an anteater drinking fizzy water</a> even if the two things have <em>nothing</em> to do with one another, really.</p>
 
+<a name="why"></a>
+
 <h2>Why did you do this?</h2>
+
+<p style="font-style:italic;">Hey look! I am writing this part in-situ...</p>
+
+<p>Somewhere in Flickr's seven and a half history there was this absurd notion that got propagated that Flickr was only for <q>good</q> photos.</p>
 
 <div class="image500">
 <object width="500" height="375"> <param name="flashvars" value="offsite=true&lang=en-us&page_show_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2Fshow%2Fwith%2F5707664854%2F&page_show_back_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2F&set_id=72157626644282140"></param> <param name="movie" value="http://www.flickr.com/apps/slideshow/show.swf?v=104087"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/slideshow/show.swf?v=104087" allowFullScreen="true" flashvars="offsite=true&lang=en-us&page_show_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2Fshow%2Fwith%2F5707664854%2F&page_show_back_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2Fwith%2F5707664854%2F&set_id=72157626644282140" width="500" height="375"></embed></object>
