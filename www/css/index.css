@@ -50,6 +50,7 @@ p {
 	z-index: 100;
 	border-left: 1px dotted #ccc;
 	border-bottom: 1px dotted #ccc;
+	opacity: .8;
 }
 
 #foot {
@@ -61,7 +62,7 @@ p {
 	background-color:#fff;
 	line-height:1em;
 	padding:30px;
-	opacity:.7;
+	opacity:.8;
 	z-index: 100;
 }
 
