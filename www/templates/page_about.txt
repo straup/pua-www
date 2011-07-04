@@ -43,9 +43,17 @@
 
 <h2>Why did you do this?</h2>
 
-<p style="font-style:italic;">Hey look! I am writing this part in-situ...</p>
+<p style="font-style:italic;">The first thing that you should know is that <a href="http://www.aaronland.info/weblog/2004/04/16/5447/">I worked at Flickr</a> for a <span style="text-decoration:underline;">very long</span> time. I don't work there anymore but I still think Flickr is magic so that's why I do these things.</p>
 
-<p>Somewhere in Flickr's seven and a half history there was this absurd notion that got propagated that Flickr was only for <q>good</q> photos.</p>
+<p>Somewhere in Flickr's seven and a half history there is this absurd notion that's taken hold which says Flickr is only for <q>good</q> photos. In fairness, there are a few reasons why that narrative persists: Flickr was blessed early on with the arrival, in droves, of people who take seriously the art and craft of photography; Flickr promoted the idea an Interestingness metric and an Explore section as a way to highlight even just a slice of all the amazing stuff that is uploaded to the site every day which had the perverse effect of creating a Frankenstein leaderboard cult and an unintended narrowing of people's expectation of what it means for a photo to be good; Flickr hasn't done as a good a job as it coulda-woulda-shoulda keeping up with the pace at which people are taking and sharing photos (that shift, from nerdy minority to basically everyone, happened almost overnight with the arrival of cheap and ubiquitous data plans bundled with cameraphones) allowing itself to be painted in to a corner where it looks and feels like a capital-G gallery with all the unfortunate expectations that come with that designation.</p>
+
+<p>I read an essay recently about the chef Ferran Adria which was a bit of a fawning puff piece but there was one passage that caught my eye: <q>...he is in love with the transformations you can force on ingredients to make them change shape and form.</q> </p>
+
+<p><strong>pua</strong> is the natural evolution of an application like <a href="https://contactswhohavefaved.appspot.com/">Contacts Who've Faved</a> whose starting premise is: I don't really care what an algorithm or even the majority of Flickr users think is a worthwhile image but I am more than interested in photos that my contacts, be they friends or simply strangers whose photos I enjoy, have fallen in love with. I add people as contacts now simply to see the photos they fave. <strong>pua</strong> </p>
+
+<p>Just to see a lot of photos. To be given the room to experience a photo and create moments of poetry.</p>
+
+<p>The funny thing about <strong>pua</strong> is that, because it is always <q>on</q> and sitting quietly next to me, I both see more photos than I normally would visiting the Flickr site and feel less anxious about the idea that I've somehow missed out on what people are doing. Stuff that would otherwise fall through the cracks has a lovely way of bubbling back up...</p>
 
 <div class="image500">
 <object width="500" height="375"> <param name="flashvars" value="offsite=true&lang=en-us&page_show_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2Fshow%2Fwith%2F5707664854%2F&page_show_back_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2F&set_id=72157626644282140"></param> <param name="movie" value="http://www.flickr.com/apps/slideshow/show.swf?v=104087"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/slideshow/show.swf?v=104087" allowFullScreen="true" flashvars="offsite=true&lang=en-us&page_show_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2Fshow%2Fwith%2F5707664854%2F&page_show_back_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2Fwith%2F5707664854%2F&set_id=72157626644282140" width="500" height="375"></embed></object>
