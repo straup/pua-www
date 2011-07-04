@@ -8,10 +8,9 @@
 
 {else}
 
-<img src="{$cfg.abs_root_url}images/nw_asc.jpg" height="100%" width="100%" />
+<img src="{$cfg.abs_root_url}images/pua_screens.jpg" height="100%" width="100%" /><br />
 
 {/if}
-
 
 
 {include file="inc_foot.txt"}

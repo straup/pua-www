@@ -13,6 +13,10 @@ a {
 	color:#000;
 }
 
+h2 {
+    margin-top: 50px;
+}
+
 a:hover {
     text-decoration:underline;
     color:#2B547E;
@@ -164,6 +168,18 @@ form {
 	margin-top:0px;
 	margin-bottom:40px;
 	max-width: 500px;
+}
+
+.attr {
+    margin-top:10px;
+    font-size:11px;
+    color:#999;
+    text-align:right;
+    font-style:italic;
+}
+
+.attr a {
+    color:#999;
 }
 
 #god {

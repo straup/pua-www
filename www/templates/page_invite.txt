@@ -32,7 +32,7 @@ Ack! The Invisible Error Cat hisses at you.
 <form method="POST" action="{$cfg.abs_root_url}invite/" style="margin-left:0px;">
 	{$crumb_key|crumb_input}
 
-	<p><strong>pua</strong> is still not open to every one so you'll need an invite code to get started. If you've received on enter it below (you should only need to do this once) and you'll be on your way!</p>
+	<p><strong>pua</strong> is still experimental and is not open to everyone, just yet, so you'll need an invite code to get started. If you've received on enter it below (you should only need to do this once) and you'll be on your way!</p>
 	
 	<input type="text" name="code" size="30" value="3x4mpl3c0d3" style="color:#adadad;" />
 	<input type="submit" value="LET ME IN, NOW!" />
@@ -73,4 +73,4 @@ $(document).ready(function(){
 {/literal}
 </script>
 
-{include file="inc_head.txt"}
+{include file="inc_foot.txt"}
