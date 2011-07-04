@@ -65,6 +65,7 @@
 				exit();
 			}
 
+			/* 
 			# the urmum hangover...
 
 			else if ($code == 'urmum'){
@@ -88,6 +89,7 @@
 					exit();
 				}
 			}
+			*/
 
 			else {
 				$GLOBALS['error']['invalid_code'] = 1;
