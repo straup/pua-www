@@ -5,6 +5,12 @@ body {
     background-color:#fff;
 }
 
+blockquote {
+    border: solid thin;
+    background-color:#ccc;
+    padding: 15px;
+}
+
 q {
     font-style: italic;
 }
