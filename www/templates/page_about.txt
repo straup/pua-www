@@ -29,6 +29,15 @@
 <a href="http://www.flickr.com/photos/straup/5833314566/in/set-72157626644282140"><img src="{$cfg.abs_root_url}images/pua_robot_spaceclaw.jpg" height="375" width="500" /></a>
 </div>
 
+{if 0}
+<a name="work"></a>
+
+<h2>How does it work?</h2>
+
+<p>When you subscribe to your contact's photos (or their faves) <strong>pua</strong> pokes the Flickr API and asks to be sent a notification when a new photo is uploaded or an old one is updated. <strong>pua</strong> stores a list of the 500 most recent notifications and then feeds them back to you when you visit the site. It also keeps track of which photos you've seen, from which device, to limit the number of times you see the same photo.</p>
+
+{/if}
+
 <a name="panda"></a>
 
 <h2>What's up with the panda and the unicorn?</h2>
@@ -83,7 +92,7 @@
 <object width="500" height="375"> <param name="flashvars" value="offsite=true&lang=en-us&page_show_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2Fshow%2Fwith%2F5707664854%2F&page_show_back_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2F&set_id=72157626644282140"></param> <param name="movie" value="http://www.flickr.com/apps/slideshow/show.swf?v=104087"></param> <param name="allowFullScreen" value="true"></param><embed type="application/x-shockwave-flash" src="http://www.flickr.com/apps/slideshow/show.swf?v=104087" allowFullScreen="true" flashvars="offsite=true&lang=en-us&page_show_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2Fshow%2Fwith%2F5707664854%2F&page_show_back_url=%2Fphotos%2Fstraup%2Fsets%2F72157626644282140%2Fwith%2F5707664854%2F&set_id=72157626644282140" width="500" height="375"></embed></object>
 </div>
 
-<p><strong>pua</strong> owes a debt of inspiration to the work to the good people at <a href="http://www.riglondon.com/">RIG</a> have been doing with similar projects including <a href="http://dextr.riglondon.com/">DEXTR</a> and <a href="http://shorttermmemoryloss.com/portfolio/project/romance-has-lived-too-long-upon-this-river/">Romance Has Lived Too Long Upon This River</a> and to <a href="http://www.revdancatt.com/">Dan Catt</a> for his work <a href="http://www.flickr.com/photos/revdancatt/5225472121/">making newpaper headlines fun again</a>. Chris Thorpe also has a <a href="http://blog.jaggeree.com/post/1358328904/glanceable-user-interfaces-music-hackday-and">really good blog post about <q>glanceables</q></a> (much as I loathe the term itself) and what we imagine is possible with all these spare screens that will inhabit our lives sooner than anyone expects, I think.</p>
+<p><strong>pua</strong> owes a debt of inspiration to the work to the good people at <a href="http://www.riglondon.com/">RIG</a> have been doing with similar projects including <a href="http://dextr.riglondon.com/">DEXTR</a> and <a href="http://shorttermmemoryloss.com/portfolio/project/romance-has-lived-too-long-upon-this-river/">Romance Has Lived Too Long Upon This River</a> and to <a href="http://www.revdancatt.com/">Dan Catt</a> for his work <a href="http://www.flickr.com/photos/revdancatt/5225472121/">making newpaper headlines fun again</a>. Chris Thorpe also has a <a href="http://blog.jaggeree.com/post/1358328904/glanceable-user-interfaces-music-hackday-and">really good blog post about <q>glanceables</q></a> (much as I loathe the term itself) and what we imagine is possible doing with all these spare screens that have already started becoming a constant presence in our lives.</p>
 
 <a name="things"></a>
 <h2>Things people have said about pua</h2>
