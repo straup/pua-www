@@ -59,9 +59,15 @@
 
 <p>It's the <q>as it's happening</q> part that's been lacking until now due in no small part to the sheer big-iness of Flickr and the necessary plumbing to make the broadcasting of photos in real-time possible, at all. But here we are now and one of the things it makes possible is an even bigger window with which a person can look on the world. It simply broadens the opportunities to see more photos and to be given the time and the space to use them to create moments of poetry.</p>
 
-<p>I read an essay recently about the chef Ferran Adria which was a bit of a fawning puff piece but there was one passage that caught my eye. The author wrote that Adria <q>is in love with the transformations you can force on ingredients to make them change shape and form.</q> Which is another way of saying what Stewart ...</p>
+{if 0}
+<p>I read an essay recently about the chef Ferran Adria which was a bit of a fawning puff piece but there was one passage that caught my eye. The author wrote that Adria <q>is in love with the transformations you can force on ingredients to make them change shape and form.</q> Which </p>
+{/if}
 
-<p><strong>pua</strong> is the evolution of an application like <a href="https://contactswhohavefaved.appspot.com/">Contacts Who've Faved</a> whose starting premise is: I don't really care what an algorithm or even the majority of Flickr users think is a worthwhile image but I am more than interested in photos that my contacts, be they friends or simply strangers whose photos I enjoy, have fallen in love with. I add people as contacts now simply to see the photos they fave. <strong>pua</strong> </p>
+<p><strong>pua</strong> is the evolution of a similar application called <a href="https://contactswhohavefaved.appspot.com/">Contacts Who've Faved</a> (<strong)>cwf</a>) whose starting premise is: I don't really care what an algorithm or even the majority of Flickr users think is a worthwhile photo but I am more than interested in pictures that my contacts, be they friends or simply strangers whose photos I enjoy, have fallen in love with. I add people as contacts now simply to see the photos they fave. <strong>pua</strong> </p>
+
+<div class="image500" style="width:333px;">
+<img src="{$cfg.abs_root_url}images/small_flickr.jpg" width="333" height="268" />
+</div>
 
 <p>The funny thing about <strong>pua</strong> is that, because it is always <q>on</q> and sitting quietly next to me, I both see more photos than I normally would and feel less anxious about the idea that I've somehow missed out on what people are doing because photos that would otherwise fall through the cracks has a lovely way of bubbling back up as people comment on them or they are faved or even just have their title changed.</p>
 
