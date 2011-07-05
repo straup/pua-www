@@ -57,7 +57,11 @@
 
 <p>But still, this insane measure of <q>good</q> -iness against which everything is judged with gets under my skin every time I hear about it. Somewhere between <a href="http://www.penelopeumbrico.net/Suns/Suns_Index.html">the Hell of HDR photos of sunsets</a> (on beaches (with babies (playing with puppies))) and a barren post-modern world devoid of any critical interpretation lies the territory where most of us live our lives trying to eek out rare moments of beauty in the shifting shadows. Somewhere in there we make a meaning for ourselves that has its roots in how those images shape themselves to the big-little bags of history we all trail behind us while we're otherwise busy trying to be noticed. <a href="http://blog.flickr.net/en/2011/06/28/a-different-life-in-afganistan/">That is where the magic &#8212; the good &#8212; happens.</a></p>
 
-<p>I read an essay recently about the chef Ferran Adria which was a bit of a fawning puff piece but there was one passage that caught my eye. The author wrote that Adria <q>is in love with the transformations you can force on ingredients to make them change shape and form.</q> Which is a nice way to think about why pictures are important, why they are worth the <em>effort</em>. Stewart said it well, way back in 2006, in his <a href="http://blog.flickr.net/en/2006/03/24/eyes-of-the-world/">Eyes of the World</a> blog post:</p>
+{if 0}
+<p>I read an essay recently about the chef Ferran Adria which was a bit of a fawning puff piece but there was one passage that caught my eye. The author wrote that Adria <q>is in love with the transformations you can force on ingredients to make them change shape and form.</q> Which is a nice way to think about why pictures are important, why they are worth the <em>effort</em>.
+{/if}
+
+<p>Stewart said it nicely, way back in 2006, in his <a href="http://blog.flickr.net/en/2006/03/24/eyes-of-the-world/">Eyes of the World</a> blog post:</p>
 
 <blockquote>
 <p>That can manifest itself as art, or using photos as a means of keeping in touch with friends and family, <q>personal publishing</q> or intimate, small group sharing. It includes <q>memory preservation</q> (the de facto understanding of what drives the photo industry), but it also includes the ephemera that keeps people related to each other: do you like my new haircut? should I buy these shoes? holy smokes – look what I saw on the way to work! It let’s you know who’s gone where with whom, what the vacation was like, how much the baby grew today, all as it's happening.</p>
@@ -65,12 +69,11 @@
 <p>And most dramatically, Flickr gives you a window into things that you might otherwise never see, from the perspective of people that you might otherwise never encounter.</p>
 </blockquote>
 
-<p>It's the <q>as it's happening</q> part that's suffered until now due in no small part to the sheer big-iness of Flickr and <a href="">the necessary plumbing to make the broadcasting of photos in real-time possible</a>, at all. But here we are now and one of the things it makes possible is an even bigger window with which a person can look on the world. It simply broadens the opportunities to see more photos and to be given the time and the space to use them to create moments of poetry.</p>
-
-{if 0}
-{/if}
+<p>It's the <q>as it's happening</q> part that's suffered until now due in no small part to the sheer big-iness of Flickr and <a href="">the necessary plumbing to make the broadcasting of photos in real-time possible</a>, at all. But here we are now and one of the things it makes possible is an even bigger window with which a person can look on the world. It's not rocket science: It simply broadens the opportunities to see more photos and to encourage the time and the space with which we might use them to create moments of poetry.</p>
 
 <p><strong>pua</strong> is the evolution of a similar application called <a href="https://contactswhohavefaved.appspot.com/">Contacts Who've Faved</a> (<strong>cwf</strong>) whose starting premise is: I don't really care what an algorithm or even the majority of Flickr users think is a worthwhile photo but I am more than interested in pictures that my contacts, be they friends or simply strangers whose photos I enjoy, have fallen in love with. I add people as contacts now simply to see the photos they fave. <strong>cwf</strong> favours a minimalist interface &#8212; thumbnails and coloured squares to represent the user who faved the photo &#8212; because it's meant to emphasize, to make more inviting than anything else,  the form and colour and composition of the images themselves.</p>
+
+<p><strong>pua</strong> takes that idea one step further and shows you nothing but a continuous stream of images, with their titles overlayed in big friendly letters...</p>
 
 <div class="image500" style="width:333px;margin-left:110px;">
 <img src="{$cfg.abs_root_url}images/small_flickr.jpg" width="333" height="268" />
