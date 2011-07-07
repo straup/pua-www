@@ -47,6 +47,10 @@
 
 	function cache_set($cache_key, $data, $store_locally=0){
 
+		if (! $data){
+			return array( 'ok' => 0, 'error' => "nothing to cache for key '{$cache_key}'" );
+		}
+
 		$cache_key = _cache_prepare_cache_key($cache_key);
 		log_notice("cache", "set cache key '{$cache_key}'");
 
