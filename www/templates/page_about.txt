@@ -29,14 +29,11 @@
 <a href="http://www.flickr.com/photos/straup/5833314566/in/set-72157626644282140"><img src="{$cfg.abs_root_url}images/pua_robot_spaceclaw.jpg" height="375" width="500" /></a>
 </div>
 
-{if 0}
 <a name="work"></a>
 
 <h2>How does it work?</h2>
 
 <p>When you subscribe to your contact's photos (or their faves) <strong>pua</strong> pokes the Flickr API and asks to be sent a notification when a new photo is uploaded or an old one is updated. <strong>pua</strong> stores a list of the 500 most recent notifications and then feeds them back to you when you visit the site. It also keeps track of which photos you've seen, from which device, to limit the number of times you see the same photo.</p>
-
-{/if}
 
 <a name="panda"></a>
 
@@ -82,7 +79,7 @@
 <p>And most dramatically, Flickr gives you a window into things that you might otherwise never see, from the perspective of people that you might otherwise never encounter.</p>
 </blockquote>
 
-<p>It's the <q>as it's happening</q> part that's suffered until now due in no small part to the sheer big-iness of Flickr and <a href="">the necessary plumbing to make the broadcasting of photos in real-time possible</a>, at all. But here we are now and one of the things it makes possible is an even bigger window with which a person can look on the world. It's not rocket science: It broadens the opportunities to see more photos and to encourage the time and the space with which we might use them to create moments of poetry.</p>
+<p>It's the <q>as it's happening</q> part that's suffered until now due in no small part to the sheer big-iness of Flickr and <a href="http://code.flickr.com/blog/2011/06/30/dont-be-so-pushy/">the necessary plumbing to make the broadcasting of photos in real-time possible</a>, at all. But here we are now and one of the things it makes possible is an even bigger window with which a person can look on the world. It's not rocket science: It broadens the opportunities to see more photos and to encourage the time and the space with which we might use them to create moments of poetry.</p>
 
 <p><strong>pua</strong> is the evolution of a similar application called <a href="https://contactswhohavefaved.appspot.com/">Contacts Who've Faved</a> (<strong>cwf</strong>) whose starting premise is: I don't really care what an algorithm or even the majority of Flickr users think is a worthwhile photo but I am more than interested in pictures that my contacts, be they friends <em>or simply strangers whose photos I enjoy</em>, have fallen in love with. I add people as contacts now simply to see the photos they fave. <strong>cwf</strong> favours a minimalist interface &#8212; thumbnails and coloured squares to represent the user who faved the photo &#8212; because it's meant to emphasize, to make more inviting than anything else,  the form and colour and composition of the images themselves.</p>
 
