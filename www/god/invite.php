@@ -9,7 +9,7 @@
 		error_404();
 	}
 
-	$invite = invite_codes_get_by_code($code);
+	$invite = invite_codes_get_by_code($code, 0);
 
 	if (! $invite){
 		error_404();
@@ -20,7 +20,7 @@
 
 	$crumb_ok = crumb_check($crumb_key);
 
-	if (($crumk_ok) && (post_str("delete"))){
+	if (($crumb_ok) && (post_str("delete"))){
 
 		$rsp = invite_codes_delete($invite);
 
@@ -32,6 +32,30 @@
 		$GLOBALS['error']['delete_failed'] = 1;
 		$GLOBALS['error']['details'] = $rsp['error'];
 	}
+
+	else if (($crumb_ok) && (post_str("send"))){
+
+		$more = array(
+			'send_email' => 1,
+			'invited_by' => $GLOBALS['cfg']['user']['id'],
+		);
+
+		$rsp = invite_codes_invite_user($invite['email'], $more);
+
+		if ($rsp['ok']){
+			$GLOBALS['smarty']->assign_by_ref("invite", $rsp['invite']);
+			# refresh so we get an updated 'sent' date
+			$invite = invite_codes_get_by_code($invite['code'], 0);
+		}
+
+		else {
+			$GLOBALS['error'] = $rsp['error'];
+		}
+
+		$GLOBALS['smarty']->assign_by_ref("sent", $rsp);
+	}
+
+	else {}
 
 	$GLOBALS['smarty']->assign_by_ref("invite", $invite);
 
