@@ -170,7 +170,13 @@
 		$rsp = invite_codes_create($email, $more);
 
 		if (($rsp['ok']) && (isset($more['send_email']))){
-			$template = 'email_invite_user.txt';
+
+			$template = 'email_invite_code.txt';
+
+			if (isset($more['template'])){
+				$template = $more['template'];
+			}
+
 			invite_codes_send_invite($rsp['invite'], $template);
 		}
 
@@ -253,13 +259,16 @@
 
 		$GLOBALS['smarty']->assign_by_ref("invite", $invite);
 
+		# There's not really a good way to check the response
+		# of this... which is frustrating.
+
 		email_send($args);
 
 		$update = array(
 			'sent' => time(),
 		);
 
-		invite_codes_update($invite, $update);
+		$rsp = invite_codes_update($invite, $update);
 
 		return array(
 			'ok' => 1,
