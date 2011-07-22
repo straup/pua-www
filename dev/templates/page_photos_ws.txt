@@ -1,0 +1,20 @@
+{capture assign="extra_head"}<script type="text/javascript" src="{$cfg.abs_root_url}javascript/pua_ws.js"></script>{/capture}
+{include file="inc_head.txt"}
+
+{include file="inc_photo.txt"}
+
+<script type="text/javascript">
+var _url = '{$flickr_url}';
+{literal}
+$(document).ready(function(){
+
+	pua_setup();
+	
+	var pua = pua_ws(_url);
+	pua.init();
+});
+{/literal}
+
+</script>
+
+{include file="inc_foot.txt"}

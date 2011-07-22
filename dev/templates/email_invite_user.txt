@@ -1,0 +1,22 @@
+{assign var="email_subject" value="pua.spum.org (from Aaron)"}
+Hello! 
+
+I am sending you a form letter that contains an invite code for a new thing I've been noodling around with.
+
+It's called "Pua" which is a long story but the important part is that it will show you new (and updated) photos from your Flickr contacts in more-or-less real-time  Like this:
+
+	http://www.aaronland.info/weblog/2011/05/07/fancy/#likeadog
+
+Pua is just a plain old web application so it will work in any modern browser. It's especially fun in browsers that can be put in to full-screen mode, like Firefox or Chrome or Safari on the iPhone and iPad. Like this:
+
+	http://www.flickr.com/photos/straup/sets/72157626644282140/
+
+Your invite code is:
+
+	{$cfg.abs_root_url}invite/{$invite.code|escape}/
+
+You should only need to visit that page once. When you do you'll be bounced throught the Flickr API authentication flow so that pua may be granted "read" permissions to view your contacts photos.
+
+All the usual caveats apply but bug reports and (gentle) cluebats are welcome. Personally, I love it.
+
+One last thing: This is live, but not public. Its casual publicness is casual.

@@ -1,0 +1,14 @@
+{assign var="page_title" value="faves and photos from your contacts"}
+{include file="inc_head.txt"}
+
+{include file="inc_photo.txt"}
+
+<script type="text/javascript">
+{literal}
+	$(document).ready(function(){
+		pua_all_photos();
+	});
+</script>
+{/literal}
+
+{include file="inc_foot.txt"}

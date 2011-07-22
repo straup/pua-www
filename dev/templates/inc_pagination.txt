@@ -1,0 +1,25 @@
+{if $pagination.page_count > 1}
+
+<div id="pagination">
+
+<span id="pagination_prev">
+{if $pagination.page > 1}
+<a id="pagination_prev_link" href="{$cfg.abs_root_url}{$pagination_url}{if $pagination_query_params}?page={$pagination.page-1}{else}page{$pagination.page-1}{/if}">⇦</a>
+{else}
+<span class="disabled">⇦</span>
+{/if}
+</span>
+
+page <strong>{$pagination.page|escape}</strong> of {$pagination.page_count|escape}
+
+<span id="pagination_next">
+{if $pagination.page < $pagination.page_count}
+<a id="pagination_next_link" href="{$cfg.abs_root_url}{$pagination_url}{if $pagination_query_params}?page={$pagination.page+1}{else}page{$pagination.page+1}{/if}">⇨</a>
+{else}
+<span class="disabled">⇨</span>
+{/if}
+</span>
+
+</div>
+
+{/if}

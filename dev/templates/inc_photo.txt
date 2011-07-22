@@ -1,0 +1,2 @@
+<div id="photo_wrapper"></div>
+<div id="message_wrapper"><span id="message"></span></div>
