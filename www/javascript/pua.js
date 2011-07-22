@@ -1,3 +1,6 @@
+// it is officially time to refactor this...
+// 20110722 (straup)
+
 var is_gil = 0;
 
 //
@@ -133,6 +136,52 @@ function pua_show_contacts_faves(photos){
 
 	setTimeout(function(){
 		pua_show_contacts_faves(photos);
+	}, 40000);
+
+}
+
+// photos of contacts
+
+function pua_photosof_friends(){
+	pua_setup();
+	pua_get_photosof_friends();
+}
+
+function pua_get_photosof_friends(){
+
+	$.ajax({
+		'url' : '/photosof/friends/data/',
+		'success' : function(rsp){
+			is_gil = rsp.is_gil;
+			pua_show_photosof_friends(rsp.photos);
+		}
+	});
+}
+
+function pua_show_photosof_friends(photos){
+
+	if (photos.length == 0){
+
+		setTimeout(function(){
+			pua_get_photosof_friends();
+		}, 60000);
+
+		pua_tickle();
+		return;
+	}
+
+	var ph = photos.pop();
+
+	try {
+		pua_draw_photo(ph);
+	}
+
+	catch(e){
+		pua_set_text('unicorn nudges panda');
+	}
+
+	setTimeout(function(){
+		pua_show_photosof_friends(photos);
 	}, 40000);
 
 }
