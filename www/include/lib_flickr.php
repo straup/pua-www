@@ -50,10 +50,14 @@
 
 		$url = $GLOBALS['cfg']['flickr_api_endpoint'];
 
-# dumper($args);
-		$rsp = http_post($url, $args);
+		$more = array(
+			'http_timeout' => 10,
+		);
+
+		$rsp = http_post($url, $args, $more);
 
 		# $url = $url . "?" . http_build_query($args);
+
 		# $rsp = http_get($url);
 
 		if (! $rsp['ok']){

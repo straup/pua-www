@@ -13,6 +13,10 @@
 		$map = array(
 			1 => array('label' => 'your contacts photos', 'url' => 'photos/friends/', 'enabled' => 1),
 			2 => array('label' => 'your contacts faves', 'url' => 'faves/friends/', 'enabled' => 1),
+			3 => array('label' => 'your photos', 'url' => 'photos/', 'enabled' => 0),
+			3 => array('label' => 'your faves', 'url' => 'faves/', 'enabled' => 0),
+			4 => array('label' => 'photos of you', 'url' => 'photosof/', 'enabled' => 0),
+			5 => array('label' => 'photos of your contacts', 'url' => 'photosof/friends', 'enabled' => 0),
 		);
 
 		return $map;

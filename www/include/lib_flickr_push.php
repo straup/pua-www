@@ -13,6 +13,10 @@
 		$map = array(
 			1 => 'contacts_photos',
 			2 => 'contacts_faves',
+			3 => 'my_photos',
+			4 => 'my_faves',
+			5 => 'photos_of_me',
+			6 => 'photos_of_contacts',
 		);
 
 		if ($str_keys){
