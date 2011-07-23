@@ -28,7 +28,7 @@
 			<a href="/signout/">sign out</a>
 {else}
 	{if $cfg.enable_feature_signin}
-			<a href="/signin/">sign in with your <strong>flickr</strong> account</a>
+			<a href="/signin/?redir={$smarty.server.REQUEST_URI|escape:'url'}">sign in with your <strong>flickr</strong> account</a>
 	{/if}
 {/if}
 
