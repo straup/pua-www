@@ -17,6 +17,7 @@
 			4 => array('label' => 'your faves', 'url' => 'faves/', 'enabled' => 0),
 			5 => array('label' => 'photos of you', 'url' => 'photosof/me/', 'enabled' => 0),
 			6 => array('label' => 'photos of your contacts', 'url' => 'photosof/friends/', 'enabled' => 1),
+			7 => array('label' => 'geotagged photos', 'url' => 'places/', 'enabled' => 1),
 		);
 
 		return $map;
