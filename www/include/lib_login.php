@@ -102,7 +102,7 @@
 
 	function login_do_login(&$user, $redir=''){
 
-		$expires = time() * 2;
+		$expires = ($GLOBALS['cfg']['enable_feature_persistent_login']) ? time() * 2 : 0;
 
 		$auth_cookie = login_generate_auth_cookie($user);
 		login_set_cookie($GLOBALS['cfg']['auth_cookie_name'], $auth_cookie, $expires);
