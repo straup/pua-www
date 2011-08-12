@@ -9,9 +9,9 @@
 		<link rel="stylesheet" type="text/css" href="{$cfg.abs_root_url}css/index.css" />
 
 		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/jquery-1.5.1.min.js"></script>
-		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/jquery-textfill-0.1.js"></script>
+		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/jquery-textfill-0.1.min.js"></script>
 
-		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/pua.js?c=1307402154"></script>
+		<script type="text/javascript" src="{$cfg.abs_root_url}javascript/pua.min.js?c=1307402155"></script>
 		{if $extra_head}{$extra_head}{/if}
 	</head>
 

@@ -2,14 +2,6 @@
 {include file="inc_head.txt"}
 
 {include file="inc_photo.txt"}
-
-<script type="text/javascript">
-var endpoint = '/{$topic.url}data/';
-{literal}
-	$(document).ready(function(){
-		pua_photos(endpoint);
-	});
-</script>
-{/literal}
+{include file="inc_photo_js.txt"}
 
 {include file="inc_foot.txt"}
