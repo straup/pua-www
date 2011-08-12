@@ -3,6 +3,49 @@
 
 var is_gil = 0;
 
+function pua_photos(endpoint){
+	pua_setup();
+	pua_get_photos(endpoint);
+}
+
+function pua_get_photos(endpoint){
+
+	$.ajax({
+		'url' : endpoint,
+		'success' : function(rsp){
+			is_gil = rsp.is_gil;
+			pua_show_photos(rsp.photos, endpoint);
+		}
+	});
+}
+
+function pua_show_photos(photos, endpoint){
+
+	if (photos.length == 0){
+		setTimeout(function(){
+			pua_get_photos(endpoint);
+		}, 60000);
+
+		pua_tickle();
+		return;
+	}
+
+	var ph = photos.pop();
+
+	try {
+		pua_draw_photo(ph);
+	}
+
+	catch(e){
+		pua_set_text('unicorn nudges panda');
+	}
+
+	setTimeout(function(){
+		pua_show_photos(photos, endpoint);
+	}, 40000);
+
+}
+
 //
 
 function pua_all_photos(){

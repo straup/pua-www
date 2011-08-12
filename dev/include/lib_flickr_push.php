@@ -18,6 +18,7 @@
 			5 => 'photos_of_me',
 			6 => 'photos_of_contacts',
 			7 => 'geo',
+			8 => 'commons'
 		);
 
 		if ($str_keys){

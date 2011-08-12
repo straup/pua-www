@@ -50,6 +50,10 @@ RewriteRule ^photos/data/?$					photos_json.php?%{QUERY_STRING} [L]
 
 RewriteRule ^places(/(\d+))?/?$					photos_places.php?woeid=$2&%{QUERY_STRING} [L]
 
+RewriteRule ^photos/commons/?$					photos_commons.php?%{QUERY_STRING} [L]
+RewriteRule ^photos/commons/subscribe/?$			subscribe.php?topic=commons&%{QUERY_STRING} [L]
+RewriteRule ^photos/commons/data/?$				photos_json.php?topic=commons&%{QUERY_STRING} [L]
+
 RewriteRule ^photos/friends/?$					photos_friends.php?%{QUERY_STRING} [L]
 RewriteRule ^photos/friends/subscribe/?$			subscribe.php?topic=contacts_photos&%{QUERY_STRING} [L]
 RewriteRule ^photos/friends/data/?$				photos_json.php?topic=contacts_photos&%{QUERY_STRING} [L]
