@@ -20,11 +20,10 @@
 
 				$_sub = $subscriptions[$topic_id];
 
-				# This is the thing that calls subscriptions_delete
-
 				$rsp = flickr_push_unsubscribe($_sub);
 
-				if ($rsp['ok']){
+				if (($rsp['ok']) || ($rsp['error'] == 'Subscription not found')){
+					subscriptions_delete($_sub);
 					$subscriptions = subscriptions_for_user_as_hash($GLOBALS['cfg']['user']);
 				}
 

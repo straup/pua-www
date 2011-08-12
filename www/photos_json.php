@@ -108,7 +108,7 @@
 	}
 
 	$more = array(
-		# 'inline' => 1,
+		'inline' => get_str('inline'),
 	);
 
 	api_output_ok($out, $more);

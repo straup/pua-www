@@ -1,31 +1,26 @@
-// it is officially time to refactor this...
-// 20110722 (straup)
-
 var is_gil = 0;
 
-//
-
-function pua_all_photos(){
+function pua_photos(endpoint){
 	pua_setup();
-	pua_get_all_photos();
+	pua_get_photos(endpoint);
 }
 
-function pua_get_all_photos(){
+function pua_get_photos(endpoint){
 
 	$.ajax({
-		'url' : '/photos/data/',
+		'url' : endpoint,
 		'success' : function(rsp){
 			is_gil = rsp.is_gil;
-			pua_show_all_photos(rsp.photos);
+			pua_show_photos(rsp.photos, endpoint);
 		}
 	});
 }
 
-function pua_show_all_photos(photos){
+function pua_show_photos(photos, endpoint){
 
 	if (photos.length == 0){
 		setTimeout(function(){
-			pua_get_all_photos();
+			pua_get_photos(endpoint);
 		}, 60000);
 
 		pua_tickle();
@@ -43,145 +38,7 @@ function pua_show_all_photos(photos){
 	}
 
 	setTimeout(function(){
-		pua_show_all_photos(photos);
-	}, 40000);
-
-}
-
-// contacts photos
-
-function pua_contacts_photos(){
-	pua_setup();
-	pua_get_contacts_photos();
-}
-
-function pua_get_contacts_photos(){
-
-	$.ajax({
-		'url' : '/photos/friends/data/',
-		'success' : function(rsp){
-			is_gil = rsp.is_gil;
-			pua_show_contacts_photos(rsp.photos);
-		}
-	});
-}
-
-function pua_show_contacts_photos(photos){
-
-	if (photos.length == 0){
-
-		setTimeout(function(){
-			pua_get_contacts_photos();
-		}, 60000);
-
-		pua_tickle();
-		return;
-	}
-
-	var ph = photos.pop();
-
-	try {
-		pua_draw_photo(ph);
-	}
-
-	catch(e){
-		pua_set_text('unicorn nudges panda');
-	}
-
-	setTimeout(function(){
-		pua_show_contacts_photos(photos);
-	}, 40000);
-
-}
-
-// contacts faves
-
-function pua_contacts_faves(){
-	pua_setup();
-	pua_get_contacts_faves();
-}
-
-function pua_get_contacts_faves(){
-
-	$.ajax({
-		'url' : '/faves/friends/data/',
-		'success' : function(rsp){
-			is_gil = rsp.is_gil;
-			pua_show_contacts_faves(rsp.photos);
-		}
-	});
-}
-
-function pua_show_contacts_faves(photos){
-
-	if (photos.length == 0){
-
-		setTimeout(function(){
-			pua_get_contacts_faves();
-		}, 60000);
-
-		pua_tickle();
-		return;
-	}
-
-	var ph = photos.pop();
-
-	try {
-		pua_draw_photo(ph);
-	}
-
-	catch(e){
-		pua_set_text('unicorn nudges panda');
-	}
-
-	setTimeout(function(){
-		pua_show_contacts_faves(photos);
-	}, 40000);
-
-}
-
-// photos of contacts
-
-function pua_photosof_friends(){
-	pua_setup();
-	pua_get_photosof_friends();
-}
-
-function pua_get_photosof_friends(){
-
-	$.ajax({
-		'url' : '/photosof/friends/data/',
-		'success' : function(rsp){
-			is_gil = rsp.is_gil;
-			pua_show_photosof_friends(rsp.photos);
-		}
-	});
-}
-
-function pua_show_photosof_friends(photos){
-
-	if (photos.length == 0){
-
-		setTimeout(function(){
-			pua_get_photosof_friends();
-		}, 60000);
-
-		pua_tickle();
-		return;
-	}
-
-	var ph = photos.pop();
-
-	try {
-		pua_draw_photo(ph);
-	}
-
-	catch(e){
-		pua_set_text('unicorn nudges panda');
-	}
-
-	setTimeout(function(){
-		pua_show_photosof_friends(photos);
+		pua_show_photos(photos, endpoint);
 	}, 40000);
 
 }
@@ -280,4 +137,3 @@ window.onload = function(){
 		resize();
 	}
 }
-

@@ -17,6 +17,8 @@
 			4 => 'my_faves',
 			5 => 'photos_of_me',
 			6 => 'photos_of_contacts',
+			7 => 'geo',
+			8 => 'commons'
 		);
 
 		if ($str_keys){
@@ -46,6 +48,11 @@
 			'verify_token' => $subscription['verify_token'],
 			'callback' => $callback,
 		);
+
+		if ($extra = $subscription['extra']){
+			$extra = json_decode($subscription['extra'], 'as a hash');
+			$args = array_merge($extra, $args);
+		}
 
 		$rsp = flickr_api_call($method, $args);
 		return $rsp;

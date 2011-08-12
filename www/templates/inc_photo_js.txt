@@ -1,0 +1,8 @@
+<script type="text/javascript">
+var endpoint = '/{$topic.url}data/';
+{literal}
+	$(document).ready(function(){
+		pua_photos(endpoint);
+	});
+</script>
+{/literal}

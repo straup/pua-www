@@ -19,7 +19,10 @@
 		exit;
 	}
 
-	$GLOBALS['smarty']->assign("topic", "photos_of_contacts");
+	$topic_map = subscriptions_topic_map();
+	$topic = $topic_map[$topic_id];
+
+	$GLOBALS['smarty']->assign("topic", $topic);
 	$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
 
 	$GLOBALS['smarty']->display("page_photosof_friends.txt");
