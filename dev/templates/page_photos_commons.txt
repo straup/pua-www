@@ -1,7 +1,0 @@
-{capture assign="page_title"}{$topic.label}{/capture}
-{include file="inc_head.txt"}
-
-{include file="inc_photo.txt"}
-{include file="inc_photo_js.txt"}
-
-{include file="inc_foot.txt"}

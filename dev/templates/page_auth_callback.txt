@@ -1,5 +1,0 @@
-{include file="inc_head.txt"}
-
-why am I here...
-
-{include file="inc_foot.txt"}

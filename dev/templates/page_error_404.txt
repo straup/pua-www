@@ -1,9 +1,0 @@
-{assign var="page_title" value="404, say what?"}
-{include file="inc_head.txt"}
-
-<div id="notphotos">
-<p>404. There is only <strong>pua</strong>.</p>
-</div>
-
-{include file="inc_foot.txt"}
-
