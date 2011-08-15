@@ -41,3 +41,13 @@ CREATE TABLE `InviteCodes` (
   KEY `by_email` (`email`),
   KEY `by_code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `SubscriptionUrls`;
+
+CREATE TABLE `SubscriptionUrls` (
+  `id` int(10) unsigned NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `args` text,
+  UNIQUE KEY `by_url` (`url`),
+  KEY `by_id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

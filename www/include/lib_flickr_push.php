@@ -2,8 +2,7 @@
 
 	loadlib("flickr");
 	loadlib("flickr_users");
-
-	loadlib("subscription_url");
+	loadlib("subscription_urls");
 
 	#################################################################
 

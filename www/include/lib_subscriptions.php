@@ -132,8 +132,12 @@
 
 		$subscriptions = array();
 
+		# FIX ME: needs to be updated to account for things
+		# like topic=geo which may have multiple subscriptions
+		# see also: templates/page_index.txt
+
 		foreach ($rsp['rows'] as $row){
-			$subscriptions[$row['topic']] = $row;
+			$subscriptions[$row['topic_id']] = $row;
 		}
 
 		return $subscriptions;
