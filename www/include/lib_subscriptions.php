@@ -17,7 +17,7 @@
 			4 => array('label' => 'your faves', 'url' => 'faves/', 'enabled' => 0),
 			5 => array('label' => 'photos of you', 'url' => 'photosof/me/', 'enabled' => 0),
 			6 => array('label' => 'photos of your contacts', 'url' => 'photosof/friends/', 'enabled' => 1),
-			7 => array('label' => 'geotagged photos', 'url' => 'places/', 'enabled' => 0),
+			7 => array('label' => 'geotagged photos', 'url' => 'places/', 'enabled' => 1, 'args' => array('woeid')),
 			8 => array('label' => 'photos from the Commons', 'url' => 'photos/commons/', 'enabled' => 1),
 		);
 
@@ -74,9 +74,11 @@
 
 	#################################################################
 
+	# FIX ME: make me topic_url
+
 	function subscriptions_get_by_user_and_topic(&$user, $topic_id){
 
-		$cache_key = "subscriptions_user_{$user['id']}_{$topic_id}";
+		$cache_key = "subscriptions_user_{$user['id']}_{$topic}";
 		$cache = cache_get($cache_key);
 
 		if ($cache['ok']){
@@ -107,7 +109,7 @@
 		$subscriptions = array();
 
 		foreach ($rsp['rows'] as $row){
-			$subscriptions[$row['topic_id']] = $row;
+			$subscriptions[$row['topic']] = $row;
 		}
 
 		return $subscriptions;

@@ -2,14 +2,14 @@
 	ServerName dev.pua.spum.org
 	# ServerAdmin webmaster@localhost
 
-	DocumentRoot /home/asc/pua.spum.org/dev
+	DocumentRoot /home/asc/dev.pua.spum.org/www
 
 	<Directory />
 		Options FollowSymLinks
 		AllowOverride None
 	</Directory>
 
-	<Directory /home/asc/pua.spum.org/dev>
+	<Directory /home/asc/dev.pua.spum.org/www>
 		Options FollowSymLinks Indexes
 		# AllowOverride FileInfo Limit
 		AllowOverride All

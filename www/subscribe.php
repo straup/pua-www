@@ -33,7 +33,7 @@
 		error_404();
 	}
 
-	#
+	# FIX ME: to deal with topic/topic_id
 
 	$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 
@@ -45,6 +45,7 @@
 
 	#
 
+	$GLOBALS['smarty']->assign_by_ref("topic", $topic);
 	$GLOBALS['smarty']->assign_by_ref("subscription_type", $sub_map[$topic_id]);
 
 	$crumb_key = "subscribe_{$topic}";
@@ -56,10 +57,37 @@
 
 		$GLOBALS['smarty']->assign("step", "do_subscribe");
 
+		$topic_url = $sub_map[$topic_id]['url'];
+		$topic_ok = 1;
+
+		if ($topic == 'geo'){
+
+			if ($woeid = post_int32('woeid')){
+				$topic_url .= "{$woeid}/";
+			}
+
+			else {
+				$topic_ok = 0;
+			}
+		}
+
+		if (! $topic_ok){
+			$GLOBALS['error']['subscribe'] = 1;
+			$GLOBALS['error']['details'] = 'missing arg';
+			$GLOBALS['smarty']->display("page_subscribe.txt");
+			exit();
+		}
+
+		#
+
 		$subscription = array(
 			'user_id' => $GLOBALS['cfg']['user']['id'],
 			'topic_id' => $topic_id,
+			'topic_url' => $topic_url,
 		);
+
+dumper($subscription);
+exit;
 
 		$rsp = subscriptions_register_subscription($subscription);
 

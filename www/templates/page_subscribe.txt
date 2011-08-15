@@ -10,6 +10,11 @@
 <form method="POST" action="{$cfg.abs_root_url}{$subscription_type.url|escape}subscribe/" style="margin-left:40%;">
 	{$crumb_key|crumb_input}
 	<input type="hidden" name="confirm" value="1" />
+
+	{if $topic == 'geo'}
+	<input type="text" name="woeid" value="" /> WOE ID <br /><br />
+	{/if}
+
 	<input type="submit" value="OH YES!!" />
 </form>
 
