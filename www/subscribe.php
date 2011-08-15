@@ -3,6 +3,8 @@
 	include("include/init.php");
 
 	loadlib("subscriptions");
+	loadlib("subscription_urls");
+
 	loadlib("flickr_push");
 	loadlib("flickr_users");
 
@@ -33,7 +35,7 @@
 		error_404();
 	}
 
-	# FIX ME: to deal with topic/topic_id
+	# FIX ME: to deal with topics that have args...
 
 	$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 
@@ -58,12 +60,15 @@
 		$GLOBALS['smarty']->assign("step", "do_subscribe");
 
 		$topic_url = $sub_map[$topic_id]['url'];
+		$topic_args = null;
+
 		$topic_ok = 1;
 
 		if ($topic == 'geo'){
 
-			if ($woeid = post_int32('woeid')){
+			if ($woeid = post_str('woeid')){
 				$topic_url .= "{$woeid}/";
+				$topic_args = array('woeid' => $woeid);
 			}
 
 			else {
@@ -80,10 +85,23 @@
 
 		#
 
+		$rsp = subscription_urls_create($topic_url, $topic_args);
+
+		if (! $rsp['ok']){
+			$GLOBALS['error']['subscribe'] = 1;
+			$GLOBALS['error']['details'] = 'url';
+			$GLOBALS['smarty']->display("page_subscribe.txt");
+			exit();
+		}
+
+		$url_id = $rsp['url']['id'];
+
+		#
+
 		$subscription = array(
 			'user_id' => $GLOBALS['cfg']['user']['id'],
 			'topic_id' => $topic_id,
-			'topic_url' => $topic_url,
+			'url_id' => $url_id,
 		);
 
 dumper($subscription);

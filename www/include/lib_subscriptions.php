@@ -11,14 +11,14 @@
 		# flickr_push_topic_map()
 
 		$map = array(
-			1 => array('label' => 'your contacts photos', 'url' => 'photos/friends/', 'enabled' => 1),
-			2 => array('label' => 'your contacts faves', 'url' => 'faves/friends/', 'enabled' => 1),
-			3 => array('label' => 'your photos', 'url' => 'photos/me/', 'enabled' => 0),
-			4 => array('label' => 'your faves', 'url' => 'faves/', 'enabled' => 0),
-			5 => array('label' => 'photos of you', 'url' => 'photosof/me/', 'enabled' => 0),
-			6 => array('label' => 'photos of your contacts', 'url' => 'photosof/friends/', 'enabled' => 1),
-			7 => array('label' => 'geotagged photos', 'url' => 'places/', 'enabled' => 1, 'args' => array('woeid')),
-			8 => array('label' => 'photos from the Commons', 'url' => 'photos/commons/', 'enabled' => 1),
+			1 => array('label' => 'your contacts photos', 'url' => 'photos/friends/', 'enabled' => 1, 'has_args' => 0),
+			2 => array('label' => 'your contacts faves', 'url' => 'faves/friends/', 'enabled' => 1, 'has_args' => 0),
+			3 => array('label' => 'your photos', 'url' => 'photos/me/', 'enabled' => 0, 'has_args' => 0),
+			4 => array('label' => 'your faves', 'url' => 'faves/', 'enabled' => 0, 'has_args' => 0),
+			5 => array('label' => 'photos of you', 'url' => 'photosof/me/', 'enabled' => 0, 'has_args' => 0),
+			6 => array('label' => 'photos of your contacts', 'url' => 'photosof/friends/', 'enabled' => 1, 'has_args' => 0),
+			7 => array('label' => 'geotagged photos', 'url' => 'photos/places/', 'enabled' => 1, 'has_args' => 1),
+			8 => array('label' => 'photos from the Commons', 'url' => 'photos/commons/', 'enabled' => 1, 'has_args' => 0),
 		);
 
 		return $map;
@@ -74,8 +74,6 @@
 
 	#################################################################
 
-	# FIX ME: make me topic_url
-
 	function subscriptions_get_by_user_and_topic(&$user, $topic_id){
 
 		$cache_key = "subscriptions_user_{$user['id']}_{$topic}";
@@ -89,6 +87,32 @@
 		$enc_topic = AddSlashes($topic_id);
 
 		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND topic_id='{$enc_topic}'";
+
+		$rsp = db_fetch($sql);
+		$row = db_single($rsp);
+
+		if ($row){
+			cache_set($cache_key, $row, "cache locally");
+		}
+
+		return $row;
+	}
+
+	#################################################################
+
+	function subscriptions_get_by_user_and_topic_url(&$user, $topic_url){
+
+		$cache_key = "subscriptions_user_{$user['id']}_url_{$topic_url}";
+		$cache = cache_get($cache_key);
+
+		if ($cache['ok']){
+			return $cache['data'];
+		}
+
+		$enc_id = AddSlashes($user['id']);
+		$enc_topic = AddSlashes($topic_url);
+
+		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND topic_url='{$enc_topic}'";
 
 		$rsp = db_fetch($sql);
 		$row = db_single($rsp);
