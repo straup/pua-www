@@ -65,22 +65,44 @@
 		$topic_args = null;
 
 		$topic_ok = 1;
+		$topic_err = '';
+
+		# put all this in a function?
 
 		if ($topic == 'geo'){
 
-			if ($woeid = post_str('woeid')){
-				$topic_url .= "{$woeid}/";
-				$topic_args = array('woeid' => $woeid);
+			if ($woeids = post_str('woeids')){
+
+				$ids = array();
+
+				foreach (explode(",", $woeids) as $id){
+
+					if (intval($woeid)){
+						$ids[] = $id;
+					}
+				}
+
+				if (count($ids)){
+					$ids = implode(",", $ids);
+					$topic_url .= "{$ids}/";
+					$topic_args = array('woe_ids' => $ids);
+				}
+
+				else {
+					$topic_ok = 0;
+					$topic_err = 'No valid WOE IDs';
+				}
 			}
 
 			else {
 				$topic_ok = 0;
+				$topic_err = 'Missing WOE IDs';
 			}
 		}
 
 		if (! $topic_ok){
 			$GLOBALS['error']['subscribe'] = 1;
-			$GLOBALS['error']['details'] = 'missing arg';
+			$GLOBALS['error']['details'] = $topic_err;
 			$GLOBALS['smarty']->display("page_subscribe.txt");
 			exit();
 		}

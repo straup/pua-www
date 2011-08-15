@@ -12,7 +12,7 @@
 	<input type="hidden" name="confirm" value="1" />
 
 	{if $topic == 'geo'}
-	<input type="text" name="woeid" value="" /> WOE ID <br /><br />
+	<input type="text" name="woeids" value="" /> WOE ID <br /><br />
 	{/if}
 
 	<input type="submit" value="OH YES!!" />
