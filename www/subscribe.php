@@ -35,14 +35,16 @@
 		error_404();
 	}
 
-	# FIX ME: to deal with topics that have args...
+	# no point in doing this check if it's something that takes args...
 
-	$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
+	if (! $sub_map[$topic_id]['has_args']){
 
-	if ($subscription){
+		$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 
-		header("location: {$GLOBALS['cfg']['abs_root_url']}{$sub_map[$topic_ic]['url']}");
-		exit();
+		if ($subscription){
+			header("location: {$GLOBALS['cfg']['abs_root_url']}{$sub_map[$topic_ic]['url']}");
+			exit();
+		}
 	}
 
 	#
@@ -103,9 +105,6 @@
 			'topic_id' => $topic_id,
 			'url_id' => $url_id,
 		);
-
-dumper($subscription);
-exit;
 
 		$rsp = subscriptions_register_subscription($subscription);
 

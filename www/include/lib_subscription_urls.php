@@ -14,6 +14,17 @@
 
 	#################################################################
 
+	function subscription_urls_get_by_id($url_id){
+
+		$enc_id = AddSlashes($url_id);
+		$sql = "SELECT * FROM SubscriptionUrls WHERE id='{$enc_id}'";
+
+		$rsp = db_single(db_fetch($sql));
+		return $rsp;
+	}
+
+	#################################################################
+
 	function subscription_urls_create($url, $args=null){
 
 		if ($row = subscription_urls_get_by_url($url)){

@@ -3,6 +3,8 @@
 	loadlib("flickr");
 	loadlib("flickr_users");
 
+	loadlib("subscription_url");
+
 	#################################################################
 
 	function flickr_push_topic_map($str_keys=0){
@@ -49,8 +51,10 @@
 			'callback' => $callback,
 		);
 
-		if ($extra = $subscription['extra']){
-			$extra = json_decode($subscription['extra'], 'as a hash');
+		$url = subscription_urls_get_by_id($subscription['url_id']);
+
+		if ($extra = $url['args']){
+			$extra = json_decode($extra, 'as a hash');
 			$args = array_merge($extra, $args);
 		}
 
@@ -78,6 +82,13 @@
 			'verify_token' => $subscription['verify_token'],
 			'callback' => $callback,
 		);
+
+		$url = subscription_urls_get_by_id($subscription['url_id']);
+
+		if ($extra = $url['args']){
+			$extra = json_decode($extra, 'as a hash');
+			$args = array_merge($extra, $args);
+		}
 
 		$rsp = flickr_api_call($method, $args);
 

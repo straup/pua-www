@@ -12,7 +12,7 @@
 	$woeid = get_str("woeid");
 
 	if (! $woeid){
-		header("location: {$GLOBALS['cfg']['abs_root_url']}places/subscribe");
+		header("location: {$GLOBALS['cfg']['abs_root_url']}photos/places/subscribe");
 		exit;
 	}
 
