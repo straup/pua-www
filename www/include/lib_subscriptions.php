@@ -101,9 +101,9 @@
 
 	#################################################################
 
-	function subscriptions_get_by_user_and_topic_url(&$user, $topic_url){
+	function subscriptions_get_by_user_and_url(&$user, $url_id){
 
-		$cache_key = "subscriptions_user_{$user['id']}_url_{$topic_url}";
+		$cache_key = "subscriptions_user_{$user['id']}_url_{$url_id}";
 		$cache = cache_get($cache_key);
 
 		if ($cache['ok']){
@@ -111,9 +111,9 @@
 		}
 
 		$enc_id = AddSlashes($user['id']);
-		$enc_topic = AddSlashes($topic_url);
+		$enc_url = AddSlashes($url_id);
 
-		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND topic_url='{$enc_topic}'";
+		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND url_id='{$enc_url}'";
 
 		$rsp = db_fetch($sql);
 		$row = db_single($rsp);

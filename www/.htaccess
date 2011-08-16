@@ -48,7 +48,7 @@ RewriteRule ^auth/?$						auth_callback_flickr_flickrauth.php?%{QUERY_STRING} [L
 RewriteRule ^photos/?$						photos.php?%{QUERY_STRING} [L]
 RewriteRule ^photos/data/?$					photos_json.php?%{QUERY_STRING} [L]
 
-RewriteRule ^photos/places(/(\d+))?/?$				photos_places.php?woeid=$2&%{QUERY_STRING} [L]
+RewriteRule ^photos/places(/([0-9,]+))?/?$			photos_places.php?woeids=$2&%{QUERY_STRING} [L]
 RewriteRule ^photos/places/subscribe/?$				subscribe.php?topic=geo&%{QUERY_STRING} [L]
 
 RewriteRule ^photos/tags(/(.*))?/?$				photos_tags.php?tag=$2&%{QUERY_STRING} [L]

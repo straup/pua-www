@@ -1,26 +1,28 @@
 <?php
 
 	include("include/init.php");
+
 	loadlib("subscriptions");
+	loadlib("subscription_urls");
 	loadlib("flickr_users");
 
-	login_ensure_loggedin("/places/");
+	login_ensure_loggedin("/photo/places/");
 
-	$map = flickr_push_topic_map('string keys');
-	$topic_id = $map['geo'];
+	$woeids = get_str("woeids");
 
-	$woeid = get_str("woeid");
-
-	if (! $woeid){
+	if (! $woeids){
 		header("location: {$GLOBALS['cfg']['abs_root_url']}photos/places/subscribe");
 		exit;
 	}
 
-	$more = array(
-		'extra' => $woeid,
-	);
+	$url = "photos/places/{$woeids}/";
+	$url = subscription_urls_get_by_url($url);
 
-	$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id, $more);
+	if (! $url){
+		error_404();
+	}
+
+	$subscription = subscriptions_get_by_user_and_url($GLOBALS['cfg']['user'], $url['id']);
 
 	if (! $subscription){
 		header("location: {$GLOBALS['cfg']['abs_root_url']}places/subscribe");
