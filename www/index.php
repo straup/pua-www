@@ -16,14 +16,23 @@
 
 			list($topic_id, $sub_id) = explode("-", post_str("delete"), 2);
 
-			if ((isset($subscriptions[$topic_id])) && ($subscriptions[$topic_id]['id'] == $sub_id)){
+			$subscription = null;
 
-				$_sub = $subscriptions[$topic_id];
+			if (isset($subscriptions[$topic_id])){
 
-				$rsp = flickr_push_unsubscribe($_sub);
+				foreach ($subscriptions[$topic_id] as $_sub){
+					if ($_sub['id'] == $sub_id){
+						$subscription = $_sub;
+					}
+				}
+			}
+
+			if ($subscription){
+
+				$rsp = flickr_push_unsubscribe($subscription);
 
 				if (($rsp['ok']) || ($rsp['error'] == 'Subscription not found')){
-					subscriptions_delete($_sub);
+					subscriptions_delete($subscription);
 					$subscriptions = subscriptions_for_user_as_hash($GLOBALS['cfg']['user']);
 				}
 
