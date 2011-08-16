@@ -19,7 +19,7 @@
 		exit;
 	}
 
-	$GLOBALS['smarty']->assign("topic", $subscription['topic']);
+	$GLOBALS['smarty']->assign("topic", $subscription['topic_url']);
 
 	$GLOBALS['smarty']->display("page_photosof_friends.txt");
 	exit();

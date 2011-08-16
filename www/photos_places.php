@@ -29,7 +29,7 @@
 		exit;
 	}
 
-	$GLOBALS['smarty']->assign("topic", $subscription['topic']);
+	$GLOBALS['smarty']->assign_by_ref("topic", $subscription['topic_url']);
 
 	$GLOBALS['smarty']->display("page_photos_places.txt");
 	exit();
