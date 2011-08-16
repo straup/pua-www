@@ -53,34 +53,36 @@
 
 	#################################################################
 
-	# FIX ME: subscriptions_load_topic_url($row);
-
 	function subscriptions_get_by_secret_url($url){
 
 		$cache_key = "subscriptions_secret_{$url}";
 		$cache = cache_get($cache_key);
 
 		if ($cache['ok']){
-			return $cache['data'];
+			$row = $cache['data'];
 		}
 
-		$enc_url = AddSlashes($url);
+		else {
 
-		$sql = "SELECT * FROM Subscriptions WHERE secret_url='{$enc_url}'";
+			$enc_url = AddSlashes($url);
+			$sql = "SELECT * FROM Subscriptions WHERE secret_url='{$enc_url}'";
 
-		$rsp = db_fetch($sql);
-		$row = db_single($rsp);
+			$rsp = db_fetch($sql);
+			$row = db_single($rsp);
+
+			if ($row){
+				cache_set($cache_key, $row, "cache locally");
+			}
+		}
 
 		if ($row){
-			cache_set($cache_key, $row, "cache locally");
+			subscriptions_load_topic_url($row);
 		}
 
 		return $row;
 	}
 
 	#################################################################
-
-	# FIX ME: subscriptions_load_topic_url($row);
 
 	function subscriptions_get_by_user_and_topic(&$user, $topic_id){
 
@@ -88,19 +90,24 @@
 		$cache = cache_get($cache_key);
 
 		if ($cache['ok']){
-			return $cache['data'];
+			$row = $cache['data'];
 		}
 
-		$enc_id = AddSlashes($user['id']);
-		$enc_topic = AddSlashes($topic_id);
+		else {
 
-		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND topic_id='{$enc_topic}'";
+			$enc_id = AddSlashes($user['id']);
+			$enc_topic = AddSlashes($topic_id);
 
-		$rsp = db_fetch($sql);
-		$row = db_single($rsp);
+			$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND topic_id='{$enc_topic}'";
+			$row = db_single(db_fetch($sql));
+
+			if ($row){
+				cache_set($cache_key, $row, "cache locally");
+			}
+		}
 
 		if ($row){
-			cache_set($cache_key, $row, "cache locally");
+			subscriptions_load_topic_url($row);
 		}
 
 		return $row;
@@ -108,27 +115,31 @@
 
 	#################################################################
 
-	# FIX ME: subscriptions_load_topic_url($row);
-
 	function subscriptions_get_by_user_and_url(&$user, $url_id){
 
 		$cache_key = "subscriptions_user_{$user['id']}_url_{$url_id}";
 		$cache = cache_get($cache_key);
 
 		if ($cache['ok']){
-			return $cache['data'];
+			$row = $cache['data'];
 		}
 
-		$enc_id = AddSlashes($user['id']);
-		$enc_url = AddSlashes($url_id);
+		else {
 
-		$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND url_id='{$enc_url}'";
+			$enc_id = AddSlashes($user['id']);
+			$enc_url = AddSlashes($url_id);
 
-		$rsp = db_fetch($sql);
-		$row = db_single($rsp);
+			$sql = "SELECT * FROM Subscriptions WHERE user_id='{$enc_id}' AND url_id='{$enc_url}'";
+
+			$row = db_single(db_fetch($sql));
+
+			if ($row){
+				cache_set($cache_key, $row, "cache locally");
+			}
+		}
 
 		if ($row){
-			cache_set($cache_key, $row, "cache locally");
+			subscriptions_load_topic_url($row);
 		}
 
 		return $row;

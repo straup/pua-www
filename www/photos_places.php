@@ -29,12 +29,7 @@
 		exit;
 	}
 
-	$mock_topic = array(
-		'url' => $url['url'],
-	);
-
-	$GLOBALS['smarty']->assign("topic", $mock_topic);
-	$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
+	$GLOBALS['smarty']->assign("topic", $subscription['topic']);
 
 	$GLOBALS['smarty']->display("page_photos_places.txt");
 	exit();
