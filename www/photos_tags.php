@@ -15,7 +15,7 @@
 		exit;
 	}
 
-	$url = "photos/places/{$tags}/";
+	$url = "photos/tags/{$tags}/";
 	$url = subscription_urls_get_by_url($url);
 
 	if (! $url){
@@ -36,7 +36,7 @@
 	$GLOBALS['smarty']->assign("topic", $mock_topic);
 	$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
 
-	$GLOBALS['smarty']->display("page_places.txt");
+	$GLOBALS['smarty']->display("page_photos_tags.txt");
 	exit();
 	
 ?>

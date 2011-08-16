@@ -25,7 +25,7 @@
 
 	#################################################################
 
-	function subscription_urls_create($url, $args=null){
+	function subscription_urls_create($url, $label=null, $args=null){
 
 		if ($row = subscription_urls_get_by_url($url)){
 
@@ -41,6 +41,10 @@
 			'id' => $id,
 			'url' => $url,
 		);
+
+		if (isset($label)){
+			$row['label'] = $label;
+		}
 
 		if (isset($args)){
 			$row['args'] = json_encode($args);

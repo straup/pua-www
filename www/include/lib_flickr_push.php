@@ -57,9 +57,9 @@
 			'callback' => $callback,
 		);
 
-		$url = subscription_urls_get_by_id($subscription['url_id']);
+		$topic_url = subscription_urls_get_by_id($subscription['url_id']);
 
-		if ($extra = $url['args']){
+		if ($extra = $topic_url['args']){
 			$extra = json_decode($extra, 'as a hash');
 			$args = array_merge($extra, $args);
 		}
@@ -95,9 +95,9 @@
 			'callback' => $callback,
 		);
 
-		$url = subscription_urls_get_by_id($subscription['url_id']);
+		$topic_url = subscription_urls_get_by_id($subscription['url_id']);
 
-		if ($extra = $url['args']){
+		if ($extra = $topic_url['args']){
 			$extra = json_decode($extra, 'as a hash');
 			$args = array_merge($extra, $args);
 		}

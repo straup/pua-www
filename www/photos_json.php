@@ -53,7 +53,7 @@
 		else if ($topic == 'tags'){
 
 			$tags = get_str("tags");
-			$url = subscription_urls_get_by_url("photos/places/{$tags}/");
+			$url = subscription_urls_get_by_url("photos/tags/{$tags}/");
 
 			if (! $url){
 				error_404();

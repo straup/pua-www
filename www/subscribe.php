@@ -62,6 +62,7 @@
 		$GLOBALS['smarty']->assign("step", "do_subscribe");
 
 		$topic_url = $sub_map[$topic_id]['url'];
+		$topic_label = $sub_map[$topic_id]['label'];
 		$topic_args = null;
 
 		$topic_ok = 1;
@@ -86,6 +87,8 @@
 					sort($ids);
 					$ids = implode(",", $ids);
 					$topic_url .= "{$ids}/";
+
+					$topic_label = "photos taken in WOE ID " . str_replace(",", " or ", $ids);
 					$topic_args = array('woe_ids' => $ids);
 				}
 
@@ -117,6 +120,8 @@
 					sort($tag_list);
 					$tag_list = implode(",", $tag_list);
 					$topic_url .= "{$tag_list}/";
+
+					$topic_label = "photos tagged " . str_replace(",", " or ", $tag_list);
 					$topic_args = array('tags' => $tag_list);
 				}
 
@@ -141,7 +146,7 @@
 
 		#
 
-		$rsp = subscription_urls_create($topic_url, $topic_args);
+		$rsp = subscription_urls_create($topic_url, $topic_label, $topic_args);
 
 		if (! $rsp['ok']){
 			$GLOBALS['error']['subscribe'] = 1;

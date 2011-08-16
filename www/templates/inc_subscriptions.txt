@@ -20,16 +20,9 @@
 {if $subscriptions.$topic_id}
 {foreach from=$subscriptions.$topic_id item="sub"}
 
-{capture assign="label"}
-{$row.label|@ucfirst|escape}
-{if $sub.url.args}
-	{if $sub.url.args.woe_ids} for WOE IDs {$sub.url.args.woe_ids}
-	{elseif $sub.url.args.tags} {$sub.url.args.tags}
-	{else}{/if}
-{/if}
-{/capture}
+{capture assign="label"}{if $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
 
-		<td><strong><a href="{$cfg.abs_root_url}{$sub.url.url}">{$label|@trim|escape}</a></strong></td>
+		<td><strong><a href="{$cfg.abs_root_url}{$sub.topic_url.url}">{$label|@trim|escape}</a></strong></td>
 		<td>{$sub.created|date_format:"%b %d, %Y"|escape}</td>
 		<td>{if $sub.verified}{$sub.verified|date_format:"%b %d, %Y"|escape}{else}&#8212;{/if}</td>
 		<td>{if $sub.last_update}{$sub.last_update|date_format:"%b %d, %Y"|escape} at <strong>{$sub.last_update|date_format:"%l:%M %p"|escape}</strong>{else}&#8212;{/if}</td>

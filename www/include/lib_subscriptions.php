@@ -50,6 +50,8 @@
 
 	#################################################################
 
+	# FIX ME: subscriptions_load_topic_url($row);
+
 	function subscriptions_get_by_secret_url($url){
 
 		$cache_key = "subscriptions_secret_{$url}";
@@ -74,6 +76,8 @@
 	}
 
 	#################################################################
+
+	# FIX ME: subscriptions_load_topic_url($row);
 
 	function subscriptions_get_by_user_and_topic(&$user, $topic_id){
 
@@ -100,6 +104,8 @@
 	}
 
 	#################################################################
+
+	# FIX ME: subscriptions_load_topic_url($row);
 
 	function subscriptions_get_by_user_and_url(&$user, $url_id){
 
@@ -135,13 +141,8 @@
 
 		foreach ($rsp['rows'] as $row){
 
-			$url = subscription_urls_get_by_id($row['url_id']);
+			subscriptions_load_topic_url($row);
 
-			if ($url['args']){
-				$url['args'] = json_decode($url['args'], 'as hash');
-			}
-
-			$row['url'] = $url;
 			$topic_id = $row['topic_id'];
 
 			if (! isset($subscriptions[$topic_id])){
@@ -323,6 +324,21 @@
 		}
 
 		return $rsp;
+	}
+
+	#################################################################
+
+	function subscriptions_load_topic_url(&$subscription){
+
+		$topic_url = subscription_urls_get_by_id($subscription['url_id']);
+
+		if ($topic_url['args']){
+			$topic_url['args'] = json_decode($url['args'], 'as hash');
+		}
+
+		$subscription['topic_url'] = $topic_url;
+
+		# note the pass by ref
 	}
 
 	#################################################################

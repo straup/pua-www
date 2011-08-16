@@ -36,7 +36,7 @@
 	$GLOBALS['smarty']->assign("topic", $mock_topic);
 	$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
 
-	$GLOBALS['smarty']->display("page_places.txt");
+	$GLOBALS['smarty']->display("page_photos_places.txt");
 	exit();
 	
 ?>
