@@ -84,7 +84,7 @@
 
 	function subscriptions_get_by_user_and_topic(&$user, $topic_id){
 
-		$cache_key = "subscriptions_user_{$user['id']}_{$topic}";
+		$cache_key = "subscriptions_user_{$user['id']}_{$topic_id}";
 		$cache = cache_get($cache_key);
 
 		if ($cache['ok']){

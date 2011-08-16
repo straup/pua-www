@@ -63,6 +63,7 @@
 		}
 
 		else {
+
 			$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
 		}
 
@@ -75,7 +76,6 @@
 	}
 
 	else {
-
 		$updates_key = "pua_subscription_user_{$GLOBALS['cfg']['user']['id']}";
 		$seen_key = "pua_seen_user_{$GLOBALS['cfg']['user']['id']}_{$whoami}";
 	}
