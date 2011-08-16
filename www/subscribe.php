@@ -112,8 +112,9 @@
 
 				foreach (explode(",", $tags) as $t){
 
-					# filter me here...
-					$tag_list[] = $t;
+					if ($t = trim(sanitize_string($t, false))){
+						$tag_list[] = $t;
+					}
 				}
 
 				if (count($tag_list)){

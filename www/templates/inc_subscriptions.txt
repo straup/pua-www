@@ -57,5 +57,5 @@
 </table>
 
 {if $subscriptions|@count}
-<p style="font-size:small;margin-left:50px;font-style:italic;">There is also an still-experimental <a href="{$cfg.abs_root_url}photos/">blended stream</a> of both faves and photos from your contacts.</p>
+<p style="font-size:small;margin-left:50px;font-style:italic;">There is also an still-experimental <a href="{$cfg.abs_root_url}photos/">blended stream</a> of every photo from all your subscriptions.</p>
 {/if}
