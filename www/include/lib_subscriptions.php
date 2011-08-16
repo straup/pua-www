@@ -135,7 +135,13 @@
 
 		foreach ($rsp['rows'] as $row){
 
-			$row['url'] = subscription_urls_get_by_id($row['url_id']);			
+			$url = subscription_urls_get_by_id($row['url_id']);
+
+			if ($url['args']){
+				$url['args'] = json_decode($url['args'], 'as hash');
+			}
+
+			$row['url'] = $url;
 			$topic_id = $row['topic_id'];
 
 			if (! isset($subscriptions[$topic_id])){
@@ -224,18 +230,35 @@
 
 		$rsp = subscriptions_create_subscription($subscription);
 
-		if ($rsp['ok']){
+		if ((! $rsp['ok']) && ($rsp['error_code'] != 1062)){
+			return $rsp;
+		}
 
-			$subscription = $rsp['subscription'];
+		else if (! $rsp['ok']){
 
-			$rsp = flickr_push_subscribe($subscription);
+			$user = users_get_by_id($subscription['user_id']);
+			$subscription = subscriptions_get_by_user_and_url($user, $subscription['url_id']);
 
-			if ($rsp['ok']){
-				$rsp['subscription'] = $subscription;
+			if ($subscription['verified']){
+
+				return array(
+					'ok' => 0,
+					'error' => 'Already subscribed',
+				);
 			}
 		}
 
-		return $rsp;
+		else {
+			$subscription = $rsp['subscription'];
+		}
+
+		$flickr_rsp = flickr_push_subscribe($subscription);
+
+		if ($flickr_rsp['ok']){
+			$flickr_rsp['subscription'] = $subscription;
+		}
+
+		return $flickr_rsp;
 	}
 
 	#################################################################

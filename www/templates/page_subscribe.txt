@@ -11,8 +11,12 @@
 	{$crumb_key|crumb_input}
 	<input type="hidden" name="confirm" value="1" />
 
-	{if $topic == 'geo'}
+	{if $topic=='geo'}
 	<input type="text" name="woeids" value="" /> WOE ID <br /><br />
+
+	{elseif $topic=='tags'}
+	<input type="text" name="tags" value="" /> tags <br /><br />
+
 	{/if}
 
 	<input type="submit" value="OH YES!!" />

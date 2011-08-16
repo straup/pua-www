@@ -43,6 +43,12 @@
 		$map = flickr_push_topic_map();
 		$topic = $map[$subscription['topic_id']];
 
+		# ggrrrr... nils
+
+		if ($topic == 'tags'){
+			$topic = 'tag';
+		}
+
 		$args = array(
 			'auth_token' => $flickr_user['auth_token'],
 			'topic' => $topic,
@@ -74,6 +80,12 @@
 
 		$map = flickr_push_topic_map();
 		$topic = $map[$subscription['topic_id']];
+
+		# ggrrrr... nils
+
+		if ($topic == 'tags'){
+			$topic = 'tag';
+		}
 
 		$args = array(
 			'auth_token' => $flickr_user['auth_token'],

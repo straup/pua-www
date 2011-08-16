@@ -50,7 +50,17 @@
 			$subscription = subscriptions_get_by_user_and_url($GLOBALS['cfg']['user'], $url['id']);
 		}
 
-		# tags go here...
+		else if ($topic == 'tags'){
+
+			$tags = get_str("tags");
+			$url = subscription_urls_get_by_url("photos/places/{$tags}/");
+
+			if (! $url){
+				error_404();
+			}
+
+			$subscription = subscriptions_get_by_user_and_url($GLOBALS['cfg']['user'], $url['id']);
+		}
 
 		else {
 			$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);

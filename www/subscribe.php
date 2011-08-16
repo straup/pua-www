@@ -83,6 +83,7 @@
 				}
 
 				if (count($ids)){
+					sort($ids);
 					$ids = implode(",", $ids);
 					$topic_url .= "{$ids}/";
 					$topic_args = array('woe_ids' => $ids);
@@ -97,6 +98,37 @@
 			else {
 				$topic_ok = 0;
 				$topic_err = 'Missing WOE IDs';
+			}
+		}
+
+		else if ($topic == 'tags'){
+
+			if ($tags = post_str('tags')){
+
+				$tag_list = array();
+
+				foreach (explode(",", $tags) as $t){
+
+					# filter me here...
+					$tag_list[] = $t;
+				}
+
+				if (count($tag_list)){
+					sort($tag_list);
+					$tag_list = implode(",", $tag_list);
+					$topic_url .= "{$tag_list}/";
+					$topic_args = array('tags' => $tag_list);
+				}
+
+				else {
+					$topic_ok = 0;
+					$topic_err = 'No valid tags';
+				}
+			}
+
+			else {
+				$topic_ok = 0;
+				$topic_err = 'Missing tags';
 			}
 		}
 

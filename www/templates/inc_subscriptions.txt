@@ -20,7 +20,16 @@
 {if $subscriptions.$topic_id}
 {foreach from=$subscriptions.$topic_id item="sub"}
 
-		<td><strong><a href="{$cfg.abs_root_url}{$sub.url.url}">{$row.label|@ucfirst|escape}</a></strong></td>
+{capture assign="label"}
+{$row.label|@ucfirst|escape}
+{if $sub.url.args}
+	{if $sub.url.args.woe_ids} for WOE IDs {$sub.url.args.woe_ids}
+	{elseif $sub.url.args.tags} {$sub.url.args.tags}
+	{else}{/if}
+{/if}
+{/capture}
+
+		<td><strong><a href="{$cfg.abs_root_url}{$sub.url.url}">{$label|@trim|escape}</a></strong></td>
 		<td>{$sub.created|date_format:"%b %d, %Y"|escape}</td>
 		<td>{if $sub.verified}{$sub.verified|date_format:"%b %d, %Y"|escape}{else}&#8212;{/if}</td>
 		<td>{if $sub.last_update}{$sub.last_update|date_format:"%b %d, %Y"|escape} at <strong>{$sub.last_update|date_format:"%l:%M %p"|escape}</strong>{else}&#8212;{/if}</td>
@@ -33,13 +42,6 @@
 			</form>
 		</td>
 {/foreach}
-{else}
-		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
-		<td><a href="{$cfg.abs_root_url}{$row.url}">subscribe</a></td>
-		<td>&#160;</td>
-		<td>&#160;</td>
-{/if}
-{/if}
 	</tr>
 {if $row.has_args}
 	<tr>
@@ -48,6 +50,14 @@
 		<td>&#160;</td>
 		<td>&#160;</td>
 	</tr>
+{/if}
+
+{else}
+		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
+		<td><a href="{$cfg.abs_root_url}{$row.url}">subscribe</a></td>
+		<td>&#160;</td>
+		<td>&#160;</td>
+{/if}
 {/if}
 
 {/foreach}
