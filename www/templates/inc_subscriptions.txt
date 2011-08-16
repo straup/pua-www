@@ -16,10 +16,10 @@
 	</tr>
 {foreach from=$topic_map item="row" key="topic_id"}
 {if $row.enabled}
-	<tr>
+
 {if $subscriptions.$topic_id}
 {foreach from=$subscriptions.$topic_id item="sub"}
-
+	<tr>
 {capture assign="label"}{if $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
 
 		<td><strong><a href="{$cfg.abs_root_url}{$sub.topic_url.url}">{$label|@trim|escape}</a></strong></td>
@@ -34,8 +34,9 @@
 				<input type="submit" value="unsubscribe" class="unsubscribe" />
 			</form>
 		</td>
-{/foreach}
 	</tr>
+{/foreach}
+
 {if $row.has_args}
 	<tr>
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
@@ -46,10 +47,12 @@
 {/if}
 
 {else}
+	<tr>
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
 		<td><a href="{$cfg.abs_root_url}{$row.url}">subscribe</a></td>
 		<td>&#160;</td>
 		<td>&#160;</td>
+	</tr>
 {/if}
 {/if}
 
