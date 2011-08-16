@@ -77,7 +77,7 @@
 
 				foreach (explode(",", $woeids) as $id){
 
-					if (intval($woeid)){
+					if (intval($id)){
 						$ids[] = $id;
 					}
 				}

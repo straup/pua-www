@@ -51,6 +51,9 @@ RewriteRule ^photos/data/?$					photos_json.php?%{QUERY_STRING} [L]
 RewriteRule ^photos/places(/(\d+))?/?$				photos_places.php?woeid=$2&%{QUERY_STRING} [L]
 RewriteRule ^photos/places/subscribe/?$				subscribe.php?topic=geo&%{QUERY_STRING} [L]
 
+RewriteRule ^photos/tags(/(.*))?/?$				photos_tags.php?tag=$2&%{QUERY_STRING} [L]
+RewriteRule ^photos/tags/subscribe/?$				subscribe.php?topic=tags&%{QUERY_STRING} [L]
+
 RewriteRule ^photos/commons/?$					photos_commons.php?%{QUERY_STRING} [L]
 RewriteRule ^photos/commons/subscribe/?$			subscribe.php?topic=commons&%{QUERY_STRING} [L]
 RewriteRule ^photos/commons/data/?$				photos_json.php?topic=commons&%{QUERY_STRING} [L]

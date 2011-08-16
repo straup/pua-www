@@ -19,6 +19,7 @@
 			6 => array('label' => 'photos of your contacts', 'url' => 'photosof/friends/', 'enabled' => 1, 'has_args' => 0),
 			7 => array('label' => 'geotagged photos', 'url' => 'photos/places/', 'enabled' => 1, 'has_args' => 1),
 			8 => array('label' => 'photos from the Commons', 'url' => 'photos/commons/', 'enabled' => 1, 'has_args' => 0),
+			9 => array('label' => 'photos tagged', 'url' => 'photos/tags/', 'enabled' => 1, 'has_args' => 1),
 		);
 
 		return $map;
@@ -132,12 +133,16 @@
 
 		$subscriptions = array();
 
-		# FIX ME: needs to be updated to account for things
-		# like topic=geo which may have multiple subscriptions
-		# see also: templates/page_index.txt
-
 		foreach ($rsp['rows'] as $row){
-			$subscriptions[$row['topic_id']] = $row;
+
+			$row['url'] = subscription_urls_get_by_id($row['url_id']);			
+			$topic_id = $row['topic_id'];
+
+			if (! isset($subscriptions[$topic_id])){
+				$subscriptions[$topic_id] = array();
+			}
+
+			$subscriptions[$topic_id][] = $row;
 		}
 
 		return $subscriptions;
