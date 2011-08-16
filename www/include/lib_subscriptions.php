@@ -10,6 +10,9 @@
 		# these keys should match those defined in
 		# flickr_push_topic_map()
 
+		# the labels and the URLs get superseded by stuff
+		# in lib_subscription_urls
+
 		$map = array(
 			1 => array('label' => 'your contacts photos', 'url' => 'photos/friends/', 'enabled' => 1, 'has_args' => 0),
 			2 => array('label' => 'your contacts faves', 'url' => 'faves/friends/', 'enabled' => 1, 'has_args' => 0),
@@ -19,7 +22,7 @@
 			6 => array('label' => 'photos of your contacts', 'url' => 'photosof/friends/', 'enabled' => 1, 'has_args' => 0),
 			7 => array('label' => 'geotagged photos', 'url' => 'photos/places/', 'enabled' => 1, 'has_args' => 1),
 			8 => array('label' => 'photos from the Commons', 'url' => 'photos/commons/', 'enabled' => 1, 'has_args' => 0),
-			9 => array('label' => 'photos tagged', 'url' => 'photos/tags/', 'enabled' => 1, 'has_args' => 1),
+			9 => array('label' => 'photos with tags', 'url' => 'photos/tags/', 'enabled' => 1, 'has_args' => 1),
 		);
 
 		return $map;
