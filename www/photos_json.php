@@ -6,8 +6,10 @@
 	include("include/init.php");
 
 	loadlib("flickr_push");
-	loadlib("subscriptions");
 	loadlib("api_output");
+
+	loadlib("subscriptions");
+	loadlib("subscription_urls");
 
 	include_once("Redis.php");
 
@@ -36,7 +38,23 @@
 			error_404();
 		}
 
-		$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
+		if ($topic == 'geo'){
+
+			$woeids = get_str("woeids");
+			$url = subscription_urls_get_by_url("photos/places/{$woeids}/");
+
+			if (! $url){
+				error_404();
+			}
+
+			$subscription = subscriptions_get_by_user_and_url($GLOBALS['cfg']['user'], $url['id']);
+		}
+
+		# tags go here...
+
+		else {
+			$subscription = subscriptions_get_by_user_and_topic($GLOBALS['cfg']['user'], $topic_id);
+		}
 
 		if (! $subscription){
 			error_404();

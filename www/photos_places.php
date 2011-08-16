@@ -29,8 +29,11 @@
 		exit;
 	}
 
-	$GLOBALS['smarty']->assign("topic", "geo");
-	$GLOBALS['smarty']->assign("woeid", "woeid");
+	$mock_topic = array(
+		'url' => $url['url'],
+	);
+
+	$GLOBALS['smarty']->assign("topic", $mock_topic);
 	$GLOBALS['smarty']->assign_by_ref("subscription", $subscription);
 
 	$GLOBALS['smarty']->display("page_places.txt");
