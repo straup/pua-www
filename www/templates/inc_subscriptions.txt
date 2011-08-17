@@ -19,7 +19,7 @@
 {if $subscriptions.$topic_id}
 {foreach from=$subscriptions.$topic_id item="sub"}
 	<tr>
-{capture assign="label"}{if $sub.label}{$sub.label}{elseif $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
+{capture assign="label"}{if $sub.label}"{$sub.label}"{elseif $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
 {capture assign="title"}{if $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
 
 		<td><strong><a href="{$cfg.abs_root_url}{$sub.topic_url.url}" title="{$title|@trim|escape}">{$label|@trim|escape}</a></strong></td>
@@ -38,7 +38,7 @@
 
 {if $row.has_args}
 	<tr style="background-color:#ccc;">
-		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
+		<td><strong><a href="{$cfg.abs_root_url}{$row.url}" title="create a new subscription for {$row.label|escape}">{$row.label|@ucfirst|escape}</a></strong></td>
 		<td>&#160;</td>
 		<td>&#160;</td>
 		<td>&#160;</td>
@@ -48,7 +48,7 @@
 
 {else}
 	<tr>
-		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
+		<td><strong><a href="{$cfg.abs_root_url}{$row.url}" title="create a nw subscription for {$row.label|escape}">{$row.label|@ucfirst|escape}</a></strong></td>
 		<td>&#160;</td>
 		<td>&#160;</td>
 		<td>&#160;</td>

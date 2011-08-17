@@ -19,7 +19,7 @@
 
 	{else}{/if}
 
-	<input type="submit" value="OH YES!!" />
+	<input type="submit" value="SUBSCRIBE" />
 </form>
 
 </div>
