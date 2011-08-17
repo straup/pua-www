@@ -78,12 +78,15 @@
 
 				foreach (explode(",", $woeids) as $id){
 
-					if (intval($id)){
+					$id = intval(trim($id));
+
+					if ($id){
 						$ids[] = $id;
 					}
 				}
 
 				if (count($ids)){
+
 					sort($ids);
 					$ids = implode(",", $ids);
 					$topic_url .= "{$ids}/";
@@ -143,6 +146,10 @@
 			$GLOBALS['error']['details'] = $topic_err;
 			$GLOBALS['smarty']->display("page_subscribe.txt");
 			exit();
+		}
+
+		if ($user_label = filter_strict(post_str('label'))){
+			$topic_label = $user_label;
 		}
 
 		#
