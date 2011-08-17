@@ -11,7 +11,6 @@
 		<th>Created</th>
 		<th>Verified</th>
 		<th>Last update</th>
-		<th>New photos</th>
 		<th style="border:none;">&#160;</th>
 	</tr>
 {foreach from=$topic_map item="row" key="topic_id"}
@@ -20,13 +19,13 @@
 {if $subscriptions.$topic_id}
 {foreach from=$subscriptions.$topic_id item="sub"}
 	<tr>
-{capture assign="label"}{if $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
+{capture assign="label"}{if $sub.label}{$sub.label}{elseif $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
+{capture assign="title"}{if $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
 
-		<td><strong><a href="{$cfg.abs_root_url}{$sub.topic_url.url}">{$label|@trim|escape}</a></strong></td>
+		<td><strong><a href="{$cfg.abs_root_url}{$sub.topic_url.url}" title="{$title|@trim|escape}">{$label|@trim|escape}</a></strong></td>
 		<td>{$sub.created|date_format:"%b %d, %Y"|escape}</td>
 		<td>{if $sub.verified}{$sub.verified|date_format:"%b %d, %Y"|escape}{else}&#8212;{/if}</td>
 		<td>{if $sub.last_update}{$sub.last_update|date_format:"%b %d, %Y"|escape} at <strong>{$sub.last_update|date_format:"%l:%M %p"|escape}</strong>{else}&#8212;{/if}</td>
-		<td class="number">{$sub.last_update_photo_count|escape}</td>
 		<td>
 			<form method="POST" action="{$cfg.abs_root_url}" style="margin:0;" onsubmit="{literal}javascript: if (! confirm('Are you sure you want to unsubscribe?')){ return false; }{/literal}">
 				{$crumb_key|crumb_input}
@@ -38,20 +37,22 @@
 {/foreach}
 
 {if $row.has_args}
-	<tr>
+	<tr style="background-color:#ccc;">
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
+		<td>&#160;</td>
+		<td>&#160;</td>
+		<td>&#160;</td>
 		<td><a href="{$cfg.abs_root_url}{$row.url}">subscribe</a></td>
-		<td>&#160;</td>
-		<td>&#160;</td>
 	</tr>
 {/if}
 
 {else}
 	<tr>
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}">{$row.label|@ucfirst|escape}</a></strong></td>
+		<td>&#160;</td>
+		<td>&#160;</td>
+		<td>&#160;</td>
 		<td><a href="{$cfg.abs_root_url}{$row.url}">subscribe</a></td>
-		<td>&#160;</td>
-		<td>&#160;</td>
 	</tr>
 {/if}
 {/if}

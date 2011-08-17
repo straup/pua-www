@@ -148,10 +148,6 @@
 			exit();
 		}
 
-		if ($user_label = filter_strict(post_str('label'))){
-			$topic_label = $user_label;
-		}
-
 		#
 
 		$rsp = subscription_urls_create($topic_url, $topic_label, $topic_args);
@@ -172,6 +168,10 @@
 			'topic_id' => $topic_id,
 			'url_id' => $url_id,
 		);
+
+		if ($user_label = filter_strict(post_str('user_label'))){
+			$subscription['label'] = $user_label;
+		}
 
 		$rsp = subscriptions_register_subscription($subscription);
 

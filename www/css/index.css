@@ -216,3 +216,21 @@ form {
 .number {
     text-align: right;
 }
+
+.sub_input {
+    margin-bottom:20px;
+}
+
+.sub_input input {
+    margin-bottom:10px;
+}
+
+.sub_type {
+    font-weight: 700;
+    margin-bottom:10px;
+}
+
+.sub_blurb {
+    font-size: small;
+    font-style: italic;
+}

@@ -1,0 +1,7 @@
+<div class="sub_input">
+<div class="sub_type">tags</div>
+<input type="text" name="tags" value="" />
+<div class="sub_blurb">multiple tags should be separated by a comma</div>
+</div>
+
+{include file="inc_subscribe_label.txt"}

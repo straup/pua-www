@@ -1,0 +1,6 @@
+<div class="sub_input">
+<div class="sub_type">label</div>
+<input type="text" name="user_label" value="" />
+<div class="sub_blurb">a label is your own name for this stream (it's not required)</div>
+</div>
+

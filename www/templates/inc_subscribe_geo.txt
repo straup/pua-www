@@ -1,0 +1,7 @@
+<div class="sub_input">
+<div class="sub_type">WOE ID</div>
+<input type="text" name="woeids" value="" />
+<div class="sub_blurb">multiple WOE IDs should be separated by a comma</div>
+</div>
+
+{include file="inc_subscribe_label.txt"}
