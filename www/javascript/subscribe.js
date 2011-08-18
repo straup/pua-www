@@ -6,7 +6,7 @@ function subscribe_geo_geocode(){
 	var wr = $('#sub_geocode_wrapper');
 	wr.hide();
 
-	var where = prompt('where');
+	var where = prompt("Please enter the place name you're looking for and\nwe'll ask Flickr for matching WOE IDs\n\n(this might take a few seconds)\n\n");
 
 	if (! where){
 		return;
@@ -51,12 +51,18 @@ function subscribe_geo_geocode(){
 function subscribe_geo_display(rsp){
 
 	var count = rsp['places']['place'].length;
+
+	if (! count){
+		alert("Alas... there's nothing matching that query.");
+		return;
+	}
+
 	var results = new Array();
 
 	for (var i=0; i < count; i++){
 		var name = rsp['places']['place'][i]['_content'];
 		var woeid = rsp['places']['place'][i]['woeid'];
-		var html = '<li><a href="#" onclick="subscribe_geo_set_woeid('+ woeid + ');return false;">' + name + '</a></li>';
+		var html = '<li><a href="#" onclick="subscribe_geo_set_woeid('+ woeid + ');return false;">' + name + '</a><span style="color:#ccc;"> &#8212; WOE ID #' + woeid + '</span></li>';
 		results.push(html);
 	}
 
@@ -72,15 +78,19 @@ function subscribe_geo_set_woeid(woeid){
 	var ids = (current) ? current.split(',') : new Array();
 
 	var count = ids.length;
+	var seen = 0;
 
 	for (var i=0; i < count; i++){
 		if (ids[i] == woeid){
-			return;
+			seen = 1;
+			break;
 		}
 	}
 
-	ids.push(woeid);
-	$("#woeids").val(ids.join(','));
+	if (! seen){
+		ids.push(woeid);
+		$("#woeids").val(ids.join(','));
+	}
 
 	var wr = $('#sub_geocode_wrapper');
 	wr.hide();
