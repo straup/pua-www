@@ -1,40 +1,12 @@
+<div id="sub_geocode_wrapper">
+<ul id="sub_geocode_results"></ul>
+<a href="#" onclick="javascript:$('#sub_geocode_wrapper').hide();return false;">close</a>
+</div>
+
 <div class="sub_input">
 <div class="sub_type">WOE ID(s)</div>
 <input type="text" name="woeids" value="" id="woeids" />
-<div class="sub_blurb">multiple WOE IDs should be separated by a comma ... <a href="#" onclick="geocode();return false;">geocode</a></div>
+<div class="sub_blurb">multiple WOE IDs should be separated by a comma ... <a href="#" onclick="subscribe_geo_geocode();return false;">geocode</a></div>
 </div>
 
 {include file="inc_subscribe_label.txt"}
-
-{literal}
-<script type="text/javascript">
-
-function geocode(){
-
-	var where = prompt('where');
-
-	if (! where){
-		return;
-	}
-
-	var api_key = '';
-
-	var url = 'http://api.flickr.com/services/rest/?method=flickr.places.find&format=json&nojsoncallback=1';
-	url += '&api_key=' + api_key;
-	url += '&query=' + where;
-
-	$.ajax({
-		'url' : url,
-		'success' : function(rsp){
-
-			if (rsp['stat'] != 'ok'){
-				return;
-			}
-
-			// do stuff here...
-		}
-	});
-}
-
-</script>
-{/literal}

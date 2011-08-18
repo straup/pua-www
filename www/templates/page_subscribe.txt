@@ -1,4 +1,7 @@
 {capture assign="page_title"}subscribe to {$subscription_type.label|escape}{/capture}
+{capture assign="extra_head"}
+<script type="text/javascript" src="{$cfg.abs_root_url}javascript/subscribe.js"></script>
+{/capture}
 {include file="inc_head.txt"}
 
 {if $step=='do_confirm'}

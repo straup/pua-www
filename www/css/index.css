@@ -234,3 +234,17 @@ form {
     font-size: small;
     font-style: italic;
 }
+
+#sub_geocode_wrapper {
+    position: absolute;
+    top:100;
+    left:25%;
+    z-index: 100;
+    border: 2px solid #000;
+    width: 50%;
+    height: 50%;
+    background-color: #fff;
+    display:none;
+    padding:25px;
+    overflow: scroll;
+}
