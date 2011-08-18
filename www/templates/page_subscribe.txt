@@ -1,6 +1,6 @@
 {capture assign="page_title"}subscribe to {$subscription_type.label|escape}{/capture}
 {capture assign="extra_head"}
-<script type="text/javascript" src="{$cfg.abs_root_url}javascript/subscribe.js"></script>
+<script type="text/javascript" src="{$cfg.abs_root_url}javascript/subscribe.min.js"></script>
 {/capture}
 {include file="inc_head.txt"}
 
@@ -10,7 +10,7 @@
 
 <p>This is the part where I double-check that you're sure you'd like to subscribe to {$subscription_type.label|escape}. If you've gotten this far it seems like a safe bet but are you <strong>really really sure?</strong></p>
 
-<form method="POST" action="{$cfg.abs_root_url}{$subscription_type.url|escape}subscribe/" style="margin-left:40%;">
+<form method="POST" action="{$cfg.abs_root_url}{$subscription_type.url|escape}subscribe/" style="margin-left:20%;">
 	{$crumb_key|crumb_input}
 	<input type="hidden" name="confirm" value="1" />
 	

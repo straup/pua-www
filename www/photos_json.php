@@ -109,20 +109,6 @@
 		}
 	}
 
-	# this is a bit annoying, to reconsider
-	# (20110608/straup)
-
-	if ($subsciption){
-		$update = array(
-			'last_request' => time(),
-			'last_request_photo_count' => count($photos),
-		);
-
-		subscriptions_update($subscription, $update);
-	}
-
-	#
-
 	$is_gil = ($GLOBALS['cfg']['user']['id'] == 50) ? 1 : 0;
 
 	$out = array(

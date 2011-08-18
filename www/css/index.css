@@ -81,10 +81,16 @@ input {
     padding: 10px;
     font-size:14pt;
     font-weight:700;
+    width:400px;
 }
 
 input[type='submit'] {
+    margin-top:15px;
     padding:9px;
+}
+
+input[type='submit']:hover {
+    background-color:#41627E;
 }
 
 #photo_wrapper {
@@ -169,8 +175,8 @@ form {
 
 #subscriptions td {
     padding:10px;
-    padding-left:0px;
     padding-right:30px;
+    font-size: small;
 }
 
 .image500 {
@@ -233,6 +239,7 @@ form {
 .sub_blurb {
     font-size: small;
     font-style: italic;
+    max-width: 400px;
 }
 
 #sub_geocode_wrapper {
@@ -245,6 +252,23 @@ form {
     height: 50%;
     background-color: #fff;
     display:none;
-    padding:25px;
+    padding:50px;
     overflow: scroll;
+}
+
+#sub_geocode_blurb {
+    font-style:italic;
+    margin-bottom:20px;
+    color:#666;
+}
+
+#sub_geocode_results {
+    margin: 0;
+    padding: 0;
+    margin-bottom:30px;
+}
+
+#sub_geocode_results li {
+	line-height: 25px;
+	list-style-type: none;
 }

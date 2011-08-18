@@ -1,12 +1,15 @@
 <div id="sub_geocode_wrapper">
+<p id="sub_geocode_blurb">These places look like they might be what you're looking for. Just click on the name to add that WOE ID to your subscription.</p>
+
 <ul id="sub_geocode_results"></ul>
-<a href="#" onclick="javascript:$('#sub_geocode_wrapper').hide();return false;">close</a>
+<a href="#" onclick="javascript:$('#sub_geocode_wrapper').hide();return false;">Nope, none of these are right. Close this window.</a>
 </div>
 
 <div class="sub_input">
 <div class="sub_type">WOE ID(s)</div>
 <input type="text" name="woeids" value="" id="woeids" />
-<div class="sub_blurb">multiple WOE IDs should be separated by a comma ... <a href="#" onclick="subscribe_geo_geocode();return false;">geocode</a></div>
+<div class="sub_blurb">
+A WOE (Where On Earth) ID is just a unique number representing a place on Earth, like a neighbourhood or a city. Flickr uses them to track places in its database. You can see a whole lot of them <a href="http://woe.spum.org/" target="_woedb">over here</a>.<br /><br />You can enter WOE IDs by hand (multiple IDs should be separated by a comma) or you can use this handy <a href="#" onclick="subscribe_geo_geocode();return false;">geocoding service to look up the idea for a place</a>.</div>
 </div>
 
 {include file="inc_subscribe_label.txt"}
