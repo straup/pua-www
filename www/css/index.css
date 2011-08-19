@@ -160,11 +160,13 @@ form {
 	color: #991111;
 }
 
-#subscriptions {
-    margin-left: 5%;
+.subscriptions {
+    width:90%;
+    margin-bottom:100px;
+    margin-top:20px;
 }
 
-#subscriptions th {
+.subscriptions th {
     text-align:left;
     padding:15px;
     padding-left:0px;
@@ -173,7 +175,7 @@ form {
     border-bottom:1px solid #999;
 }
 
-#subscriptions td {
+.subscriptions td {
     padding:10px;
     padding-right:30px;
     font-size: small;
@@ -253,7 +255,8 @@ form {
     background-color: #fff;
     display:none;
     padding:50px;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #sub_geocode_blurb {

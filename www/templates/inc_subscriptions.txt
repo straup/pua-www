@@ -5,19 +5,27 @@
 {else}{/if}
 </p>
 {/if}
-<table id="subscriptions">
+
+<div style="height:70%; max-height:65%; overflow-y:scroll;overflow-x:hidden;">
+{if $subscriptions|@count}
+
+<a name="yours"></a>
+<h3>Your Subscriptions</h3>
+
+<div style="font-size:11px;font-weight:100;display:block;">Or <a href="#new">create a new subscription</a></div>
+
+<table class="subscriptions">
 	<tr>
-		<th>Subscription</th>
+		<th>Topic</th>
 		<th>Created</th>
 		<th>Verified</th>
 		<th>Last update</th>
 		<th style="border:none;">&#160;</th>
 	</tr>
-{foreach from=$topic_map item="row" key="topic_id"}
-{if $row.enabled}
 
-{if $subscriptions.$topic_id}
-{foreach from=$subscriptions.$topic_id item="sub"}
+{foreach from=$subscriptions item="subs" key="topic_id"}
+{foreach from=$subs item="sub"}
+
 	<tr>
 {capture assign="label"}{if $sub.label}"{$sub.label}"{elseif $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
 {capture assign="title"}{if $sub.topic_url.label}{$sub.topic_url.label|@ucfirst}{else}{$row.label|@ucfirst}{/if}{/capture}
@@ -35,9 +43,34 @@
 		</td>
 	</tr>
 {/foreach}
+{/foreach}
+
+</table>
+
+{/if}
+
+<a name="new"></a>
+<h3>
+New Subscriptions
+</h3>
+
+<div style="font-size:11px;font-weight:100;display:block;">There is also a <a href="{$cfg.abs_root_url}photos/">blended stream</a> of every photo from all your subscriptions.</a></div>
+
+<table class="subscriptions">
+	<tr>
+		<th>Topic</th>
+		<th>Created</th>
+		<th>Verified</th>
+		<th>Last update</th>
+		<th style="border:none;">&#160;</th>
+	</tr>
+{foreach from=$topic_map item="row" key="topic_id"}
+{if $row.enabled}
+
+{if $subscriptions.$topic_id}
 
 {if $row.has_args}
-	<tr style="background-color:#ccc;">
+	<tr>
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}" title="create a new subscription for {$row.label|escape}">{$row.label|@ucfirst|escape}</a></strong></td>
 		<td>&#160;</td>
 		<td>&#160;</td>
@@ -47,7 +80,7 @@
 {/if}
 
 {else}
-	<tr style="background-color:#ccc;">
+	<tr>
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}" title="create a nw subscription for {$row.label|escape}">{$row.label|@ucfirst|escape}</a></strong></td>
 		<td>&#160;</td>
 		<td>&#160;</td>
@@ -61,5 +94,8 @@
 </table>
 
 {if $subscriptions|@count}
-<p style="font-size:small;margin-left:50px;font-style:italic;">There is also an still-experimental <a href="{$cfg.abs_root_url}photos/">blended stream</a> of every photo from all your subscriptions.</p>
+<p style="font-size:small;margin-left:50px;font-style:italic;"></p>
 {/if}
+
+</div>
+
