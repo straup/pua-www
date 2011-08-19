@@ -59,9 +59,7 @@ New Subscriptions
 <table class="subscriptions">
 	<tr>
 		<th>Topic</th>
-		<th>Created</th>
-		<th>Verified</th>
-		<th>Last update</th>
+		{if 0}<th>Description</th>{/if}
 		<th style="border:none;">&#160;</th>
 	</tr>
 {foreach from=$topic_map item="row" key="topic_id"}
@@ -72,9 +70,7 @@ New Subscriptions
 {if $row.has_args}
 	<tr>
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}" title="create a new subscription for {$row.label|escape}">{$row.label|@ucfirst|escape}</a></strong></td>
-		<td>&#160;</td>
-		<td>&#160;</td>
-		<td>&#160;</td>
+		{if 0}<td>&#160;</td>{/if}
 		<td style="padding-left:20px;font-size:11pt;"><a href="{$cfg.abs_root_url}{$row.url}">subscribe</a></td>
 	</tr>
 {/if}
@@ -82,9 +78,7 @@ New Subscriptions
 {else}
 	<tr>
 		<td><strong><a href="{$cfg.abs_root_url}{$row.url}" title="create a nw subscription for {$row.label|escape}">{$row.label|@ucfirst|escape}</a></strong></td>
-		<td>&#160;</td>
-		<td>&#160;</td>
-		<td>&#160;</td>
+		{if 0}<td>&#160;</td>{/if}
 		<td style="padding-left:20px;font-size:11pt;"><a href="{$cfg.abs_root_url}{$row.url}">subscribe</a></td>
 	</tr>
 {/if}
