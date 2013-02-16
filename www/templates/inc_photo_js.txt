@@ -3,6 +3,16 @@ var endpoint = '/{$topic.url}data/';
 {literal}
 	$(document).ready(function(){
 		pua_photos(endpoint);
+
+		$(document).keydown(function(e){
+
+			if ((e.keyCode == 70) && (e.shiftKey)){
+				// note the part where we are not using jquery here
+				var wrapper = document.getElementById("photo_wrapper");;
+				wrapper.requestFullscreen();
+			}
+		});
+		
 	});
 </script>
 {/literal}

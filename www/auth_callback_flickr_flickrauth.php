@@ -106,10 +106,12 @@
 	# If we don't ensure that new users are allowed to create
 	# an account (locally).
 
+/*
 	else if (! $GLOBALS['cfg']['enable_feature_signup']){
 		$GLOBALS['smarty']->display("page_signup_disabled.txt");
 		exit();
 	}
+*/
 
 	# Hello, new user! This part will create entries in two separate
 	# databases: Users and FlickrUsers that are joined by the primary

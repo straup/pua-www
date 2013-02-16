@@ -5,6 +5,7 @@
 	loadlib("subscriptions");
 	loadlib("atom");
 
+	loadlib("bergcloud_littleprinter");
 	include_once("Redis.php");
 
 	$secret_url = get_str("secret_url");
@@ -66,6 +67,8 @@
 	$redis = new Redis();
 	$new = 0;
 
+	$html = '';
+
 	foreach ($atom->items as $e){
 
 		$photo = array(
@@ -78,12 +81,20 @@
 			'thumb_url' => $e['media']['thumbnail@url'],
 		);
 
+		$html .= '<div style="font-size:18pt; font-weight: 700;">';
+		$html .= '<p>A photo by ' . $photo['ownername'] . '</p>';
+		$html .= '<img src="' . $photo['photo_url'] . '" />';
+		$html .= '</div>';
+
 		$enc_photo = json_encode($photo);
 
 		$redis->lpush($sub_key, $enc_photo);
 		$redis->lpush($user_key, $enc_photo);
 		$new ++;
 	}
+
+	# $code = 'ORR7WHU7EGMO';
+	# $rsp = bergcloud_littleprinter_direct_print($html, $code);
 
 	#
 
